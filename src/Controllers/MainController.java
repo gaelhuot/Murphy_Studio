@@ -34,7 +34,6 @@ public class MainController implements Initializable {
 
         /* On ajoute les différentes pages qu'on lie à chacun des buttons */
         views.put(chordsPage, "chords.fxml");
-        views.put(page2, "page.fxml");
 
         for (Map.Entry<Button, String> entry: views.entrySet())
         {
@@ -58,8 +57,8 @@ public class MainController implements Initializable {
         Pane newPane = fxmlLoader.load();
 
         /* On charge le controller et on lui passse le model */
-        Chords chordsController = fxmlLoader.getController();
-        chordsController.setModel(model);
+        Controller ctrl = fxmlLoader.getController();
+        ctrl.setModel(model);
 
         /* On l'affiche dans le container */
         mainContainer.getChildren().setAll(newPane);

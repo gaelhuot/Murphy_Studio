@@ -1,12 +1,14 @@
 package Controllers;
 
 import Models.MainModel;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Chords implements Initializable {
+public class Chords extends Controller implements Initializable {
 
     private MainModel model;
 
