@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="708.0" prefWidth="873.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Chords">
+   <children>
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="C" />
+      <Button layoutX="14.0" layoutY="54.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Cm" />
+
+      <Button layoutX="114.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="D" />
+      <Button layoutX="114.0" layoutY="54.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Dm" />
+
+      <Button layoutX="214.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="E" />
+      <Button layoutX="214.0" layoutY="54.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Em" />
+
+      <Button layoutX="314.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="F" />
+      <Button layoutX="314.0" layoutY="54.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Fm" />
+
+      <Button layoutX="414.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="G" />
+      <Button layoutX="414.0" layoutY="54.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Gm" />
+
+      <Button layoutX="514.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="A" />
+      <Button layoutX="514.0" layoutY="54.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Am" />
+
+      <Button layoutX="614.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="B" />
+      <Button layoutX="614.0" layoutY="54.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Bm" />
+   </children>
+</Pane>
