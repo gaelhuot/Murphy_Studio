@@ -1,0 +1,39 @@
+/*
+Main Primary color
+.color-primary-0 { color: #120E29 }
+.color-primary-1 { color: #25213B }
+.color-primary-2 { color: #1B1733 }
+.color-primary-3 { color: #0A061D }
+.color-primary-4 { color: #040211 }
+
+Main Complement color
+.color-complement-0 { color: #3B320F }
+.color-complement-1 { color: #554C2B }
+.color-complement-2 { color: #4A411B }
+.color-complement-3 { color: #2A2205 }
+.color-complement-4 { color: #191400 }
+*/
+
+
+.main
+{
+  -fx-background-color: #120E29;
+  -fx-color: #1C1C1C
+}
+
+.separator
+{
+
+}
+
+.menu-bar
+{
+  -fx-background-color: #0A061D;
+  -fx-background-color: transparent;
+}
+
+.control-bar-pane
+{
+  -fx-background-color: #040211;
+  -fx-color: #000000;
+}
