@@ -12,12 +12,14 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("../views/layout.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../views/main_layout.fxml"));
         Rectangle2D bounds = Screen.getPrimary().getBounds();
 
         Scene scene = new Scene(root);
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(scene);
+        primaryStage.setMinWidth(root.minWidth(-1));
+        primaryStage.setMinHeight(root.minHeight(-1));
         primaryStage.setX((bounds.getWidth() - primaryStage.getWidth()) / 2);
         primaryStage.setY((bounds.getHeight() - primaryStage.getHeight()) / 4);
         primaryStage.show();
