@@ -21,15 +21,19 @@ Main Complement color
   -fx-color: #1C1C1C
 }
 
-.separator
-{
-
-}
-
 .menu-bar
 {
-  -fx-background-color: #0A061D;
   -fx-background-color: transparent;
+}
+
+.menu-bar .container .menu
+{
+  -fx-background-color: transparent;
+}
+
+.menu-bar .context-menu
+{
+  -fx-background-color: #0A061D;
 }
 
 .control-bar-pane
