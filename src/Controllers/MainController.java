@@ -20,7 +20,7 @@ public class MainController implements Initializable {
 
     /* Elements qui permettent de changer de page */
     @FXML
-    private Button chordGridView;
+    private Button chordGridView, changeVue;
     private HashMap<Button, String> views = new HashMap<Button, String>();
 
     /* Container */

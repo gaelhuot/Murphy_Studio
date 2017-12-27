@@ -61,9 +61,9 @@ public class Accords {
 
     public Accords getWithScale(int scale)
     {
-        Accords chord = this;
-        for ( int i = 0; i < chord.notes.length; i++ )
-            chord.notes[i]+=(12 * scale);
-        return chord;
+        int[] newNotes = new int[notes.length];
+        for ( int i = 0; i < notes.length; i++ )
+            newNotes[i] = notes[i] + (12 * scale);
+        return new Accords(name, shortName + "#" + scale, newNotes);
     }
 }

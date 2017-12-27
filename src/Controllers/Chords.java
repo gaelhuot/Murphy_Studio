@@ -3,6 +3,7 @@ package Controllers;
 import Models.ChordModel;
 import Models.MainModel;
 import Objects.Accords;
+import Objects.Player;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,6 +11,8 @@ import javafx.scene.AccessibleAction;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 
+import javax.sound.midi.InvalidMidiDataException;
+import javax.sound.midi.MidiUnavailableException;
 import javax.swing.plaf.synth.SynthUI;
 import java.net.URL;
 import java.util.Arrays;
@@ -37,6 +40,13 @@ public class Chords extends Controller implements Initializable {
     }
 
     private void init() {
+
+        try {
+            model.player = new Player();
+        } catch (MidiUnavailableException e) {
+            e.printStackTrace();
+        }
+
         buttonToChord.put(chordC, chordModel.getChord("C"));
         buttonToChord.put(chordCm, chordModel.getChord("Cm"));
         buttonToChord.put(chordD, chordModel.getChord("D"));
@@ -62,7 +72,13 @@ public class Chords extends Controller implements Initializable {
 
     private void playChord(Accords chord)
     {
-        System.out.println(chord.getName() + " (" + chord.getShortName() + ") : " + Arrays.toString(chord.getNotes()));
+        Accords newChord = chord.getWithScale(1);
+        System.out.println(newChord.getName() + " (" + newChord.getShortName() + ") : " + Arrays.toString(newChord.getNotes()));
+        try {
+            this.model.player.playChord(newChord.getWithScale(4), true);
+        } catch (InvalidMidiDataException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setModel(MainModel model) {
