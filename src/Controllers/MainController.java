@@ -1,5 +1,6 @@
 package Controllers;
 
+import Models.ChordModel;
 import Models.MainModel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +20,7 @@ public class MainController implements Initializable {
 
     /* Elements qui permettent de changer de page */
     @FXML
-    private Button chordsPage, page2;
+    private Button chordGridView;
     private HashMap<Button, String> views = new HashMap<Button, String>();
 
     /* Container */
@@ -32,8 +33,11 @@ public class MainController implements Initializable {
         /* On initialise le model "principal" */
         this.model = new MainModel();
 
+        /* On initialise les models secondaires */
+        this.model.chordModel = new ChordModel();
+
         /* On ajoute les différentes pages qu'on lie à chacun des buttons */
-        views.put(chordsPage, "chords.fxml");
+        views.put(chordGridView, "chords.fxml");
 
         for (Map.Entry<Button, String> entry: views.entrySet())
         {
