@@ -24,7 +24,7 @@ public class Player {
         return sm;
     }
 
-    public void playChord(Accords chord, boolean start) throws InvalidMidiDataException {
+    public void playChord(Accord chord, boolean start) throws InvalidMidiDataException {
         int[] chordNotes = chord.getNotes();
         for ( int i = 0; i < chord.getNotes().length; i++ )
         {

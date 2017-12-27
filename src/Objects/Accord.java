@@ -1,15 +1,15 @@
 package Objects;
 
-public class Accords {
+public class Accord {
 
     private int scale;          // Gamme
     private String name;        // Nom de l'accord
     private String shortName;   // Nom de l'accord (Solfège)
     private int[] notes;        // Notes
 
-    public Accords() {}
+    public Accord() {}
 
-    public Accords(String name, String  shortName, int[] notes)
+    public Accord(String name, String  shortName, int[] notes)
     {
         this.name   = name;
         this.scale  = 0;
@@ -17,7 +17,7 @@ public class Accords {
         this.shortName = shortName;
     }
 
-    public Accords(String name, String shortName, int scale, int[] notes)
+    public Accord(String name, String shortName, int scale, int[] notes)
     {
         this.name   = name;
         this.scale  = scale;
@@ -59,11 +59,11 @@ public class Accords {
         this.shortName = shortName;
     }
 
-    public Accords getWithScale(int scale)
+    public Accord getWithScale(int scale)
     {
         int[] newNotes = new int[notes.length];
         for ( int i = 0; i < notes.length; i++ )
             newNotes[i] = notes[i] + (12 * scale);
-        return new Accords(name, shortName + "#" + scale, newNotes);
+        return new Accord(name, shortName + "#" + scale, newNotes);
     }
 }

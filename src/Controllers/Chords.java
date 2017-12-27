@@ -2,18 +2,14 @@ package Controllers;
 
 import Models.ChordModel;
 import Models.MainModel;
-import Objects.Accords;
+import Objects.Accord;
 import Objects.Player;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.AccessibleAction;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
 
 import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MidiUnavailableException;
-import javax.swing.plaf.synth.SynthUI;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -28,7 +24,7 @@ public class Chords extends Controller implements Initializable {
     @FXML // Buttons d'accords
     private Button chordC,chordCm,chordD,chordDm,chordE,chordEm,chordF,chordFm,chordG,chordGm,chordA,chordAm,chordB,chordBm;
 
-    private HashMap<Button, Accords> buttonToChord = new HashMap<>();
+    private HashMap<Button, Accord> buttonToChord = new HashMap<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -62,7 +58,7 @@ public class Chords extends Controller implements Initializable {
         buttonToChord.put(chordB, chordModel.getChord("B"));
         buttonToChord.put(chordBm, chordModel.getChord("Bm"));
 
-        for (Map.Entry<Button, Accords> entry: buttonToChord.entrySet())
+        for (Map.Entry<Button, Accord> entry: buttonToChord.entrySet())
         {
             entry.getKey().setOnMouseClicked(event -> {
                 playChord(entry.getValue());
@@ -70,9 +66,9 @@ public class Chords extends Controller implements Initializable {
         }
     }
 
-    private void playChord(Accords chord)
+    private void playChord(Accord chord)
     {
-        Accords newChord = chord.getWithScale(1);
+        Accord newChord = chord.getWithScale(1);
         System.out.println(newChord.getName() + " (" + newChord.getShortName() + ") : " + Arrays.toString(newChord.getNotes()));
         try {
             this.model.player.playChord(newChord.getWithScale(4), true);
