@@ -34,10 +34,12 @@ public class Main extends Application {
         MenuItem menu_file_new = new MenuItem("New");
         MenuItem menu_file_save = new MenuItem("Save");
         MenuItem menu_file_quit = new MenuItem("Quit");
+
+        menu_file_new.setOnAction(e -> System.out.println("New File"));
+        menu_file_quit.setOnAction(e -> System.out.println("Quit"));
+
         menu_file.getItems().addAll(menu_file_new, menu_file_save, new SeparatorMenuItem(), menu_file_quit);
         menubar.getMenus().addAll(menu_file);
-        menubar.setId("menu_bar");
-
 
         SplitPane split_interface = new SplitPane();
         split_interface.setOrientation(Orientation.VERTICAL);
