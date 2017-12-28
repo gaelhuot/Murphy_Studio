@@ -1,5 +1,8 @@
 package Objects;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
 import javax.sound.midi.*;
 
 public class Player {
@@ -14,7 +17,11 @@ public class Player {
 
     private MidiDevice ouputDevice;
 
+    public SimpleIntegerProperty master_volume;
+
     public Player() throws MidiUnavailableException {
+        master_volume = new SimpleIntegerProperty(50);
+
         initSequencer();
     }
 

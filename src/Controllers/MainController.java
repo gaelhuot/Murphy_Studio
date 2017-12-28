@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Slider;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
@@ -53,6 +54,9 @@ public class MainController implements Initializable {
                 }
             });
         }
+
+//        Slider slider_master_volume = (Slider) mainContainer.lookup("#slider_master_volume");
+//        model.player.master_volume.bind(slider_master_volume.valueProperty());
     }
 
     private void loadView(String viewName) throws IOException {
