@@ -10,6 +10,7 @@
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
 <BorderPane id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="400.0" prefHeight="400.0" prefWidth="409.0" styleClass="main" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainController">
@@ -61,10 +62,13 @@
       </BorderPane>
    </top>
    <center>
-      <BorderPane id="workspace_pane" opacity="0.64" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FF0000;" BorderPane.alignment="CENTER">
+      <BorderPane fx:id="workspace_pane" opacity="0.64" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FF0000;" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets left="5.0" right="5.0" />
          </BorderPane.margin>
+         <center>
+            <Pane fx:id="mainContainer" prefHeight="306.0" prefWidth="383.0" BorderPane.alignment="CENTER" />
+         </center>
       </BorderPane>
    </center>
    <bottom>

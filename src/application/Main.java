@@ -41,11 +41,12 @@ public class Main extends Application {
         menu_file.getItems().addAll(menu_file_new, menu_file_save, new SeparatorMenuItem(), menu_file_quit);
         menubar.getMenus().addAll(menu_file);
 
+        /*
         SplitPane split_interface = new SplitPane();
         split_interface.setOrientation(Orientation.VERTICAL);
         split_interface.getItems().addAll(new BorderPane(), new BorderPane());
         workspace.setCenter(split_interface);
-
+        */
 
 
     }

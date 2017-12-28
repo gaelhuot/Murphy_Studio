@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
@@ -25,6 +26,8 @@ public class MainController implements Initializable {
     private HashMap<Button, String> views = new HashMap<Button, String>();
 
     /* Container */
+    @FXML
+    private BorderPane workspace_pane;
     @FXML
     private Pane mainContainer;
 
