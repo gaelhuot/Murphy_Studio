@@ -6,9 +6,7 @@ import javafx.geometry.Orientation;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Slider;
-import javafx.scene.control.SplitPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -30,16 +28,23 @@ public class Main extends Application {
         primaryStage.show();
 
         BorderPane workspace = (BorderPane) scene.lookup("#workspace_pane");
+
+        MenuBar menubar = (MenuBar) scene.lookup("#menu_bar");
+        Menu menu_file = new Menu("File");
+        MenuItem menu_file_new = new MenuItem("New");
+        MenuItem menu_file_save = new MenuItem("Save");
+        MenuItem menu_file_quit = new MenuItem("Quit");
+        menu_file.getItems().addAll(menu_file_new, menu_file_save, new SeparatorMenuItem(), menu_file_quit);
+        menubar.getMenus().addAll(menu_file);
+        menubar.setId("menu_bar");
+
+
         SplitPane split_interface = new SplitPane();
         split_interface.setOrientation(Orientation.VERTICAL);
-        BorderPane bp1 = new BorderPane();
-        BorderPane bp2 = new BorderPane();
-        bp1.setTop(new Slider());
-        bp2.setBottom(new Slider());
-        bp1.setCenter(new Button());
-        bp2.setTop(new Button());
-        split_interface.getItems().addAll(bp1, bp2);
+        split_interface.getItems().addAll(new BorderPane(), new BorderPane());
         workspace.setCenter(split_interface);
+
+
 
     }
 
