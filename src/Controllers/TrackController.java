@@ -1,7 +1,6 @@
 package Controllers;
 
 import Models.MainModel;
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuButton;
@@ -20,7 +19,7 @@ public class TrackController extends Controller implements Initializable {
     @FXML
     public TextField track_name_input;
     @FXML
-    public Slider track_volume_input;
+    public Slider track_volume_slider;
     @FXML
     public ImageView track_instrument_icon;
     @FXML
@@ -41,6 +40,7 @@ public class TrackController extends Controller implements Initializable {
     private void initAll()
     {
         /* TOut ce qui agit sur le model, tu le code ici */
+//        this.model.player.tracks[le_bon_track].volume.bind(this.track_volume_slider);
     }
 
     public void setModel(MainModel model) {

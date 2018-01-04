@@ -4,6 +4,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 import javax.sound.midi.*;
+import java.util.ArrayList;
 
 public class Player {
 
@@ -14,6 +15,7 @@ public class Player {
     private Receiver receiver;
     private Transmitter transmitter;
     private Synthesizer synthesizer;
+    public ArrayList<Track> tracks;
 
     private MidiDevice ouputDevice;
 
