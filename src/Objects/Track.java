@@ -19,36 +19,7 @@ public class Track extends Pane
 
     public Track(String name)
     {
-        this.getStyleClass().add("track");
-        double height = 100.0;
-        this.setMinHeight(height);
-        this.setMaxHeight(height);
-
-        TextField text_track_name = new TextField(name);
-
-        Slider track_volume_slider = new Slider(0,100, 100);
-        this.volume = new SimpleIntegerProperty(100);
-        this.volume.bind(track_volume_slider.valueProperty());
-
-        MenuButton instrument_selection = new MenuButton();
-
-        VBox track_control = new VBox();
-        track_control.getStyleClass().add("track-control");
-        track_control.getChildren().addAll(text_track_name, track_volume_slider, instrument_selection);
-
-        Pane timeline = new Pane();
-        timeline.getStyleClass().add("track-timeline");
-        timeline.setMinWidth(100.0);
-        timeline.setMaxWidth(Double.POSITIVE_INFINITY);
-        timeline.getChildren().add(new Slider());
-
-        BorderPane container = new BorderPane();
-        container.setLeft(track_control);
-        container.setCenter(timeline);
-
-        this.getChildren().addAll(container);
-
-
+        
     }
 
 
