@@ -5,9 +5,8 @@ import Models.MainModel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.Slider;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
@@ -21,6 +20,8 @@ public class MainController implements Initializable {
 
     public MenuBar menu_bar;
     private MainModel model;
+
+    private Scene scene;
 
     /* Elements qui permettent de changer de page */
     @FXML
@@ -41,6 +42,27 @@ public class MainController implements Initializable {
 
         /* On initialise les models secondaires */
         this.model.chordModel = new ChordModel();
+
+        Menu menu_file = new Menu("File");
+        MenuItem menu_file_new = new MenuItem("New");
+        MenuItem menu_file_save = new MenuItem("Save");
+        MenuItem menu_file_quit = new MenuItem("Quit");
+
+        menu_file_new.setOnAction(e -> System.out.println("New File"));
+        menu_file_quit.setOnAction(e -> System.out.println("Quit"));
+
+        menu_file.getItems().addAll(menu_file_new, menu_file_save, new SeparatorMenuItem(), menu_file_quit);
+        menu_bar.getMenus().addAll(menu_file);
+
+        try {
+            loadView("track.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+
 
         /* On ajoute les différentes pages qu'on lie à chacun des buttons */
         views.put(chordGridView, "chords.fxml");
@@ -76,7 +98,6 @@ public class MainController implements Initializable {
         /* On l'affiche dans le container */
         mainContainer.getChildren().setAll(newPane);
     }
-
 }
 
 

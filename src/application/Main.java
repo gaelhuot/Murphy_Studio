@@ -30,6 +30,7 @@ public class Main extends Application {
         primaryStage.setY((bounds.getHeight() - primaryStage.getHeight()) / 4);
         primaryStage.show();
 
+        /*
         BorderPane workspace = (BorderPane) scene.lookup("#workspace_pane");
 
         MenuBar menubar = (MenuBar) scene.lookup("#menu_bar");
@@ -51,9 +52,7 @@ public class Main extends Application {
         split_interface.setOrientation(Orientation.VERTICAL);
         split_interface.getItems().addAll(tracks, new BorderPane());
         workspace.setCenter(split_interface);
-
-
-
+        */
     }
 
 

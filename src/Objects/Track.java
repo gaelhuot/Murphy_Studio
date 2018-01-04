@@ -15,7 +15,7 @@ public class Track extends Pane
 {
     public SimpleIntegerProperty volume;
     private String track_name;
-//    private Instrument instrument;
+    //    private Instrument instrument;
 
     public Track(String name)
     {

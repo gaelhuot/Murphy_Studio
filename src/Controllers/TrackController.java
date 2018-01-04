@@ -25,6 +25,9 @@ public class TrackController implements Initializable {
     public HBox track_timeline;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) { }
+    public void initialize(URL location, ResourceBundle resources) {
+
+
+    }
 
 }
