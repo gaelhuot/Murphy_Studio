@@ -8,7 +8,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
-public class TrackController extends Initializable {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class TrackController implements Initializable {
 
     @FXML
     public TextField track_name_input;
@@ -20,4 +23,8 @@ public class TrackController extends Initializable {
     public MenuButton track_instrument_selection;
     @FXML
     public HBox track_timeline;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) { }
+
 }
