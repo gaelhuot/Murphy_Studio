@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -18,6 +19,7 @@ import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
 
+    public MenuBar menu_bar;
     private MainModel model;
 
     /* Elements qui permettent de changer de page */

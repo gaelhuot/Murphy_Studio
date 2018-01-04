@@ -13,11 +13,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="400.0" prefHeight="400.0" prefWidth="409.0" styleClass="main" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainController">
+<BorderPane id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="400.0" prefHeight="400.0" prefWidth="409.0" styleClass="main" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainController">
    <top>
       <BorderPane id="top_border_pane" BorderPane.alignment="CENTER">
          <top>
-            <MenuBar id="menu_bar" BorderPane.alignment="CENTER">
+            <MenuBar id="menu_bar" fx:id="menu_bar" BorderPane.alignment="CENTER">
               <menus>
                 <Menu id="menu_file" mnemonicParsing="false" text="File">
                   <items>
@@ -55,7 +55,7 @@
             <ButtonBar id="top_button_bar" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
               <buttons>
                 <Button fx:id="chordGridView" mnemonicParsing="false" text="Chords Grid" ButtonBar.buttonData="LEFT" />
-                  <Slider id="slider_master_volume" />
+                  <Slider id="slider_master_volume" fx:id="master_volume_slider" />
               </buttons>
             </ButtonBar>
          </bottom>
@@ -72,7 +72,7 @@
       </BorderPane>
    </center>
    <bottom>
-      <HBox prefHeight="22.0" prefWidth="600.0" styleClass="state-bar" BorderPane.alignment="CENTER">
+      <HBox fx:id="state_bar" prefHeight="22.0" prefWidth="600.0" styleClass="state-bar" BorderPane.alignment="CENTER">
          <children>
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Barre d'etat">
                <HBox.margin>
