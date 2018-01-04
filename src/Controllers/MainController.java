@@ -43,6 +43,7 @@ public class MainController implements Initializable {
         /* On initialise les models secondaires */
         this.model.chordModel = new ChordModel();
 
+        /* On initialise le menu */
         Menu menu_file = new Menu("File");
         MenuItem menu_file_new = new MenuItem("New");
         MenuItem menu_file_save = new MenuItem("Save");
@@ -54,6 +55,7 @@ public class MainController implements Initializable {
         menu_file.getItems().addAll(menu_file_new, menu_file_save, new SeparatorMenuItem(), menu_file_quit);
         menu_bar.getMenus().addAll(menu_file);
 
+        /* On charge la vue par default (track) */
         try {
             loadView("track.fxml");
         } catch (IOException e) {
