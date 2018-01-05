@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
@@ -18,7 +19,18 @@ import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
 
+    public HBox state_bar;
+
     public MenuBar menu_bar;
+    public MenuItem menu_file_new;
+    public MenuItem menu_file_save;
+    public MenuItem menu_file_saveas;
+    public MenuItem menu_file_quit;
+    public MenuItem menu_edit_undo;
+    public MenuItem menu_edit_redo;
+
+    public Slider master_volume_slider;
+
     private MainModel model;
 
     private Scene scene;
@@ -43,17 +55,14 @@ public class MainController implements Initializable {
         /* On initialise les models secondaires */
         this.model.chordModel = new ChordModel();
 
-        /* On initialise le menu */
-        Menu menu_file = new Menu("File");
-        MenuItem menu_file_new = new MenuItem("New");
-        MenuItem menu_file_save = new MenuItem("Save");
-        MenuItem menu_file_quit = new MenuItem("Quit");
 
+        /* Assignation des actions de la barre des menus */
         menu_file_new.setOnAction(e -> System.out.println("New File"));
+        menu_file_save.setOnAction(e -> System.out.println("Save"));
+        menu_file_saveas.setOnAction(e -> System.out.println("Save as"));
         menu_file_quit.setOnAction(e -> System.out.println("Quit"));
-
-        menu_file.getItems().addAll(menu_file_new, menu_file_save, new SeparatorMenuItem(), menu_file_quit);
-        menu_bar.getMenus().addAll(menu_file);
+        menu_edit_undo.setOnAction(e -> System.out.println("Undo"));
+        menu_edit_redo.setOnAction(e -> System.out.println("Redo"));
 
         /* On charge la vue par default (track) */
         try {
@@ -84,8 +93,11 @@ public class MainController implements Initializable {
             });
         }
 
-//        Slider slider_master_volume = (Slider) mainContainer.lookup("#slider_master_volume");
-//        model.player.master_volume.bind(slider_master_volume.valueProperty());
+    }
+
+    private void initAll()
+    {
+        this.model.player.master_volume.bind(this.master_volume_slider.valueProperty());
     }
 
     private void loadView(String viewName) throws IOException {
@@ -101,5 +113,3 @@ public class MainController implements Initializable {
         mainContainer.getChildren().setAll(newPane);
     }
 }
-
-

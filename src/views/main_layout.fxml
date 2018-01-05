@@ -10,7 +10,6 @@
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
 <BorderPane id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="400.0" prefHeight="400.0" prefWidth="409.0" styleClass="main" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainController">
@@ -19,18 +18,19 @@
          <top>
             <MenuBar id="menu_bar" fx:id="menu_bar" BorderPane.alignment="CENTER">
               <menus>
-                <Menu id="menu_file" mnemonicParsing="false" text="File">
+                <Menu mnemonicParsing="false" text="File">
                   <items>
-                        <MenuItem id="menu_file_new" mnemonicParsing="false" text="New" />
-                    <MenuItem id="menu_file_save" mnemonicParsing="false" text="Save" />
-                        <MenuItem id="menu_file_save_as" mnemonicParsing="false" text="Save As..." />
+                        <MenuItem fx:id="menu_file_new" mnemonicParsing="false" text="New" />
+                        <MenuItem fx:id="menu_file_save" mnemonicParsing="false" text="Save" />
+                        <MenuItem fx:id="menu_file_saveas" mnemonicParsing="false" text="Save As..." />
                         <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem id="menu_file_quit" mnemonicParsing="false" text="Quit" />
+                        <MenuItem fx:id="menu_file_quit" mnemonicParsing="false" text="Quit" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
+                    <MenuItem fx:id="menu_edit_undo" mnemonicParsing="false" text="Undo" />
+                    <MenuItem fx:id="menu_edit_redo" mnemonicParsing="false" text="Redo" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="View">
@@ -62,13 +62,10 @@
       </BorderPane>
    </top>
    <center>
-      <BorderPane fx:id="workspace_pane" opacity="0.64" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FF0000;" BorderPane.alignment="CENTER">
+      <BorderPane fx:id="mainContainer" opacity="0.64" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FF0000;" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets left="5.0" right="5.0" />
          </BorderPane.margin>
-         <center>
-            <Pane fx:id="mainContainer" prefHeight="306.0" prefWidth="383.0" BorderPane.alignment="CENTER" />
-         </center>
       </BorderPane>
    </center>
    <bottom>
