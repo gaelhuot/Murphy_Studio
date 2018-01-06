@@ -30,6 +30,7 @@ public class Main extends Application {
         primaryStage.setY((bounds.getHeight() - primaryStage.getHeight()) / 4);
         primaryStage.show();
 
+
         //TODO charger les vues suivantes :
         // mainContainer -> split pane
         // split pane top -> track_layout.fxml

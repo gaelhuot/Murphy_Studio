@@ -64,9 +64,9 @@ public class MainController implements Initializable {
         menu_edit_undo.setOnAction(e -> System.out.println("Undo"));
         menu_edit_redo.setOnAction(e -> System.out.println("Redo"));
 
-        /* On charge la vue par default (track) */
+        /* On charge la vue par default (track_layout) */
         try {
-            loadView("track.fxml");
+            loadView("track_layout.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }
