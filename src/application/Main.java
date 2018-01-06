@@ -30,29 +30,12 @@ public class Main extends Application {
         primaryStage.setY((bounds.getHeight() - primaryStage.getHeight()) / 4);
         primaryStage.show();
 
-        /*
-        BorderPane workspace = (BorderPane) scene.lookup("#workspace_pane");
+        //TODO charger les vues suivantes :
+        // mainContainer -> split pane
+        // split pane top -> track_layout.fxml
+        // track_layout_vbox -> track.fxml
+        // split pane bottom -> chords.fxml (apres avoir retire le surperflu)
 
-        MenuBar menubar = (MenuBar) scene.lookup("#menu_bar");
-        Menu menu_file = new Menu("File");
-        MenuItem menu_file_new = new MenuItem("New");
-        MenuItem menu_file_save = new MenuItem("Save");
-        MenuItem menu_file_quit = new MenuItem("Quit");
-
-        menu_file_new.setOnAction(e -> System.out.println("New File"));
-        menu_file_quit.setOnAction(e -> System.out.println("Quit"));
-
-        menu_file.getItems().addAll(menu_file_new, menu_file_save, new SeparatorMenuItem(), menu_file_quit);
-        menubar.getMenus().addAll(menu_file);
-
-        VBox tracks = new VBox();
-        tracks.getChildren().addAll(new Track("Track #1"), new Track("#Track #2"));
-
-        SplitPane split_interface = new SplitPane();
-        split_interface.setOrientation(Orientation.VERTICAL);
-        split_interface.getItems().addAll(tracks, new BorderPane());
-        workspace.setCenter(split_interface);
-        */
     }
 
 
