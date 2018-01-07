@@ -66,7 +66,7 @@ public class MainController implements Initializable {
 
         /* On charge la vue par default (track_layout) */
         try {
-            loadView("track_layout.fxml");
+            loadView("piste_layout.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }

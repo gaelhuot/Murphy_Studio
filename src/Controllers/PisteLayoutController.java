@@ -13,11 +13,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class TrackLayoutController extends Controller implements Initializable {
+public class PisteLayoutController extends Controller implements Initializable {
 
     private MainModel model;
 
-    private ArrayList<TrackController> tracks = new ArrayList<TrackController>();
+    private ArrayList<PisteController> tracks = new ArrayList<PisteController>();
 
     public ToolBar track_layout_button_bar;
     public Button addTrackBtn;
@@ -31,10 +31,10 @@ public class TrackLayoutController extends Controller implements Initializable {
     private void initTracksLayout() {
         addTrackBtn.setOnMouseClicked(event -> {
             try {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/track.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/piste.fxml"));
                 Pane track = fxmlLoader.load();
 
-                TrackController trackController = fxmlLoader.getController();
+                PisteController trackController = fxmlLoader.getController();
                 trackController.setModel(model);
                 tracks.add(trackController);
 

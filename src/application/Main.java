@@ -1,16 +1,10 @@
 package application;
 
-import Objects.Track;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Orientation;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 

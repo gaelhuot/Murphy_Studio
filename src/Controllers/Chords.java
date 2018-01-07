@@ -60,9 +60,7 @@ public class Chords extends Controller implements Initializable {
 
         for (Map.Entry<Button, Accord> entry: buttonToChord.entrySet())
         {
-            entry.getKey().setOnMouseClicked(event -> {
-                playChord(entry.getValue());
-            });
+            entry.getKey().setOnMouseClicked(event -> playChord(entry.getValue()));
         }
     }
 
