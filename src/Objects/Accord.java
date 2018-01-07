@@ -17,12 +17,16 @@ public class Accord {
         this.shortName = shortName;
     }
 
-    public Accord(String name, String shortName, int scale, int[] notes)
+    public Accord(String name, String shortName, int[] notes, int scale)
     {
         this.name   = name;
         this.scale  = scale;
-        this.notes  = notes;
         this.shortName = shortName;
+
+        this.notes = new int[notes.length];
+
+        for ( int i = 0; i < notes.length; i++ )
+            this.notes[i] = notes[i] + (12 * scale);
     }
 
     /* Getters */
@@ -49,6 +53,8 @@ public class Accord {
 
     public void setScale(int scale) {
         this.scale = scale;
+        for ( int i = 0; i < notes.length; i++ )
+            notes[i] += 12 * scale;
     }
 
     public void setNotes(int[] notes) {
@@ -66,4 +72,5 @@ public class Accord {
             newNotes[i] = notes[i] + (12 * scale);
         return new Accord(name, shortName + "#" + scale, newNotes);
     }
+
 }
