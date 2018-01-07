@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -17,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class MainController implements Initializable {
+public class MainController extends Controller implements Initializable {
 
     public HBox state_bar;
 
@@ -30,6 +31,7 @@ public class MainController implements Initializable {
     public MenuItem menu_edit_redo;
 
     public Slider master_volume_slider;
+    public AnchorPane secondContainer;
 
     private MainModel model;
 
@@ -66,7 +68,7 @@ public class MainController implements Initializable {
 
         /* On charge la vue par default (track_layout) */
         try {
-            loadView("piste_layout.fxml");
+            loadView("piste_layout.fxml", mainContainer);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -86,7 +88,7 @@ public class MainController implements Initializable {
             /* Pour chaque button, on créé un event qui va permettre de charger la page correspondante */
             fxmlID.setOnMouseClicked(event -> {
                 try {
-                    loadView(viewName);
+                    loadView(viewName, secondContainer);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -100,7 +102,7 @@ public class MainController implements Initializable {
         this.model.player.master_volume.bind(this.master_volume_slider.valueProperty());
     }
 
-    private void loadView(String viewName) throws IOException {
+    private void loadView(String viewName, Pane container) throws IOException {
         /* On récupère la vue dans un pane */
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/" + viewName));
         Pane newPane = fxmlLoader.load();
@@ -110,6 +112,6 @@ public class MainController implements Initializable {
         ctrl.setModel(model);
 
         /* On l'affiche dans le container */
-        mainContainer.getChildren().setAll(newPane);
+        container.getChildren().setAll(newPane);
     }
 }
