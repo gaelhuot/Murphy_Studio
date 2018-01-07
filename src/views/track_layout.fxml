@@ -7,12 +7,12 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.TrackLayoutController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.TrackLayoutController">
    <top>
       <ToolBar fx:id="track_layout_button_bar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" BorderPane.alignment="CENTER">
         <items>
-          <Button mnemonicParsing="false" text="Play" />
-            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Add" />
+            <Button fx:id="playTrackBtn" mnemonicParsing="false" text="Play" />
+            <Button fx:id="addTrackBtn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Add" />
             <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Remove" />
         </items>
       </ToolBar>
@@ -22,7 +22,7 @@
          <children>
             <ScrollPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <content>
-                  <VBox id="track_layout_vbox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" />
+                  <VBox id="track_layout_vbox" fx:id="trackLayoutVBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="291.0" />
                </content>
             </ScrollPane>
          </children>

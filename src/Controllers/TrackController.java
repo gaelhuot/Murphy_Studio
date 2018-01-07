@@ -1,6 +1,7 @@
 package Controllers;
 
 import Models.MainModel;
+import Objects.Track;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuButton;
@@ -41,6 +42,11 @@ public class TrackController extends Controller implements Initializable {
     {
         /* TOut ce qui agit sur le model, tu le code ici */
 //        this.model.player.tracks[le_bon_track].volume.bind(this.track_volume_slider);
+    }
+
+    public void setName(String name)
+    {
+        track_name_input.setText(name);
     }
 
     public void setModel(MainModel model) {
