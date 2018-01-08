@@ -2,6 +2,7 @@ package Controllers;
 
 import Models.ChordModel;
 import Models.MainModel;
+import Objects.Player;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,6 +13,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
+import javax.sound.midi.MidiUnavailableException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
@@ -53,6 +55,12 @@ public class MainController extends Controller implements Initializable {
 
         /* On initialise le model "principal" */
         this.model = new MainModel();
+
+        try {
+            this.model.player = new Player();
+        } catch (MidiUnavailableException e) {
+            e.printStackTrace();
+        }
 
         /* On initialise les models secondaires */
         this.model.chordModel = new ChordModel();
