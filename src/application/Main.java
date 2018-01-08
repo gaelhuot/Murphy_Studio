@@ -1,5 +1,6 @@
 package application;
 
+import Controllers.MainController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -12,8 +13,13 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("../views/main_layout.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/main_layout.fxml"));
+        Parent root = fxmlLoader.load();
+
         Rectangle2D bounds = Screen.getPrimary().getBounds();
+
+
+        MainController mainController = fxmlLoader.getController();
 
         Scene scene = new Scene(root);
         primaryStage.setTitle("Hello World");
@@ -24,6 +30,7 @@ public class Main extends Application {
         primaryStage.setY((bounds.getHeight() - primaryStage.getHeight()) / 4);
         primaryStage.show();
 
+        primaryStage.setOnCloseRequest(event -> mainController.exit());
 
         //TODO charger les vues suivantes :
         // mainContainer -> split pane

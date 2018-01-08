@@ -114,4 +114,9 @@ public class MainController extends Controller implements Initializable {
         /* On l'affiche dans le container */
         container.getChildren().setAll(newPane);
     }
+
+    public void exit() {
+        model.player.sequencer.close();
+        model.player.receiver.close();
+    }
 }
