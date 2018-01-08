@@ -7,14 +7,12 @@ import Objects.Player;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
 import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MidiUnavailableException;
 import java.net.URL;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class Chords extends Controller implements Initializable {
 
@@ -24,7 +22,13 @@ public class Chords extends Controller implements Initializable {
     @FXML // Buttons d'accords
     private Button chordC,chordCm,chordD,chordDm,chordE,chordEm,chordF,chordFm,chordG,chordGm,chordA,chordAm,chordB,chordBm;
 
+    @FXML
+    private Label chord0, chord1, chord2, chord3;
+
     private HashMap<Button, Accord> buttonToChord = new HashMap<>();
+
+    private Accord[] chordsTest = new Accord[4];
+    private int ind = 0;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -58,10 +62,18 @@ public class Chords extends Controller implements Initializable {
         buttonToChord.put(chordB, chordModel.getChord("B"));
         buttonToChord.put(chordBm, chordModel.getChord("Bm"));
 
+        Label[] chordLabel = {chord0, chord1, chord2, chord3};
+
         for (Map.Entry<Button, Accord> entry: buttonToChord.entrySet())
         {
-            entry.getKey().setOnMouseClicked(event -> playChord(entry.getValue()));
+            //entry.getKey().setOnMouseClicked(event -> playChord(entry.getValue()));
+            entry.getKey().setOnMouseClicked(event-> {
+                chordsTest[ind] = entry.getValue();
+                chordLabel[ind].setText(entry.getValue().getShortName());
+                ind = ( ind == 3 ? 0 : ind+1 );
+            });
         }
+
     }
 
     private void playChord(Accord chord)

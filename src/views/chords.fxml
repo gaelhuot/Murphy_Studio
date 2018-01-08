@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="708.0" prefWidth="873.0" style="-fx-background-color: orange;" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Chords">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="708.0" prefWidth="873.0" style="-fx-background-color: orange;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Chords">
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="378.0" prefWidth="871.0">
           <Label alignment="CENTER" layoutX="14.0" layoutY="35.0" prefHeight="17.0" prefWidth="78.0" text="Do" textAlignment="CENTER" textFill="WHITE">
          <font>
@@ -63,5 +63,10 @@
       </Label>
           <Button fx:id="chordB" layoutX="578.0" layoutY="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="39.0" text="B" />
           <Button fx:id="chordBm" layoutX="617.0" layoutY="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="39.0" text="Bm" />
+
+            <Label fx:id="chord1" layoutX="78.0" layoutY="135.0" text="1" />
+            <Label fx:id="chord2" layoutX="133.0" layoutY="135.0" text="2" />
+            <Label fx:id="chord0" layoutX="20.0" layoutY="135.0" text="0" />
+            <Label fx:id="chord3" layoutX="188.0" layoutY="135.0" text="3" />
       </AnchorPane>
 </Pane>

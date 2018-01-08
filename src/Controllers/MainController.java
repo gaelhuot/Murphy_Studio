@@ -140,11 +140,6 @@ public class MainController extends Controller implements Initializable {
 
     }
 
-    private void initAll()
-    {
-
-    }
-
     private void loadView(String viewName, Pane container) throws IOException {
         /* On récupère la vue dans un pane */
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/" + viewName));
@@ -152,6 +147,7 @@ public class MainController extends Controller implements Initializable {
 
         /* On charge le controller et on lui passse le model */
         Controller ctrl = fxmlLoader.getController();
+
         ctrl.setModel(model);
 
         /* On l'affiche dans le container */
@@ -159,6 +155,8 @@ public class MainController extends Controller implements Initializable {
     }
 
     public void exit() {
+        if ( model.player.sequencer.isRunning() )
+            model.player.sequencer.stop();
         model.player.sequencer.close();
         model.player.receiver.close();
     }
