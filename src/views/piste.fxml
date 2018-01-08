@@ -9,12 +9,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:controller="Controllers.PisteController" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="128.0" prefWidth="500.0" styleClass="track" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="128.0" prefWidth="500.0" styleClass="track" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PisteController">
    <left>
       <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="192.0" spacing="12.0" styleClass="track-control" BorderPane.alignment="CENTER">
          <children>
             <TextField fx:id="track_name_input" />
-            <Slider fx:id="track_volume_slider"/>
+            <Slider fx:id="track_volume_slider" />
             <HBox>
                <children>
                   <ImageView fx:id="track_instrument_icon" fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
@@ -32,6 +32,6 @@
       </VBox>
    </left>
    <center>
-      <HBox fx:id="track_timeline" prefHeight="100.0" prefWidth="200.0" styleClass="track-timeline" BorderPane.alignment="CENTER" />
+      <HBox fx:id="track_timeline" prefHeight="124.0" prefWidth="404.0" styleClass="track-timeline" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>

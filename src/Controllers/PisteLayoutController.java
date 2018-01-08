@@ -1,6 +1,7 @@
 package Controllers;
 
 import Models.MainModel;
+import Objects.Accord;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -8,6 +9,7 @@ import javafx.scene.control.ToolBar;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
+import javax.sound.midi.InvalidMidiDataException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -21,6 +23,7 @@ public class PisteLayoutController extends Controller implements Initializable {
 
     public ToolBar track_layout_button_bar;
     public Button addTrackBtn;
+    public Button removeTrackBtn;
     public Button playTrackBtn;
     public VBox trackLayoutVBox;
 
@@ -45,8 +48,36 @@ public class PisteLayoutController extends Controller implements Initializable {
             }
         });
 
+        removeTrackBtn.setOnMouseClicked(event -> {
+            if ( tracks.size() == 0 ) return;
+            trackLayoutVBox.getChildren().remove(tracks.size() - 1);
+            tracks.remove(tracks.size() - 1);
+        });
+
         playTrackBtn.setOnMouseClicked(event-> {
-            tracks.get(0).setName("Test");
+            Accord[] test = {
+                    model.chordModel.getChord("C").getWithScale(4),
+                    model.chordModel.getChord("C").getWithScale(4),
+                    model.chordModel.getChord("C").getWithScale(5),
+                    model.chordModel.getChord("C").getWithScale(5),
+                    model.chordModel.getChord("Am").getWithScale(3),
+                    model.chordModel.getChord("Am").getWithScale(3),
+                    model.chordModel.getChord("Am").getWithScale(4),
+                    model.chordModel.getChord("Am").getWithScale(4),
+                    model.chordModel.getChord("F").getWithScale(3),
+                    model.chordModel.getChord("F").getWithScale(3),
+                    model.chordModel.getChord("F").getWithScale(4),
+                    model.chordModel.getChord("F").getWithScale(4),
+                    model.chordModel.getChord("G").getWithScale(3),
+                    model.chordModel.getChord("G").getWithScale(3),
+                    model.chordModel.getChord("G").getWithScale(4),
+                    model.chordModel.getChord("G").getWithScale(4),
+            };
+            try {
+                model.player.createTrackFromChords(test);
+            } catch (InvalidMidiDataException e) {
+                e.printStackTrace();
+            }
         });
     }
 

@@ -7,11 +7,11 @@ import javax.sound.midi.Track;
 
 public class Player {
 
-    private Sequencer sequencer;
+    public Sequencer sequencer;
 
-    private MidiChannel midiChannel;
+    public MidiChannel midiChannel;
 
-    private Receiver receiver;
+    public Receiver receiver;
     private Transmitter transmitter;
     private Synthesizer synthesizer;
 
@@ -82,7 +82,6 @@ public class Player {
 
         sequencer.setSequence(sequence);
         sequencer.setLoopCount(160);
-        sequencer.setTempoInBPM(320);
         sequencer.start();
     }
 

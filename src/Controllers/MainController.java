@@ -3,6 +3,9 @@ package Controllers;
 import Models.ChordModel;
 import Models.MainModel;
 import Objects.Player;
+import Objects.CustomReceiver;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,6 +21,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class MainController extends Controller implements Initializable {
@@ -33,6 +37,8 @@ public class MainController extends Controller implements Initializable {
     public MenuItem menu_edit_redo;
 
     public Slider master_volume_slider;
+    public TextField sequencer_tempo;
+
     public AnchorPane secondContainer;
 
     private MainModel model;
@@ -81,7 +87,36 @@ public class MainController extends Controller implements Initializable {
             e.printStackTrace();
         }
 
+        sequencer_tempo.setText("120");
+        model.player.sequencer.setTempoInBPM(120);
 
+        /* ---- < Main Event Listener >  ---- */
+
+        sequencer_tempo.textProperty().addListener((observable, oldValue, newValue) -> {
+            // Only numeric
+            if ( newValue.isEmpty() || Objects.equals(newValue, "")) return;
+            if ( !newValue.matches("\\d") )
+            {
+                String value = newValue.replaceAll("[^\\d]", "");
+                sequencer_tempo.setText(value);
+                model.player.sequencer.setTempoInBPM(Float.parseFloat(value));
+            }
+        });
+
+        this.model.player.master_volume.bind(this.master_volume_slider.valueProperty());
+
+        master_volume_slider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            // Et ça marche paaas !
+            double gain = ((Double) newValue / 100);
+            CustomReceiver receiver = (CustomReceiver) model.player.receiver;
+            receiver.channel.controlChange(7, (int) (gain * 127.0));
+
+            //model.player.midiChannel.controlChange(7, (Integer) newValue);
+            System.out.println("New value : " + newValue + " (" + newValue.getClass().toString() + ")");
+            System.out.println("Model.player.master_volume : " + gain);
+        });
+
+        /* ---- </ Main Event Listener > ---- */
 
 
 
@@ -107,7 +142,7 @@ public class MainController extends Controller implements Initializable {
 
     private void initAll()
     {
-        this.model.player.master_volume.bind(this.master_volume_slider.valueProperty());
+
     }
 
     private void loadView(String viewName, Pane container) throws IOException {

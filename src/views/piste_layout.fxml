@@ -12,7 +12,7 @@
         <items>
             <Button fx:id="playTrackBtn" mnemonicParsing="false" text="Play" />
             <Button fx:id="addTrackBtn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Add" />
-            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Remove" />
+            <Button fx:id="removeTrackBtn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Remove" />
         </items>
       </ToolBar>
    </top>

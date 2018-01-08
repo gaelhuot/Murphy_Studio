@@ -4,7 +4,7 @@ import javax.sound.midi.*;
 
 public class CustomReceiver implements Receiver {
     Receiver rcvr;
-    MidiChannel channel;
+    public MidiChannel channel;
 
     public CustomReceiver(MidiChannel channel) throws MidiUnavailableException {
         this.channel = channel;
@@ -24,6 +24,10 @@ public class CustomReceiver implements Receiver {
             channel.noteOn(note_id, b[2]);
         else
             channel.noteOff(note_id);
+    }
+
+    public MidiChannel getChannel() {
+        return channel;
     }
 
     @Override
