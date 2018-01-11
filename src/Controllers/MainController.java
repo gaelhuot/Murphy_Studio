@@ -82,10 +82,12 @@ public class MainController extends Controller implements Initializable {
 
         /* On charge la vue par default (track_layout) */
         try {
-            loadView("piste_layout.fxml", mainContainer);
+            Pane track_layout = loadView("piste_layout.fxml");
+            mainContainer.getChildren().setAll(track_layout);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
 
         sequencer_tempo.setText("120");
         model.player.sequencer.setTempoInBPM(120);
@@ -131,7 +133,7 @@ public class MainController extends Controller implements Initializable {
             /* Pour chaque button, on créé un event qui va permettre de charger la page correspondante */
             fxmlID.setOnMouseClicked(event -> {
                 try {
-                    loadView(viewName, secondContainer);
+                loadView(viewName, secondContainer);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
