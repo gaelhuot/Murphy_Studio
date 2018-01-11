@@ -13,12 +13,12 @@ Main Complement color
 .color-complement-3 { color: #2A2205 }
 .color-complement-4 { color: #191400 }
 
-Grey color
-25282D
-353A41
-6A7481
-A8AFB8
-E9EAED
+Grey color (darker to brightest)
+#25282D
+#353A41
+#6A7481
+#A8AFB8
+#E9EAED
 */
 
 .main
@@ -63,6 +63,26 @@ E9EAED
 .track-timeline
 {
   -fx-background-color: #25213B;
+}
+
+.button
+{
+  -fx-background-color: #25282D;
+}
+
+.button:hover
+{
+  -fx-background-color: #353A41;
+}
+
+.button:pressed
+{
+  -fx-background-color: #6A7481;
+}
+
+.button .text
+{
+  -fx-fill: #A8AFB8;
 }
 
 
