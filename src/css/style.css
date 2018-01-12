@@ -23,8 +23,11 @@ Grey color (darker to brightest)
 
 .main
 {
-  -fx-background-color: #120E29;
-  -fx-color: #25282D
+    -fx-background-color: #100D25;
+    -fx-color: #25282D;
+    -fx-border-color: #040211;
+    -fx-border-style: solid;
+    -fx-border-width: 1px 0px;
 }
 
 .menu-bar
