@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="300.0" style="-fx-background-color: #120E29;" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PisteLayoutController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="250.0" prefWidth="300.0" style="-fx-background-color: #120E29;" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PisteLayoutController" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
    <top>
       <ToolBar fx:id="piste_layout_button_bar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: transparent;" BorderPane.alignment="CENTER">
         <items>
@@ -17,9 +17,9 @@
       </ToolBar>
    </top>
    <center>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox id="track_layout_vbox" fx:id="PisteLayoutVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="212.0" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <VBox id="track_layout_vbox" fx:id="PisteLayoutVBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="212.0" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
          </children>
       </AnchorPane>
    </center>
