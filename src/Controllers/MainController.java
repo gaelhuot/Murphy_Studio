@@ -4,8 +4,6 @@ import Models.ChordModel;
 import Models.MainModel;
 import Objects.Player;
 import Objects.CustomReceiver;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -80,10 +78,10 @@ public class MainController extends Controller implements Initializable {
         menu_edit_undo.setOnAction(e -> System.out.println("Undo"));
         menu_edit_redo.setOnAction(e -> System.out.println("Redo"));
 
-        /* On charge la vue par default (track_layout) */
+        /* On charge la vue par defaut (piste_layout) */
         try {
-            Pane track_layout = loadView("piste_layout.fxml");
-            mainContainer.getChildren().setAll(track_layout);
+            Pane piste_layout = loadView("piste_layout.fxml");
+            mainContainer.getChildren().setAll(piste_layout);
         } catch (IOException e) {
             e.printStackTrace();
         }

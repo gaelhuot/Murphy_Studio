@@ -76,7 +76,7 @@ public class Player {
         track.add(createMidiEvent(ShortMessage.NOTE_OFF, 1, note, velocity, start+duration));
     }
 
-    public void createTrackFromChords(Accord[] partition) throws InvalidMidiDataException {
+    public void createPisteFromChords(Accord[] partition) throws InvalidMidiDataException {
         for ( int i = 0; i < partition.length; i++ )
             for (int note : partition[i].getNotes() ) addNoteToTrack(note, i * 8, 93, 8);
 

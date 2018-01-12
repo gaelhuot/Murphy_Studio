@@ -17,15 +17,15 @@ public class PisteController extends Controller implements Initializable {
     private MainModel model;
 
     @FXML
-    public TextField track_name_input;
+    public TextField piste_name_input;
     @FXML
-    public Slider track_volume_slider;
+    public Slider piste_volume_slider;
     @FXML
-    public ImageView track_instrument_icon;
+    public ImageView piste_instrument_icon;
     @FXML
-    public MenuButton track_instrument_selection;
+    public MenuButton piste_instrument_selection;
     @FXML
-    public HBox track_timeline;
+    public HBox piste_timeline;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -45,7 +45,7 @@ public class PisteController extends Controller implements Initializable {
 
     public void setName(String name)
     {
-        track_name_input.setText(name);
+        piste_name_input.setText(name);
     }
 
     public void setModel(MainModel model) {

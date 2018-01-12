@@ -48,14 +48,20 @@ Grey color (darker to brightest)
   -fx-color: #000000;
 }
 
-.track-control
+.piste-control
 {
-  -fx-background-color: #0A061D; -fx-max-width: 150px;
+    -fx-border-color: #554C2B;
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-background-color: #0A061D; -fx-max-width: 150px;
 }
 
-.track-timeline
+.piste-timeline
 {
-  -fx-background-color: #25213B;
+    -fx-border-color: #554C2B;
+    -fx-border-style: solid;
+    -fx-border-width: 1px 1px 1px 0px;
+    -fx-background-color: #25213B;
 }
 
 .button

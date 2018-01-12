@@ -19,42 +19,42 @@ public class PisteLayoutController extends Controller implements Initializable {
 
     private MainModel model;
 
-    private ArrayList<PisteController> tracks = new ArrayList<PisteController>();
+    private ArrayList<PisteController> pistes = new ArrayList<PisteController>();
 
-    public ToolBar track_layout_button_bar;
-    public Button addTrackBtn;
-    public Button removeTrackBtn;
-    public Button playTrackBtn;
-    public VBox trackLayoutVBox;
+    public ToolBar piste_layout_button_bar;
+    public Button addPisteBtn;
+    public Button removePisteBtn;
+    public Button playPisteBtn;
+    public VBox PisteLayoutVBox;
 
     public void initialize(URL location, ResourceBundle resources) {
 
     }
 
-    private void initTracksLayout() {
-        addTrackBtn.setOnMouseClicked(event -> {
+    private void initPistesLayout() {
+        addPisteBtn.setOnMouseClicked(event -> {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/piste.fxml"));
-                Pane track = fxmlLoader.load();
+                Pane piste = fxmlLoader.load();
 
-                PisteController trackController = fxmlLoader.getController();
-                trackController.setModel(model);
-                tracks.add(trackController);
+                PisteController pisteController = fxmlLoader.getController();
+                pisteController.setModel(model);
+                pistes.add(pisteController);
 
-                trackController.setName("Track #" + tracks.size());
-                trackLayoutVBox.getChildren().add(track);
+                pisteController.setName("Piste #" + pistes.size());
+                PisteLayoutVBox.getChildren().add(piste);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
 
-        removeTrackBtn.setOnMouseClicked(event -> {
-            if ( tracks.size() == 0 ) return;
-            trackLayoutVBox.getChildren().remove(tracks.size() - 1);
-            tracks.remove(tracks.size() - 1);
+        removePisteBtn.setOnMouseClicked(event -> {
+            if ( pistes.size() == 0 ) return;
+            PisteLayoutVBox.getChildren().remove(pistes.size() - 1);
+            pistes.remove(pistes.size() - 1);
         });
 
-        playTrackBtn.setOnMouseClicked(event-> {
+        playPisteBtn.setOnMouseClicked(event-> {
             Accord[] test = {
                     model.chordModel.getChord("C").getWithScale(4),
                     model.chordModel.getChord("C").getWithScale(4),
@@ -74,7 +74,7 @@ public class PisteLayoutController extends Controller implements Initializable {
                     model.chordModel.getChord("G").getWithScale(4),
             };
             try {
-                model.player.createTrackFromChords(test);
+                model.player.createPisteFromChords(test);
             } catch (InvalidMidiDataException e) {
                 e.printStackTrace();
             }
@@ -84,7 +84,7 @@ public class PisteLayoutController extends Controller implements Initializable {
     public void setModel(MainModel model)
     {
         this.model = model;
-        initTracksLayout();
+        initPistesLayout();
     }
 
 
