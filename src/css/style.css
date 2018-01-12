@@ -48,13 +48,6 @@ Grey color (darker to brightest)
   -fx-color: #000000;
 }
 
-.track
-{
-  -fx-border-color: #554C2B;
-  -fx-border-style: solid;
-  -fx-border-width: 2px;
-}
-
 .track-control
 {
   -fx-background-color: #0A061D; -fx-max-width: 150px;
