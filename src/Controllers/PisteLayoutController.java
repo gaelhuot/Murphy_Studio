@@ -15,7 +15,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class PisteLayoutController extends Controller implements Initializable {
+public class PisteLayoutController extends Controller
+{
 
     private MainModel model;
 

@@ -14,7 +14,8 @@ import javax.sound.midi.MidiUnavailableException;
 import java.net.URL;
 import java.util.*;
 
-public class Chords extends Controller implements Initializable {
+public class Chords extends Controller
+{
 
     private ChordModel chordModel;
     private MainModel model;

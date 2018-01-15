@@ -22,7 +22,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class MainController extends Controller implements Initializable {
+public class MainController extends Controller
+{
 
     public HBox state_bar;
 

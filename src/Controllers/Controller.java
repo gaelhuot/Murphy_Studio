@@ -9,12 +9,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable {
+public abstract class Controller implements Initializable {
 
     private MainModel model;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) { }
+    public abstract void initialize(URL location, ResourceBundle resources);
 
     public void setModel(MainModel model) { this.model = model; }
 
