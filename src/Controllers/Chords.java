@@ -18,7 +18,6 @@ public class Chords extends Controller
 {
 
     private ChordModel chordModel;
-    private MainModel model;
 
     @FXML // Buttons d'accords
     private Button chordC,chordCm,chordD,chordDm,chordE,chordEm,chordF,chordFm,chordG,chordGm,chordA,chordAm,chordB,chordBm;

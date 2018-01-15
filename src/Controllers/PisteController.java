@@ -15,8 +15,6 @@ import java.util.ResourceBundle;
 public class PisteController extends Controller
 {
 
-    private MainModel model;
-
     @FXML
     public TextField piste_name_input;
     @FXML

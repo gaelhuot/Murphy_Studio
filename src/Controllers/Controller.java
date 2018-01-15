@@ -11,7 +11,7 @@ import java.util.ResourceBundle;
 
 public abstract class Controller implements Initializable {
 
-    private MainModel model;
+    protected MainModel model;
 
     @Override
     public abstract void initialize(URL location, ResourceBundle resources);

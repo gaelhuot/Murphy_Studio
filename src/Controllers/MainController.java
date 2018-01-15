@@ -40,7 +40,6 @@ public class MainController extends Controller
 
     public AnchorPane secondContainer;
 
-    private MainModel model;
 
     private Scene scene;
 

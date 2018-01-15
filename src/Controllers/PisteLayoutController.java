@@ -17,9 +17,6 @@ import java.util.ResourceBundle;
 
 public class PisteLayoutController extends Controller
 {
-
-    private MainModel model;
-
     private ArrayList<PisteController> pistes = new ArrayList<PisteController>();
 
     public ToolBar piste_layout_button_bar;
