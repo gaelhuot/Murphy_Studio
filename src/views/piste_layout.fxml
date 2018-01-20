@@ -22,7 +22,7 @@
          <children>
             <ScrollPane fitToWidth="true" fitToHeight="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <content>
-                  <VBox id="track_layout_vbox" fx:id="PisteLayoutVBox" fillWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="212.0" prefWidth="300.0" />
+                  <VBox id="track_layout_vbox" fx:id="PisteLayoutVBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="212.0" prefWidth="300.0" />
                </content>
             </ScrollPane>
          </children>
