@@ -30,6 +30,11 @@ Grey color (darker to brightest)
     -fx-border-width: 1px 0px;
 }
 
+.background
+{
+  -fx-background-color: #100D25;
+}
+
 .menu-bar
 {
   -fx-background-color: transparent;
