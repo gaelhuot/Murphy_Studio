@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="589.0" prefWidth="1027.0" styleClass="main" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainController">
+    <children>
+        <Pane id="menu-bar-pane" layoutY="-3.0" prefHeight="34.0" prefWidth="1027.0">
+            <children>
+                <MenuBar id="menu-bar" layoutY="2.0" prefHeight="25.0" prefWidth="297.0" style="-fx-background-color: transparent;" styleClass="menu">
+                    <menus>
+                        <Menu id="menu-bar-file" mnemonicParsing="false" text="File">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Close" />
+                            </items>
+                        </Menu>
+                        <Menu id="menu-bar-edut" mnemonicParsing="false" text="Edit">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Delete" />
+                            </items>
+                        </Menu>
+                        <Menu id="menu-bar-view" mnemonicParsing="false" text="View">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Action 1" />
+                            </items>
+                        </Menu>
+                        <Menu id="menu-bar-biew" mnemonicParsing="false" text="Options">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Action 1" />
+                            </items>
+                        </Menu>
+                        <Menu id="menu-bar-help" mnemonicParsing="false" text="Help">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="About" />
+                            </items>
+                        </Menu>
+                    </menus>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                </MenuBar>
+            </children>
+        </Pane>
+        <Separator layoutY="27.0" prefHeight="7.0" prefWidth="1027.0" />
+      <Separator layoutY="72.0" prefHeight="7.0" prefWidth="1027.0" />
+      <Pane id="control-bar-pane" layoutY="31.0" prefHeight="43.0" prefWidth="1027.0">
+         <children>
+            <Slider layoutX="873.0" layoutY="14.0" />
+         </children>
+      </Pane>
+      <SplitPane id="split-workspace" dividerPositions="0.5" layoutY="79.0" orientation="VERTICAL" prefHeight="315.0" prefWidth="1027.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="304.0" prefWidth="1018.0" />
+        </items>
+      </SplitPane>
+    </children>
+</Pane>

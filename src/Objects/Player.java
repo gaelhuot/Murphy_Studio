@@ -36,12 +36,12 @@ public class Player {
     }
 
     public void playChord(Accord chord, boolean start) throws InvalidMidiDataException {
-        for ( int i = 0; i < chord.getNotes().length; i++ )
+        for ( int i = 0; i < chord.getNotes().size(); i++ )
         {
             ShortMessage sm = createMidiMessage(
                     (start) ? ShortMessage.NOTE_ON : ShortMessage.NOTE_OFF,
                     0,
-                    chord.getNotes()[i],
+                    chord.getNotes().get(i),
                     93
             );
             long timeStamp = -1;

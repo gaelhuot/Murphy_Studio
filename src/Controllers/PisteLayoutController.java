@@ -51,32 +51,6 @@ public class PisteLayoutController extends Controller
             PisteLayoutVBox.getChildren().remove(pistes.size() - 1);
             pistes.remove(pistes.size() - 1);
         });
-
-        playPisteBtn.setOnMouseClicked(event-> {
-            Accord[] test = {
-                    model.chordModel.getChord("C").getWithScale(4),
-                    model.chordModel.getChord("C").getWithScale(4),
-                    model.chordModel.getChord("C").getWithScale(5),
-                    model.chordModel.getChord("C").getWithScale(5),
-                    model.chordModel.getChord("Am").getWithScale(3),
-                    model.chordModel.getChord("Am").getWithScale(3),
-                    model.chordModel.getChord("Am").getWithScale(4),
-                    model.chordModel.getChord("Am").getWithScale(4),
-                    model.chordModel.getChord("F").getWithScale(3),
-                    model.chordModel.getChord("F").getWithScale(3),
-                    model.chordModel.getChord("F").getWithScale(4),
-                    model.chordModel.getChord("F").getWithScale(4),
-                    model.chordModel.getChord("G").getWithScale(3),
-                    model.chordModel.getChord("G").getWithScale(3),
-                    model.chordModel.getChord("G").getWithScale(4),
-                    model.chordModel.getChord("G").getWithScale(4),
-            };
-            try {
-                model.player.createPisteFromChords(test);
-            } catch (InvalidMidiDataException e) {
-                e.printStackTrace();
-            }
-        });
     }
 
     public void setModel(MainModel model)

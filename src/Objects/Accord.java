@@ -1,76 +1,262 @@
 package Objects;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+
 public class Accord {
 
-    private int scale;          // Gamme
-    private String name;        // Nom de l'accord
-    private String shortName;   // Nom de l'accord (Solfège)
-    private int[] notes;        // Notes
+    private HashMap<Integer, Character> characterHashMap = new HashMap<Integer, Character>(){{
+        put(0, 'C');
+        put(2, 'D');
+        put(4, 'E');
+        put(5, 'F');
+        put(7, 'G');
+        put(9, 'A');
+        put(11, 'B');
+    }};
 
-    public Accord() {}
+    private int dominant;
+    private boolean isMinor;
+    private boolean isFifth;
+    private boolean isSeventh;
 
-    public Accord(String name, String  shortName, int[] notes)
+    private ArrayList<Integer> notes;
+
+    private Character dominantName;
+    private String name;
+
+    public Accord(int dominant)
     {
-        this.name   = name;
-        this.scale  = 0;
-        this.notes  = notes;
-        this.shortName = shortName;
+        this.dominant = dominant;
+        dominantName = characterHashMap.get(dominant%12);
+        notes = new ArrayList<>(Arrays.asList(dominant));
     }
 
-    public Accord(String name, String shortName, int[] notes, int scale)
-    {
-        this.name   = name;
-        this.scale  = scale;
-        this.shortName = shortName;
+    public Accord(int dominant, Boolean isMinor, Boolean isFifth, Boolean isSeventh) {
+        this.dominant = dominant;
+        dominantName = characterHashMap.get(dominant%12);
+        this.isMinor = isMinor;
+        this.isFifth = isFifth;
+        this.isSeventh = isSeventh;
 
-        this.notes = new int[notes.length];
+        if ( isMinor ) setMinor();
+        else setMajor();
 
-        for ( int i = 0; i < notes.length; i++ )
-            this.notes[i] = notes[i] + (12 * scale);
+        if ( isSeventh && isFifth ) setSeventhWithFlattenedFifth();
+        else
+        {
+            if ( isSeventh )
+                setSeventh();
+            if ( isFifth )
+                setFifth();
+        }
     }
 
-    /* Getters */
+
+    private ArrayList<Integer> getMajor() { return new ArrayList<>(Arrays.asList(dominant, dominant+4, dominant+7)); }
+
+    private ArrayList<Integer> getMinor() { return new ArrayList<>(Arrays.asList(dominant, dominant+3, dominant+7)); }
+
+    private ArrayList<Integer> getSeventh() {
+        ArrayList<Integer> chord = ( isMinor ) ? getMinor() : getMajor();
+        chord.add(dominant+10);
+        return chord;
+    }
+
+    private ArrayList<Integer> getSeventhWithFlattenedFifth() {
+        ArrayList<Integer> chord = getSeventh();
+        return chord;
+    }
+
+
+    /* ---- GETTER ---- */
+
+    public void setMajor()
+    {
+        isMinor = false;
+        switchType();
+    }
+
+    public void setMinor()
+    {
+        isMinor = true;
+        switchType();
+    }
+
+    private void switchType()
+    {
+        if ( isSeventh && isFifth )
+            notes = getSeventhWithFlattenedFifth();
+        if ( isSeventh )
+            notes = getSeventh();
+        else if ( isFifth )
+            notes = getFifth();
+        else if ( isMinor )
+            notes = getMinor();
+        else
+            notes = getMajor();
+        setName();
+    }
+
+    public void setSeventh()
+    {
+        notes = getSeventh();
+        isSeventh = true;
+        setName();
+    }
+
+    public void unsetSeventh()
+    {
+        int ind = notes.indexOf(dominant + 10);
+        if ( ind != -1 )
+            notes.remove(ind);
+        isSeventh = false;
+        setName();
+    }
+
+    public void setDominantSeven()
+    {
+        notes = getMajor();
+        notes.add(dominant+10);
+        name = dominantName + "7";
+    }
+
+    public void setMinorSeventh()
+    {
+        notes = getMinor();
+        notes.add(dominant+10);
+        name = dominantName + "m7";
+    }
+
+    public void setMajorSeventh()
+    {
+        notes = getMajor();
+        notes.add(dominant+11);
+        name = dominantName + "maj7";
+    }
+
+    public void setDominantSeventhFlattenedFifth()
+    {
+        notes = new ArrayList<>(Arrays.asList(dominant, dominant+4, dominant+8, dominant+10));
+        name = dominantName + "7b5";
+    }
+
+    public void setDominantSeventhSharpedFifth()
+    {
+        setSeventhWithFlattenedFifth();
+        name = dominantName + "7#5";
+    }
+
+    public void setSixth()
+    {
+        notes = getMajor();
+        notes.add(dominant+9);
+        name = dominantName + "6";
+    }
+
+    public void setMinorSixth()
+    {
+        notes = getMinor();
+        notes.add(dominant+9);
+        name = dominantName + "m6";
+
+    }
+
+    public void setMinorNinth()
+    {
+        setMinorSeventh();
+        notes.add(dominant+14);
+        name = dominantName + "m9";
+    }
+
+    public void setMajorNinth()
+    {
+        setMajorSeventh();
+        notes.add(dominant+14);
+        name = dominantName + "maj9";
+    }
+
+    public void setDiminished()
+    {
+        notes = new ArrayList<>(Arrays.asList(dominant, dominant+3, dominant+6));
+        name = dominantName + "dim";
+    }
+
+    public void setDiminishedSeventh()
+    {
+        setDiminished();
+        notes.add(dominant+9);
+        name = dominantName + "dim7";
+    }
+
+    public void setAugmented()
+    {
+        notes = new ArrayList<>(Arrays.asList(dominant, dominant+3, dominant+8));
+        name = dominantName + "aug";
+    }
+
+    public void setSuspendedFourth()
+    {
+        notes = new ArrayList<>(Arrays.asList(dominant, dominant+5, dominant+7));
+        name = dominantName + "sus4";
+    }
+
+    public void setSuspendedSecond()
+    {
+        notes = new ArrayList<>(Arrays.asList(dominant, dominant+2, dominant+7));
+        name = dominantName + "sus2";
+    }
+
+    public void setFifth() {
+        isFifth = true;
+    }
+
+    public void unsetFifth() {
+        isFifth = false;
+    }
+
+    public void setSeventhWithFlattenedFifth()
+    {
+        isFifth = true;
+        isSeventh = true;
+    }
+
+    public void unsetSeventhWithFlattenedFifth()
+    {
+        isFifth = false;
+        isSeventh = false;
+    }
+
+    private void setName()
+    {
+        name = dominantName + "" + ((isMinor) ? "m" : "") + ((isSeventh) ? "7" : "" );
+    }
+
+
+    /* Getter */
+
+    public boolean isMinor() {
+        return isMinor;
+    }
+
+    public boolean isFifth() {
+        return isFifth;
+    }
+
+    public boolean isSeventh() {
+        return isSeventh;
+    }
+
     public String getName() {
         return name;
     }
 
-    public int getScale() {
-        return scale;
-    }
-
-    public int[] getNotes() {
+    public ArrayList<Integer> getNotes() {
         return notes;
     }
 
-    public String getShortName() {
-        return shortName;
+    public ArrayList<Integer> getFifth() {
+        return null;
     }
-
-    /* Setter */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setScale(int scale) {
-        this.scale = scale;
-        for ( int i = 0; i < notes.length; i++ )
-            notes[i] += 12 * scale;
-    }
-
-    public void setNotes(int[] notes) {
-        this.notes = notes;
-    }
-
-    public void setShortName(String shortName) {
-        this.shortName = shortName;
-    }
-
-    public Accord getWithScale(int scale)
-    {
-        int[] newNotes = new int[notes.length];
-        for ( int i = 0; i < notes.length; i++ )
-            newNotes[i] = notes[i] + (12 * scale);
-        return new Accord(name, shortName + "#" + scale, newNotes);
-    }
-
 }

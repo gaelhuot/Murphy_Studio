@@ -1,0 +1,94 @@
+/*
+Main Primary color
+.color-primary-0 { color: #120E29 }
+.color-primary-1 { color: #25213B }
+.color-primary-2 { color: #1B1733 }
+.color-primary-3 { color: #0A061D }
+.color-primary-4 { color: #040211 }
+
+Main Complement color
+.color-complement-0 { color: #3B320F }
+.color-complement-1 { color: #554C2B }
+.color-complement-2 { color: #4A411B }
+.color-complement-3 { color: #2A2205 }
+.color-complement-4 { color: #191400 }
+
+Grey color (darker to brightest)
+#25282D
+#353A41
+#6A7481
+#A8AFB8
+#E9EAED
+*/
+
+.main
+{
+    -fx-background-color: #100D25;
+    -fx-color: #25282D;
+    -fx-border-color: #040211;
+    -fx-border-style: solid;
+    -fx-border-width: 1px 0px;
+}
+
+.menu-bar
+{
+  -fx-background-color: transparent;
+}
+
+.menu-bar .container .menu
+{
+  -fx-background-color: transparent;
+}
+
+.menu-bar .context-menu
+{
+  -fx-background-color: #0A061D;
+}
+
+.control-bar-pane
+{
+  -fx-background-color: #040211;
+  -fx-color: #000000;
+}
+
+.piste-control
+{
+    -fx-border-color: #554C2B;
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-background-color: #0A061D; -fx-max-width: 150px;
+}
+
+.piste-timeline
+{
+    -fx-border-color: #554C2B;
+    -fx-border-style: solid;
+    -fx-border-width: 1px 1px 1px 0px;
+    -fx-background-color: #25213B;
+}
+
+.button
+{
+  -fx-background-color: #25282D;
+}
+
+.button:hover
+{
+  -fx-background-color: #353A41;
+}
+
+.button:pressed
+{
+  -fx-background-color: #6A7481;
+}
+
+.button .text
+{
+  -fx-fill: #A8AFB8;
+}
+
+
+/*
+Documentation :
+https://docs.oracle.com/javafx/2/api/javafx/scene/doc-files/cssref.html
+*/

@@ -121,8 +121,6 @@ public class MainController extends Controller
 
 
         /* On ajoute les différentes pages qu'on lie à chacun des buttons */
-        views.put(chordGridView, "chords.fxml");
-
         for (Map.Entry<Button, String> entry: views.entrySet())
         {
             Button fxmlID = entry.getKey();
