@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
@@ -9,12 +10,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="128.0" prefWidth="500.0" styleClass="piste" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PisteController">
+<BorderPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="128.0" prefWidth="500.0" styleClass="piste" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PisteController">
    <left>
       <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="192.0" spacing="12.0" styleClass="piste-control" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="piste_name_input"/>
-            <Slider fx:id="piste_volume_slider"/>
+            <TextField fx:id="piste_name_input" />
+            <Slider fx:id="piste_volume_slider" />
             <HBox>
                <children>
                   <ImageView fx:id="piste_instrument_icon" fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
@@ -32,6 +33,10 @@
       </VBox>
    </left>
    <center>
-      <HBox fx:id="piste_timeline" prefHeight="124.0" prefWidth="404.0" styleClass="piste-timeline" BorderPane.alignment="CENTER" />
+      <ScrollPane fx:id="scrollpane" fitToHeight="true" fitToWidth="true" BorderPane.alignment="CENTER">
+         <content>
+            <HBox fx:id="piste_timeline" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="124.0" prefWidth="1920.0" styleClass="piste-timeline" />
+         </content>
+      </ScrollPane>
    </center>
 </BorderPane>

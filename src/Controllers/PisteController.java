@@ -3,9 +3,7 @@ package Controllers;
 import Models.MainModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
@@ -25,6 +23,8 @@ public class PisteController extends Controller
     public MenuButton piste_instrument_selection;
     @FXML
     public HBox piste_timeline;
+    @FXML
+    public ScrollPane scrollpane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -34,6 +34,8 @@ public class PisteController extends Controller
             La méthode initialize est appelée lorsque l'on fait FXMLLoader.load(); (CF application.Controller - @loadView() )
          */
         /* Tout ce qui agit sur le fxml, tu le code ici */
+        ScrollBar bar = new ScrollBar();
+//        bar.get
     }
 
     private void initAll()

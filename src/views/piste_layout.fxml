@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -20,7 +21,7 @@
    <center>
       <AnchorPane maxHeight="+Infinity" maxWidth="+Infinity" prefHeight="100.0" prefWidth="100.0" BorderPane.alignment="TOP_LEFT">
          <children>
-            <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <content>
                   <VBox id="track_layout_vbox" fx:id="PisteLayoutVBox" maxHeight="+Infinity" maxWidth="+Infinity" minWidth="-Infinity" prefHeight="212.0" prefWidth="300.0" styleClass="background" />
                </content>
@@ -28,4 +29,7 @@
          </children>
       </AnchorPane>
    </center>
+   <bottom>
+      <ScrollBar fx:id="timeline_scrollbar" max="80.0" BorderPane.alignment="CENTER" />
+   </bottom>
 </BorderPane>

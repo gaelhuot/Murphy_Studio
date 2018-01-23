@@ -2,9 +2,11 @@ package Controllers;
 
 import Models.MainModel;
 import Objects.Accord;
+import javafx.beans.property.DoublePropertyBase;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollBar;
 import javafx.scene.control.ToolBar;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -17,6 +19,7 @@ import java.util.ResourceBundle;
 
 public class PisteLayoutController extends Controller
 {
+    public ScrollBar timeline_scrollbar;
     private ArrayList<PisteController> pistes = new ArrayList<PisteController>();
 
     public ToolBar piste_layout_button_bar;
@@ -41,6 +44,8 @@ public class PisteLayoutController extends Controller
 
                 pisteController.setName("Piste #" + pistes.size());
                 PisteLayoutVBox.getChildren().add(piste);
+                pisteController.scrollpane.hvalueProperty().bindBidirectional(this.timeline_scrollbar.valueProperty());
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
