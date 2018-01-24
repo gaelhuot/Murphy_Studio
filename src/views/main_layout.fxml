@@ -58,6 +58,8 @@
             <ButtonBar id="top_button_bar" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
               <buttons>
                 <Button fx:id="chordGridView" mnemonicParsing="false" text="Chords Grid" ButtonBar.buttonData="LEFT" />
+                  <Button fx:id="chordMakerView" mnemonicParsing="false" text="Chords Maker" ButtonBar.buttonData="LEFT" />
+
                   <TextField fx:id="sequencer_tempo" maxWidth="5.0" />
                   <Slider id="slider_master_volume" fx:id="master_volume_slider" />
               </buttons>

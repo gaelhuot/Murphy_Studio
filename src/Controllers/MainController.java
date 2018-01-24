@@ -7,6 +7,7 @@ import Objects.CustomReceiver;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
@@ -39,6 +40,8 @@ public class MainController extends Controller
     public TextField sequencer_tempo;
 
     public AnchorPane secondContainer;
+    public SplitPane split_workspace;
+    public Button chordMakerView;
 
 
     private Scene scene;
@@ -119,8 +122,9 @@ public class MainController extends Controller
         /* ---- </ Main Event Listener > ---- */
 
 
-
-        /* On ajoute les différentes pages qu'on lie à chacun des buttons */
+        views.put(chordGridView, "ChordMaker.fxml");
+        views.put(chordMakerView, "ChordMaker2.fxml");
+    /* On ajoute les différentes pages qu'on lie à chacun des buttons */
         for (Map.Entry<Button, String> entry: views.entrySet())
         {
             Button fxmlID = entry.getKey();
@@ -129,7 +133,7 @@ public class MainController extends Controller
             /* Pour chaque button, on créé un event qui va permettre de charger la page correspondante */
             fxmlID.setOnMouseClicked(event -> {
                 try {
-                loadView(viewName, secondContainer);
+                    loadView(viewName, secondContainer);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -141,11 +145,13 @@ public class MainController extends Controller
     private void loadView(String viewName, Pane container) throws IOException {
         /* On récupère la vue dans un pane */
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/" + viewName));
-        Pane newPane = fxmlLoader.load();
+        Node newPane = fxmlLoader.load();
+
 
         /* On charge le controller et on lui passse le model */
         Controller ctrl = fxmlLoader.getController();
 
+        System.out.println("Ok");
         ctrl.setModel(model);
 
         /* On l'affiche dans le container */

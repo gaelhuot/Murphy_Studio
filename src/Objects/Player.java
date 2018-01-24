@@ -3,7 +3,7 @@ package Objects;
 import javafx.beans.property.SimpleIntegerProperty;
 
 import javax.sound.midi.*;
-import javax.sound.midi.Track;
+import java.util.ArrayList;
 
 public class Player {
 
@@ -20,6 +20,7 @@ public class Player {
     public SimpleIntegerProperty master_volume;
 
     private int tick = 4;
+    public int tempo = 200;
 
     private Sequence sequence;
     private Track track;
@@ -50,6 +51,22 @@ public class Player {
         }
     }
 
+    public void playNote(int note)
+    {
+        try {
+            ShortMessage sm = createMidiMessage(
+                    ShortMessage.NOTE_ON,
+                    0,
+                    note,
+                    93
+            );
+            long timeStamp = -1;
+            receiver.send(sm, timeStamp);
+        } catch (InvalidMidiDataException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void initSequencer() throws MidiUnavailableException
     {
         synthesizer = MidiSystem.getSynthesizer();
@@ -76,13 +93,27 @@ public class Player {
         track.add(createMidiEvent(ShortMessage.NOTE_OFF, 1, note, velocity, start+duration));
     }
 
-    public void createPisteFromChords(Accord[] partition) throws InvalidMidiDataException {
+    public void createTrackFromChords(Accord[] partition) throws InvalidMidiDataException {
         for ( int i = 0; i < partition.length; i++ )
-            for (int note : partition[i].getNotes() ) addNoteToTrack(note, i * 8, 93, 8);
+            for (Object note : partition[i].getNotes() ) addNoteToTrack((Integer) note, i * 8, 93, 8);
 
         sequencer.setSequence(sequence);
         sequencer.setLoopCount(160);
         sequencer.start();
+    }
+
+    public void createTrackFromNotes(ArrayList<Integer> notes) throws InvalidMidiDataException {
+        if ( sequencer.isRunning() )
+            sequencer.stop();
+
+        sequence = new Sequence(Sequence.PPQ, tick);
+        track = sequence.createTrack();
+
+        for ( int i = 0; i < notes.size(); i++ )
+            addNoteToTrack(notes.get(i), i * 8, 93, 8);
+
+        sequencer.setSequence(sequence);
+        sequencer.setLoopCount(160);
     }
 
     private MidiEvent createMidiEvent(int command, int channel, int data1, int data2, int tick)

@@ -1,0 +1,9 @@
+.NOIR{
+    -fx-background-color: black;
+    -fx-border-color: #000;
+}
+
+.BLANC{
+    -fx-background-color: white;
+    -fx-border-color: #000;
+}
