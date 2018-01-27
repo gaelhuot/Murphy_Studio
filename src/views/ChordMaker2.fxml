@@ -1,79 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="833.0" prefWidth="894.0" style="-fx-border-color: #000;" stylesheets="@../css/chordMaker.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ChordMaker2Controller">
-    <Label layoutX="14.0" layoutY="14.0" text="Chord Maker">
-        <font>
-            <Font name="Century Gothic" size="20.0" />
-        </font>
-    </Label>
-    <Separator layoutX="14.0" layoutY="50.0" prefHeight="0.0" prefWidth="867.0" />
-    <Pane layoutX="14.0" layoutY="60.0" prefHeight="532.0" prefWidth="867.0" style="-fx-border-color: #000; -fx-background-color: #ecf0f1; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);">
-        <RadioButton fx:id="doRadio" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Do" />
-        <RadioButton fx:id="reRadio" layoutX="85.0" layoutY="14.0" mnemonicParsing="false" text="Ré" />
-        <RadioButton fx:id="miRadio" layoutX="152.0" layoutY="14.0" mnemonicParsing="false" text="Mi" />
-        <RadioButton fx:id="faRadio" layoutX="223.0" layoutY="14.0" mnemonicParsing="false" text="Fa" />
-        <RadioButton fx:id="solRadio" layoutX="282.0" layoutY="14.0" mnemonicParsing="false" text="Sol" />
-        <RadioButton fx:id="laRadio" layoutX="353.0" layoutY="14.0" mnemonicParsing="false" text="La" />
-        <RadioButton fx:id="siRadio" layoutX="420.0" layoutY="14.0" mnemonicParsing="false" text="Si" />
 
-        <Label fx:id="chordNameLabel" layoutX="645.0" layoutY="11.0" text="#chordName">
-            <font>
-                <Font name="Century Gothic" size="18.0" />
-            </font>
-        </Label>
-        <Button fx:id="playChordButton" layoutX="645.0" layoutY="51.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="119.0" text="Play Chord">
-            <font>
-                <Font name="Century Gothic" size="12.0" />
-            </font>
-        </Button>
-        <ListView fx:id="chordListView" layoutX="269.0" layoutY="51.0" prefHeight="200.0" prefWidth="200.0" />
-    </Pane>
-    <Pane layoutX="14.0" layoutY="618.0" prefHeight="192.0" prefWidth="867.0" style="-fx-border-color: #000; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0); -fx-background-color: #ecf0f1;">
-        <Pane fx:id="notePane1" layoutX="15.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-        <Pane fx:id="notePane3" layoutX="55.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-        <Pane fx:id="notePane5" layoutX="95.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-        <Pane fx:id="notePane6" layoutX="133.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-        <Pane fx:id="notePane8" layoutX="173.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-        <Pane fx:id="notePane10" layoutX="213.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-        <Pane fx:id="notePane12" layoutX="253.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-        <Pane fx:id="notePane13" layoutX="293.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-        <Pane fx:id="notePane15" layoutX="333.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-        <Pane fx:id="notePane17" layoutX="373.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-        <Pane fx:id="notePane18" layoutX="413.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-        <Pane fx:id="notePane20" layoutX="453.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-        <Pane fx:id="notePane22" layoutX="493.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-        <Pane fx:id="notePane24" layoutX="533.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-        <Pane fx:id="notePane25" layoutX="573.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-        <Pane fx:id="notePane27" layoutX="613.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-        <Pane fx:id="notePane29" layoutX="653.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-        <Pane fx:id="notePane31" layoutX="693.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-        <Pane fx:id="notePane32" layoutX="733.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-        <Pane fx:id="notePane34" layoutX="773.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-        <Pane fx:id="notePane36" layoutX="813.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-        <Pane fx:id="notePane2" layoutX="163.0" layoutY="23.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-        <Pane fx:id="notePane4" layoutX="85.0" layoutY="22.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-        <Pane fx:id="notePane7" layoutX="45.0" layoutY="22.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-        <Pane fx:id="notePane9" layoutX="203.0" layoutY="22.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-        <Pane fx:id="notePane11" layoutX="238.0" layoutY="22.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-        <Pane fx:id="notePane14" layoutX="324.0" layoutY="22.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-        <Pane fx:id="notePane16" layoutX="367.0" layoutY="22.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-        <Pane fx:id="notePane19" layoutX="442.0" layoutY="22.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-        <Pane fx:id="notePane21" layoutX="480.0" layoutY="22.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-        <Pane fx:id="notePane23" layoutX="526.0" layoutY="22.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-        <Pane fx:id="notePane26" layoutX="603.0" layoutY="22.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-        <Pane fx:id="notePane28" layoutX="643.0" layoutY="22.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-        <Pane fx:id="notePane30" layoutX="723.0" layoutY="22.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-        <Pane fx:id="notePane33" layoutX="763.0" layoutY="22.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-        <Pane fx:id="notePane35" layoutX="803.0" layoutY="22.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-    </Pane>
-</Pane>
+<BorderPane styleClass="background" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ChordMaker2Controller">
+   <bottom>
+      <AnchorPane BorderPane.alignment="CENTER">
+         <children>
+             <Pane prefHeight="192.0" prefWidth="867.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                 <Pane fx:id="notePane1" layoutX="15.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                 <Pane fx:id="notePane3" layoutX="55.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                 <Pane fx:id="notePane5" layoutX="95.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                 <Pane fx:id="notePane6" layoutX="133.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                 <Pane fx:id="notePane8" layoutX="173.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                 <Pane fx:id="notePane10" layoutX="213.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                 <Pane fx:id="notePane12" layoutX="253.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                 <Pane fx:id="notePane13" layoutX="293.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                 <Pane fx:id="notePane15" layoutX="333.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                 <Pane fx:id="notePane17" layoutX="373.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                 <Pane fx:id="notePane18" layoutX="413.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                 <Pane fx:id="notePane20" layoutX="453.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                 <Pane fx:id="notePane22" layoutX="493.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                 <Pane fx:id="notePane24" layoutX="533.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                 <Pane fx:id="notePane25" layoutX="573.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                 <Pane fx:id="notePane27" layoutX="613.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                 <Pane fx:id="notePane29" layoutX="653.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                 <Pane fx:id="notePane31" layoutX="693.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                 <Pane fx:id="notePane32" layoutX="733.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                 <Pane fx:id="notePane34" layoutX="773.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                 <Pane fx:id="notePane36" layoutX="813.0" layoutY="22.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                 <Pane fx:id="notePane2" layoutX="163.0" layoutY="23.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
+                 <Pane fx:id="notePane4" layoutX="85.0" layoutY="22.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
+                 <Pane fx:id="notePane7" layoutX="45.0" layoutY="22.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
+                 <Pane fx:id="notePane9" layoutX="203.0" layoutY="22.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
+                 <Pane fx:id="notePane11" layoutX="238.0" layoutY="22.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
+                 <Pane fx:id="notePane14" layoutX="324.0" layoutY="22.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
+                 <Pane fx:id="notePane16" layoutX="367.0" layoutY="22.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
+                 <Pane fx:id="notePane19" layoutX="442.0" layoutY="22.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
+                 <Pane fx:id="notePane21" layoutX="480.0" layoutY="22.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
+                 <Pane fx:id="notePane23" layoutX="526.0" layoutY="22.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
+                 <Pane fx:id="notePane26" layoutX="603.0" layoutY="22.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
+                 <Pane fx:id="notePane28" layoutX="643.0" layoutY="22.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
+                 <Pane fx:id="notePane30" layoutX="723.0" layoutY="22.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
+                 <Pane fx:id="notePane33" layoutX="763.0" layoutY="22.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
+                 <Pane fx:id="notePane35" layoutX="803.0" layoutY="22.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
+             </Pane>
+         </children>
+      </AnchorPane>
+   </bottom>
+   <stylesheets>
+      <URL value="@../css/chordMaker.css" />
+      <URL value="@../css/style.css" />
+   </stylesheets>
+   <center>
+      <AnchorPane BorderPane.alignment="CENTER">
+         <children>
+            <HBox AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="5.0">
+               <children>
+                    <RadioButton fx:id="doRadio" mnemonicParsing="false" text="Do" />
+                    <RadioButton fx:id="reRadio" mnemonicParsing="false" text="Ré" />
+                    <RadioButton fx:id="miRadio" mnemonicParsing="false" text="Mi" />
+                    <RadioButton fx:id="faRadio" mnemonicParsing="false" text="Fa" />
+                    <RadioButton fx:id="solRadio" mnemonicParsing="false" text="Sol" />
+                    <RadioButton fx:id="laRadio" mnemonicParsing="false" text="La" />
+                    <RadioButton fx:id="siRadio" mnemonicParsing="false" text="Si" />
+               </children>
+            </HBox>
+      
+                                                           <Label fx:id="chordNameLabel" layoutX="25.0" layoutY="78.0" text="#chordName" AnchorPane.bottomAnchor="166.0" AnchorPane.leftAnchor="25.0">
+                  <font>
+                      <Font name="Century Gothic" size="18.0" />
+                  </font>
+              </Label>
+              <Button fx:id="playChordButton" layoutX="670.0" layoutY="88.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="119.0" text="Play Chord" AnchorPane.rightAnchor="50.0">
+                  <font>
+                      <Font name="Century Gothic" size="12.0" />
+                  </font>
+              </Button>
+              <ListView fx:id="chordListView" layoutX="334.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.topAnchor="60.0" />
+         </children>
+      </AnchorPane>
+   </center>
+   <top>
+       <Label text="Chord Maker" BorderPane.alignment="CENTER">
+           <font>
+               <Font name="Century Gothic" size="20.0" />
+           </font>
+       </Label>
+   </top>
+</BorderPane>
