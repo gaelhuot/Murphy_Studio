@@ -33,6 +33,21 @@ public class PisteLayoutController extends Controller
     }
 
     private void initPistesLayout() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/piste.fxml"));
+            Pane piste = fxmlLoader.load();
+
+            PisteController pisteController = fxmlLoader.getController();
+            pisteController.setModel(model);
+            pistes.add(pisteController);
+
+            pisteController.setName("Piste #" + pistes.size());
+            PisteLayoutVBox.getChildren().add(piste);
+            pisteController.scrollpane.hvalueProperty().bindBidirectional(this.timeline_scrollbar.valueProperty());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         addPisteBtn.setOnMouseClicked(event -> {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/piste.fxml"));
