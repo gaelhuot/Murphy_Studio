@@ -148,6 +148,21 @@ Grey color (darker to brightest)
   -fx-background-color : #1B1733;
 }
 
+.scroll-bar
+{
+  -fx-background-color: #0A061D;
+}
+
+.scroll-bar .thumb
+{
+  -fx-background-color: #25282D;
+}
+
+.split-pane-divider
+{
+  -fx-background-color: #25282D;
+}
+
 /*
 Documentation :
 https://docs.oracle.com/javafx/2/api/javafx/scene/doc-files/cssref.html
