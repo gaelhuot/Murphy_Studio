@@ -97,13 +97,30 @@ Grey color (darker to brightest)
   -fx-border-width: 2px;
   -fx-border-color: blue;
   -fx-border-style: solid;
-  -fx-padding : 10px 20px;
+  -fx-padding : 6px 20px;
   -fx-border-insets: 0 1px 0 0;
 }
 
 .radio-button:selected
 {
   -fx-border-color: yellow;
+}
+
+.radio-button .radio
+{
+  visibility: hidden;
+  -fx-padding: 0;
+  -fx-border-insets: 0;
+  -fx-background-radius: 0px;
+  -fx-max-width: 0;
+  -fx-max-height: 0;
+  -fx-pref-width: 0;
+  -fx-pref-height: 0;
+}
+
+.radio-button .text
+{
+  -fx-fill: white;
 }
 
 
