@@ -140,6 +140,12 @@ public class MainController extends Controller
             });
         }
 
+        try {
+            loadView("ChordMaker2.fxml", secondContainer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void loadView(String viewName, Pane container) throws IOException {
