@@ -123,6 +123,30 @@ Grey color (darker to brightest)
   -fx-fill: white;
 }
 
+.list-view
+{
+  -fx-background-color: #040211;
+}
+
+.list-cell .text
+{
+  -fx-fill: #6A7481;
+}
+
+.list-cell:focused .text
+{
+  -fx-fill: white;
+}
+
+.list-cell:even
+{
+  -fx-background-color : #0A061D;
+}
+
+.list-cell:odd
+{
+  -fx-background-color : #1B1733;
+}
 
 /*
 Documentation :
