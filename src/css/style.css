@@ -184,17 +184,19 @@ Grey color (darker to brightest)
 .tree-view:focused,
 .table-view:focused,
 .tree-table-view:focused,
-.html-editor:focused {
+.html-editor:focused
+{
     -fx-background-color: -fx-box-border, -fx-control-inner-background;
     -fx-background-insets: 0, 1;
     -fx-padding: 1;
 }
 
-.radio-button > .radio, .radio-button:focused > .radio  {
+.radio-button > .radio, .radio-button:focused > .radio
+{
     -fx-background-radius: 1.0em; /* large value to make sure this remains circular */
-    -fx-padding: 0.333333em; /* 4 -- padding from outside edge to the inner black dot */
 }
-.split-menu-button:focused {
+.split-menu-button:focused
+{
     -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border;
     -fx-background-insets: 0 0 -1 0, 0;
     -fx-background-radius: 3, 3;
