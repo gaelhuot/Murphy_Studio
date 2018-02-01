@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ChordMakerController">
+<Pane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ChordMakerControllerRefactored">
    <HBox fx:id="tileContainer" layoutX="50.0" layoutY="143.0" prefHeight="101.0" prefWidth="537.0">
       <ImageView fx:id="crossAdd" fitHeight="91.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -15,7 +15,7 @@
          </image>
       </ImageView>
    </HBox>
-   <Button fx:id="delete" layoutX="349.0" layoutY="292.0" mnemonicParsing="false" text="Delete">
+   <Button fx:id="deleteBtn" layoutX="349.0" layoutY="292.0" mnemonicParsing="false" text="Delete">
       <cursor>
          <Cursor fx:constant="OPEN_HAND" />
       </cursor>

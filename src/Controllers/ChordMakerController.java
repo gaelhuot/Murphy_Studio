@@ -7,7 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.ContextMenuEvent;
@@ -18,9 +17,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -44,8 +41,8 @@ public class ChordMakerController extends Controller {
         delete.setVisible(false);
         crossAdd.setOnMouseClicked(event -> {
             Tile tile = new Tile();
-            Rectangle accord = new Rectangle(80,80);
-            Label lab = new Label(""+cpt);
+            Rectangle accord = new Rectangle(80, 80);
+            Label lab = new Label("" + cpt);
             lab.setFont(new Font(20));
             cpt++;
             accord.setFill(Color.GRAY);
@@ -58,11 +55,11 @@ public class ChordMakerController extends Controller {
 
             MenuItem item1 = new MenuItem("Delete");
             item1.setOnAction(MouseEvent -> {
-                if(selected != null){
+                if (selected != null) {
                     tileContainer.getChildren().remove(selected.getParent());
                     src.remove(selected);
                     System.out.println(src.size());
-                    if(tileContainer.getChildren() == null) {
+                    if (tileContainer.getChildren() == null) {
                         delete.setVisible(false);
                     }
                     selected = null;
@@ -86,16 +83,16 @@ public class ChordMakerController extends Controller {
             src.add(tile);
 
             tile.setOnMouseClicked(mouseEvent -> {
-                mouseClik(accord);
+                mouseClick(accord);
             });
 
 
             delete.setOnMouseClicked(mouseEvent -> {
-                if(selected != null){
+                if (selected != null) {
                     tileContainer.getChildren().remove(selected.getParent());
                     src.remove(selected);
                     System.out.println(src.size());
-                    if(tileContainer.getChildren() == null) {
+                    if (tileContainer.getChildren() == null) {
                         delete.setVisible(false);
                     }
                     selected = null;
@@ -103,7 +100,7 @@ public class ChordMakerController extends Controller {
             });
 
             tile.setOnDragDetected(mouseEvent -> {
-                mouseClik(accord);
+                mouseClick(accord);
                 accord.setStroke(Color.RED);
                 final Dragboard dragBoard = tile.startDragAndDrop(TransferMode.ANY);
                 dragBoard.setDragView(tile.snapshot(null, null), mouseEvent.getX(), mouseEvent.getY());
@@ -142,20 +139,20 @@ public class ChordMakerController extends Controller {
 
     }
 
-    protected void mouseClik(Rectangle accord){
-        if(selected != null){
-            if(selected == accord){
+    private void mouseClick(Rectangle accord) {
+        if (selected != null) {
+            if (selected == accord) {
                 accord.setStroke(Color.DARKGRAY);
                 selected = null;
 
-            }else{
+            } else {
                 selected.setStroke(Color.DARKGRAY);
                 selected = accord;
                 accord.setStroke(Color.RED);
 
             }
 
-        }else {
+        } else {
             selected = accord;
             accord.setStroke(Color.RED);
         }
