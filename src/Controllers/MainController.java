@@ -102,6 +102,10 @@ public class MainController extends Controller
 
         sequencer_tempo.textProperty().addListener((observable, oldValue, newValue) -> {
             // Only numeric
+            boolean wasRunning = model.player.sequencer.isRunning();
+
+            if ( wasRunning ) model.player.sequencer.stop();
+
             if ( newValue.isEmpty() || Objects.equals(newValue, "")) return;
             if ( !newValue.matches("\\d") )
             {
@@ -109,6 +113,8 @@ public class MainController extends Controller
                 sequencer_tempo.setText(value);
                 model.player.setTempo(Integer.parseInt(value));
             }
+
+            if ( wasRunning ) model.player.sequencer.start();
         });
 
         this.model.player.master_volume.bind(this.master_volume_slider.valueProperty());
@@ -163,7 +169,6 @@ public class MainController extends Controller
         /* On charge le controller et on lui passse le model */
         Controller ctrl = fxmlLoader.getController();
 
-        System.out.println("Ok");
         ctrl.setModel(model);
 
         /* On l'affiche dans le container */

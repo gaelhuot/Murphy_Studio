@@ -117,6 +117,5 @@ public class Player {
     {
         this.tempo = tempo;
         sequencer.setTempoInBPM(tempo);
-        System.out.println(tempo);
     }
 }

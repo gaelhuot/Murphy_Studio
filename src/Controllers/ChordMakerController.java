@@ -86,11 +86,8 @@ public class ChordMakerController extends Controller implements Initializable {
         }
         ObservableList<String> items = FXCollections.observableArrayList();
 
-        System.out.println(listToFunc);
         for(Map.Entry <String, Method> entry : listToFunc.entrySet())
-        {
             items.add(entry.getKey());
-        }
 
         chordListView.setItems(items);
 
