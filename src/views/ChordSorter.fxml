@@ -20,4 +20,6 @@
          <Cursor fx:constant="OPEN_HAND" />
       </cursor>
    </Button>
+
+   <Button fx:id="togglePlayTrack" layoutX="500.0" layoutY="292.0" mnemonicParsing="false" text="Play"/>
 </Pane>

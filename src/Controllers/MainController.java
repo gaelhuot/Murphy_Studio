@@ -107,7 +107,7 @@ public class MainController extends Controller
             {
                 String value = newValue.replaceAll("[^\\d]", "");
                 sequencer_tempo.setText(value);
-                model.player.sequencer.setTempoInBPM(Float.parseFloat(value));
+                model.player.setTempo(Integer.parseInt(value));
             }
         });
 

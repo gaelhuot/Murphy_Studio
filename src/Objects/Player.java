@@ -76,10 +76,13 @@ public class Player {
     }
 
     public void createTrackFromChords(Accord[] partition) throws InvalidMidiDataException {
+        sequence.deleteTrack(track);
+        track = sequence.createTrack();
         for ( int i = 0; i < partition.length; i++ )
             for (Object note : partition[i].getNotes() ) addNoteToTrack((Integer) note, i * 8, 93, 8);
 
         sequencer.setSequence(sequence);
+        sequencer.setTempoInBPM(tempo);
         sequencer.setLoopCount(160);
         sequencer.start();
     }
@@ -108,5 +111,12 @@ public class Player {
             e.printStackTrace();
         }
         return midiEvent;
+    }
+
+    public void setTempo(int tempo)
+    {
+        this.tempo = tempo;
+        sequencer.setTempoInBPM(tempo);
+        System.out.println(tempo);
     }
 }

@@ -1,6 +1,7 @@
 package Controllers;
 
 import Models.MainModel;
+import Objects.Accord;
 import Objects.Tile;
 import javafx.event.Event;
 import javafx.scene.Node;
@@ -18,6 +19,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 
+import javax.sound.midi.InvalidMidiDataException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -29,7 +31,9 @@ public class ChordSorterController extends Controller {
 
     public ImageView crossAdd;
     public HBox tileContainer;
+
     public Button deleteBtn;
+    public Button togglePlayTrack;
 
     private Tile selected;
 
@@ -161,7 +165,6 @@ public class ChordSorterController extends Controller {
 
     private void setSelected(Tile newSelectedTile)
     {
-        System.out.println(newSelectedTile);
         if ( selected != null )
             Objects.requireNonNull(getChildrenRectangle(selected)).setStroke(Color.DARKGRAY);
 
@@ -171,7 +174,6 @@ public class ChordSorterController extends Controller {
 
     private Rectangle getChildrenRectangle(Tile tile)
     {
-        System.out.println(tile.getChildren());
         for ( Node n : tile.getChildren() )
             if ( n instanceof Rectangle ) return (Rectangle) n;
         return null;
@@ -184,9 +186,38 @@ public class ChordSorterController extends Controller {
         return null;
     }
 
+    private void initTrackBtn()
+    {
+        togglePlayTrack.setOnMouseClicked(event -> {
+            // Si le sequencer tourne déjà
+            if ( model.player.sequencer.isRunning() )
+            {
+                togglePlayTrack.setText("Play");
+                model.player.sequencer.stop();
+            }
+            // Sinon on crée les accords
+            else
+            {
+                togglePlayTrack.setText("Pause");
+                Accord[] accords = new Accord[tiles.size()];
+
+                for ( int i = 0; i < tiles.size(); i++ )
+                    accords[i] = tiles.get(i).accord;
+
+                try {
+                    model.player.createTrackFromChords(accords);
+                } catch (InvalidMidiDataException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
     public void setModel(MainModel model) {
         this.model = model;
         crossAdd.setOnMouseClicked(this::createTile);
+
+        initTrackBtn();
     }
 
 }
