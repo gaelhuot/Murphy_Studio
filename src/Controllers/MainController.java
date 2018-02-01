@@ -126,8 +126,6 @@ public class MainController extends Controller
             receiver.channel.controlChange(7, (int) (gain * 127.0));
 
             //model.player.midiChannel.controlChange(7, (Integer) newValue);
-            System.out.println("New value : " + newValue + " (" + newValue.getClass().toString() + ")");
-            System.out.println("Model.player.master_volume : " + gain);
         });
 
         /* ---- </ Main Event Listener > ---- */
