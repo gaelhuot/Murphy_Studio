@@ -8,6 +8,7 @@ public class Tile extends StackPane {
     private String name;
     private int tic; //time
     private int velocity;
+    public Accord accord;
 
     public Tile() {
 

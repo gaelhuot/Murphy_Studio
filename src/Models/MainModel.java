@@ -1,12 +1,26 @@
 package Models;
 
+import Objects.Accord;
 import Objects.Player;
 
 public class MainModel {
     public ChordModel chordModel;
     public Player player;
 
-    public void test() {
-        System.out.println("ok");
+    private Accord selectedChord;
+
+    public MainModel()
+    {
+        selectedChord = null;
+    }
+
+    public void setSelectedChord(Accord accord)
+    {
+        this.selectedChord = accord;
+    }
+
+    public Accord getSelectedChord()
+    {
+        return this.selectedChord;
     }
 }

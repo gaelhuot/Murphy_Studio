@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class ChordMakerControllerRefactored extends Controller {
+public class ChordSorterController extends Controller {
 
     private MainModel model;
 
@@ -44,7 +44,6 @@ public class ChordMakerControllerRefactored extends Controller {
         deleteBtn.setVisible(false);
         tileContainer.setSpacing(5);
 
-        crossAdd.setOnMouseClicked(this::createTile);
         initDeleteBtnEvent();
     }
 
@@ -53,8 +52,10 @@ public class ChordMakerControllerRefactored extends Controller {
         // Création de la tile + composants (Rectangle, Label)
         Tile newTile = new Tile();
 
+        newTile.accord = model.getSelectedChord();
+
         Rectangle tileSquare = new Rectangle(80, 80);
-        Label tileLabel = new Label("" + tiles.size());
+        Label tileLabel = new Label(newTile.accord.getName());
 
         tileLabel.setFont(new Font(20));
 
@@ -182,4 +183,10 @@ public class ChordMakerControllerRefactored extends Controller {
             if ( n instanceof Label ) return (Label) n;
         return null;
     }
+
+    public void setModel(MainModel model) {
+        this.model = model;
+        crossAdd.setOnMouseClicked(this::createTile);
+    }
+
 }

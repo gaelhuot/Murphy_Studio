@@ -1,162 +1,151 @@
 package Controllers;
 
 import Models.MainModel;
-import Objects.Tile;
-import javafx.event.EventHandler;
-import javafx.scene.control.Button;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.ContextMenuEvent;
-import javafx.scene.input.Dragboard;
-import javafx.scene.input.TransferMode;
-import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
+import Objects.Accord;
+import Objects.Player;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
 
+import javax.sound.midi.MidiUnavailableException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
+import java.util.*;
 
-public class ChordMakerController extends Controller {
+public class ChordMakerController extends Controller implements Initializable {
+
+    public Button playChordButton;
+    public Label chordNameLabel;
+
+    public RadioButton doRadio, reRadio, miRadio, faRadio, solRadio, laRadio, siRadio ;
+    private ToggleGroup noteChordGroup = new ToggleGroup();
+
+    @FXML
+    private Pane notePane1,notePane2,notePane3,notePane4,notePane5,notePane6,notePane7,notePane8,notePane9,notePane10,notePane11,notePane12,notePane13,notePane14,notePane15,notePane16,notePane17,notePane18,notePane19,notePane20,notePane21,notePane22,notePane23,notePane24,notePane25,notePane26,notePane27,notePane28,notePane29,notePane30,notePane31,notePane32,notePane33,notePane34,notePane35,notePane36;
+    private Pane[] notesPane;
+
+    private Accord accord;
+    private Player player;
+
+    private Boolean isSeventh = false, isFifth = false, isMinor = false;
+
+    private LinkedHashMap<String, Method> listToFunc;
+    public ListView<String> chordListView;
 
     private MainModel model;
 
-    public ImageView crossAdd;
-    public HBox tileContainer;
-    public Button delete;
-
-    private Rectangle selected = null;
-    private int cpt = 1;
-
-    private ArrayList<Tile> src = new ArrayList<>();
-
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        tileContainer.setSpacing(5);
+    public void initialize(URL location, ResourceBundle resources) {
+        listToFunc = new LinkedHashMap<>();
 
-        delete.setVisible(false);
-        crossAdd.setOnMouseClicked(event -> {
-            Tile tile = new Tile();
-            Rectangle accord = new Rectangle(80, 80);
-            Label lab = new Label("" + cpt);
-            lab.setFont(new Font(20));
-            cpt++;
-            accord.setFill(Color.GRAY);
-            accord.setStrokeWidth(5);
-            accord.setStroke(Color.DARKGRAY);
-            tile.getChildren().addAll(accord, lab);
-            tileContainer.getChildren().add(tile);
+        notesPane = new Pane[]{notePane1,notePane2,notePane3,notePane4,notePane5,notePane6,notePane7,notePane8,notePane9,notePane10,notePane11,notePane12,notePane13,notePane14,notePane15,notePane16,notePane17,notePane18,notePane19,notePane20,notePane21,notePane22,notePane23,notePane24,notePane25,notePane26,notePane27,notePane28,notePane29,notePane30,notePane31,notePane32,notePane33,notePane34,notePane35,notePane36};
 
-            ContextMenu contextMenu = new ContextMenu();
+        doRadio.setToggleGroup(noteChordGroup);
+        reRadio.setToggleGroup(noteChordGroup);
+        miRadio.setToggleGroup(noteChordGroup);
+        faRadio.setToggleGroup(noteChordGroup);
+        solRadio.setToggleGroup(noteChordGroup);
+        laRadio.setToggleGroup(noteChordGroup);
+        siRadio.setToggleGroup(noteChordGroup);
 
-            MenuItem item1 = new MenuItem("Delete");
-            item1.setOnAction(MouseEvent -> {
-                if (selected != null) {
-                    tileContainer.getChildren().remove(selected.getParent());
-                    src.remove(selected);
-                    System.out.println(src.size());
-                    if (tileContainer.getChildren() == null) {
-                        delete.setVisible(false);
-                    }
-                    selected = null;
-                }
-            });
+        doRadio.fire();
 
-            contextMenu.getItems().add(item1);
-
-            tile.setOnContextMenuRequested(new EventHandler<ContextMenuEvent>() {
-
-                @Override
-                public void handle(ContextMenuEvent event) {
-
-                    contextMenu.show(tile, event.getScreenX(), event.getScreenY());
-                }
-            });
-
-            delete.setVisible(true);
-
-            event.consume();
-            src.add(tile);
-
-            tile.setOnMouseClicked(mouseEvent -> {
-                mouseClick(accord);
-            });
-
-
-            delete.setOnMouseClicked(mouseEvent -> {
-                if (selected != null) {
-                    tileContainer.getChildren().remove(selected.getParent());
-                    src.remove(selected);
-                    System.out.println(src.size());
-                    if (tileContainer.getChildren() == null) {
-                        delete.setVisible(false);
-                    }
-                    selected = null;
-                }
-            });
-
-            tile.setOnDragDetected(mouseEvent -> {
-                mouseClick(accord);
-                accord.setStroke(Color.RED);
-                final Dragboard dragBoard = tile.startDragAndDrop(TransferMode.ANY);
-                dragBoard.setDragView(tile.snapshot(null, null), mouseEvent.getX(), mouseEvent.getY());
-
-                final ClipboardContent content = new ClipboardContent();
-                content.putString(lab.getText());
-                dragBoard.setContent(content);
-                mouseEvent.consume();
-            });
-
-            delete.setOnDragOver(dragEvent -> {
-                System.out.println("onDragOver");
-                if (dragEvent.getGestureSource() != delete && dragEvent.getDragboard().hasString()) {
-                    dragEvent.acceptTransferModes(TransferMode.COPY_OR_MOVE);
-                }
-                dragEvent.consume();
-            });
-
-            delete.setOnDragEntered((dragEvent) -> {
-                System.out.println("detect enter");
-                dragEvent.consume();
-            });
-
-            delete.setOnDragExited((dragEvent) -> {
-                System.out.println("exited");
-                dragEvent.consume();
-            });
-
-            delete.setOnDragDropped(dragEvent -> {
-                tileContainer.getChildren().remove(tile);
-                selected = null;
-                dragEvent.consume();
-            });
-
-        });
-
-    }
-
-    private void mouseClick(Rectangle accord) {
-        if (selected != null) {
-            if (selected == accord) {
-                accord.setStroke(Color.DARKGRAY);
-                selected = null;
-
-            } else {
-                selected.setStroke(Color.DARKGRAY);
-                selected = accord;
-                accord.setStroke(Color.RED);
-
-            }
-
-        } else {
-            selected = accord;
-            accord.setStroke(Color.RED);
+        try {
+            player = new Player();
+        } catch (MidiUnavailableException e) {
+            e.printStackTrace();
         }
 
+        accord = new Accord(60, false, false, false);
+        accord.setMajor();
+        updtInfos();
+
+        try {
+            listToFunc.put(("Minor"), Accord.class.getMethod("setMinor"));
+            listToFunc.put(("Major"), Accord.class.getMethod("setMajor"));
+            listToFunc.put(("Dominant Seventh"), Accord.class.getMethod("setDominantSeven"));
+            listToFunc.put(("Minor Seventh"), Accord.class.getMethod("setMinorSeventh"));
+            listToFunc.put(("Major Seventh"), Accord.class.getMethod("setMajorSeventh"));
+            listToFunc.put(("Dominant Seventh with Flattened fifth"), Accord.class.getMethod("setDominantSeventhFlattenedFifth"));
+            listToFunc.put(("Dominant Seventh with Sharp fifth"), Accord.class.getMethod("setDominantSeventhSharpedFifth"));
+            listToFunc.put(("Sixth"), Accord.class.getMethod("setSixth"));
+            listToFunc.put(("Minor sixth"), Accord.class.getMethod("setMinorSixth"));
+            listToFunc.put(("Minor ninth"), Accord.class.getMethod("setMinorNinth"));
+            listToFunc.put(("Major ninth"), Accord.class.getMethod("setMajorNinth"));
+            listToFunc.put(("Diminished"), Accord.class.getMethod("setDiminished"));
+            listToFunc.put(("Diminished seventh"), Accord.class.getMethod("setDiminishedSeventh"));
+            listToFunc.put(("Augmented"), Accord.class.getMethod("setAugmented"));
+            listToFunc.put(("Suspended fourth"), Accord.class.getMethod("setSuspendedFourth"));
+            listToFunc.put(("Suspended second"), Accord.class.getMethod("setSuspendedSecond"));
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+        ObservableList<String> items = FXCollections.observableArrayList();
+
+        System.out.println(listToFunc);
+        for(Map.Entry <String, Method> entry : listToFunc.entrySet())
+        {
+            items.add(entry.getKey());
+        }
+
+        chordListView.setItems(items);
+
+        chordListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                listToFunc.get(newValue).invoke(accord);
+                updtInfos();
+                model.setSelectedChord(accord);
+            } catch (IllegalAccessException | InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        });
+
+        noteChordGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue == doRadio )   this.accord = new Accord(60, isMinor, isFifth, isSeventh);
+            if (newValue == reRadio )   this.accord = new Accord(62, isMinor, isFifth, isSeventh);
+            if (newValue == miRadio )   this.accord = new Accord(64, isMinor, isFifth, isSeventh);
+            if (newValue == faRadio )   this.accord = new Accord(65, isMinor, isFifth, isSeventh);
+            if (newValue == solRadio)   this.accord = new Accord(67, isMinor, isFifth, isSeventh);
+            if (newValue == laRadio )   this.accord = new Accord(69, isMinor, isFifth, isSeventh);
+            if (newValue == siRadio )   this.accord = new Accord(71, isMinor, isFifth, isSeventh);
+
+            updtInfos();
+            model.setSelectedChord(accord);
+        });
+
+        playChordButton.setOnMouseClicked(event -> {
+            for ( int i = 0; i < accord.getNotes().size(); i++)
+                player.playNote(accord.getNotes().get(i));
+        });
     }
 
+    private void updtInfos()
+    {
+        chordNameLabel.setText(accord.getName());
+        resetKeys();
+        colorizeKeys();
+    }
+
+    private void resetKeys()
+    {
+        for (Pane aNotesPane : notesPane) aNotesPane.setStyle(null);
+    }
+
+    private void colorizeKeys()
+    {
+        ArrayList<Integer> notes = this.accord.getNotes();
+        for (Object note : notes) {
+            int notePaneIndex = (int) note - 60;
+            notesPane[notePaneIndex].setStyle("-fx-background-color: red");
+        }
+    }
+
+    public void setModel(MainModel model) {
+        this.model = model;
+        model.setSelectedChord(accord);
+    }
 }

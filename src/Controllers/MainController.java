@@ -126,9 +126,9 @@ public class MainController extends Controller
 
         /* ---- </ Main Event Listener > ---- */
 
-        views.put(tracksView, "piste_layout .fxml");
-        views.put(chordMakerView, "ChordMaker2.fxml");
-        views.put(chordSorterView, "ChordMaker.fxml");
+        views.put(tracksView, "piste_layout.fxml");
+        views.put(chordMakerView, "ChordMaker.fxml");
+        views.put(chordSorterView, "ChordSorter.fxml");
     /* On ajoute les différentes pages qu'on lie à chacun des buttons */
         for (Map.Entry<Button, String> entry: views.entrySet())
         {
@@ -147,7 +147,7 @@ public class MainController extends Controller
         }
 
         try {
-            loadView("ChordMaker2.fxml", secondContainer);
+            loadView("ChordMaker.fxml", secondContainer);
         } catch (IOException e) {
             e.printStackTrace();
         }
