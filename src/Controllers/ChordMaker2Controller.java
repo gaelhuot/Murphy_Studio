@@ -14,10 +14,7 @@ import javax.sound.midi.MidiUnavailableException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class ChordMaker2Controller extends Controller implements Initializable {
 
@@ -36,14 +33,14 @@ public class ChordMaker2Controller extends Controller implements Initializable {
 
     private Boolean isSeventh = false, isFifth = false, isMinor = false;
 
-    private HashMap<String, Method> listToFunc;
+    private LinkedHashMap<String, Method> listToFunc;
     public ListView<String> chordListView;
 
     private MainModel model;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        listToFunc = new HashMap<>();
+        listToFunc = new LinkedHashMap<>();
 
         notesPane = new Pane[]{notePane1,notePane2,notePane3,notePane4,notePane5,notePane6,notePane7,notePane8,notePane9,notePane10,notePane11,notePane12,notePane13,notePane14,notePane15,notePane16,notePane17,notePane18,notePane19,notePane20,notePane21,notePane22,notePane23,notePane24,notePane25,notePane26,notePane27,notePane28,notePane29,notePane30,notePane31,notePane32,notePane33,notePane34,notePane35,notePane36};
 
@@ -89,9 +86,11 @@ public class ChordMaker2Controller extends Controller implements Initializable {
         }
         ObservableList<String> items = FXCollections.observableArrayList();
 
-
+        System.out.println(listToFunc);
         for(Map.Entry <String, Method> entry : listToFunc.entrySet())
+        {
             items.add(entry.getKey());
+        }
 
         chordListView.setItems(items);
 

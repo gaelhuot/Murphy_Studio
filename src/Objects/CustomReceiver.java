@@ -32,6 +32,6 @@ public class CustomReceiver implements Receiver {
 
     @Override
     public void close() {
-
+        rcvr.close();
     }
 }

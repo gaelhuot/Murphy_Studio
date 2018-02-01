@@ -144,7 +144,7 @@ public class Accord {
 
     public void setDominantSeventhSharpedFifth()
     {
-        setSeventhWithFlattenedFifth();
+        notes = new ArrayList<>(Arrays.asList(dominant, dominant+4, dominant+8, dominant+10));
         name = dominantName + "7#5";
     }
 

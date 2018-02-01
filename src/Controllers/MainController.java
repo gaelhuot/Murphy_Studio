@@ -2,6 +2,7 @@ package Controllers;
 
 import Models.ChordModel;
 import Models.MainModel;
+import Objects.Accord;
 import Objects.Player;
 import Objects.CustomReceiver;
 import javafx.fxml.FXML;
@@ -15,6 +16,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
+import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MidiUnavailableException;
 import java.io.IOException;
 import java.net.URL;
@@ -41,7 +43,10 @@ public class MainController extends Controller
 
     public AnchorPane secondContainer;
     public SplitPane split_workspace;
+
     public Button chordMakerView;
+    public Button chordSorterView;
+    public Button tracksView;
 
 
     private Scene scene;
@@ -121,9 +126,9 @@ public class MainController extends Controller
 
         /* ---- </ Main Event Listener > ---- */
 
-
-        views.put(chordGridView, "ChordMaker.fxml");
+        views.put(tracksView, "piste_layout .fxml");
         views.put(chordMakerView, "ChordMaker2.fxml");
+        views.put(chordSorterView, "ChordMaker.fxml");
     /* On ajoute les différentes pages qu'on lie à chacun des buttons */
         for (Map.Entry<Button, String> entry: views.entrySet())
         {
@@ -133,7 +138,8 @@ public class MainController extends Controller
             /* Pour chaque button, on créé un event qui va permettre de charger la page correspondante */
             fxmlID.setOnMouseClicked(event -> {
                 try {
-                    loadView(viewName, secondContainer);
+                    Pane container = ( fxmlID == tracksView || fxmlID == chordSorterView ) ? this.mainContainer : this.secondContainer;
+                    loadView(viewName, container);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -165,9 +171,8 @@ public class MainController extends Controller
     }
 
     public void exit() {
-        if ( model.player.sequencer.isRunning() )
-            model.player.sequencer.stop();
-        model.player.sequencer.close();
+        model.player.synthesizer.close();
         model.player.receiver.close();
+        model.player.sequencer.close();
     }
 }

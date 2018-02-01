@@ -2,12 +2,16 @@ package application;
 
 import Controllers.MainController;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+
+import static javafx.application.Platform.exit;
 
 public class Main extends Application {
 
@@ -30,7 +34,11 @@ public class Main extends Application {
         primaryStage.setY((bounds.getHeight() - primaryStage.getHeight()) / 4);
         primaryStage.show();
 
-        primaryStage.setOnCloseRequest(event -> mainController.exit());
+
+        primaryStage.setOnCloseRequest(windowEvent -> {
+            mainController.exit();
+            System.exit(0);
+        });
 
         //TODO charger les vues suivantes :
         // mainContainer -> split pane

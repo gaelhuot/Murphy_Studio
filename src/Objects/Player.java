@@ -12,10 +12,7 @@ public class Player {
     public MidiChannel midiChannel;
 
     public Receiver receiver;
-    private Transmitter transmitter;
-    private Synthesizer synthesizer;
-
-    private MidiDevice ouputDevice;
+    public Synthesizer synthesizer;
 
     public SimpleIntegerProperty master_volume;
 
@@ -34,21 +31,6 @@ public class Player {
         ShortMessage sm = new ShortMessage();
         sm.setMessage(command, channel, data1, data2);
         return sm;
-    }
-
-    public void playChord(Accord chord, boolean start) throws InvalidMidiDataException {
-        for ( int i = 0; i < chord.getNotes().size(); i++ )
-        {
-            ShortMessage sm = createMidiMessage(
-                    (start) ? ShortMessage.NOTE_ON : ShortMessage.NOTE_OFF,
-                    0,
-                    chord.getNotes().get(i),
-                    93
-            );
-            long timeStamp = -1;
-
-            receiver.send(sm, timeStamp);
-        }
     }
 
     public void playNote(int note)
