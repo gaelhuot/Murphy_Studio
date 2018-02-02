@@ -118,15 +118,16 @@ public class MainController extends Controller
         });
 
         this.model.player.master_volume.bind(this.master_volume_slider.valueProperty());
+        this.master_volume_slider.setValue(50);
 
-        master_volume_slider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            // Et ça marche paaas !
-            double gain = ((Double) newValue / 100);
-            CustomReceiver receiver = (CustomReceiver) model.player.receiver;
-            receiver.channel.controlChange(7, (int) (gain * 127.0));
-
-            //model.player.midiChannel.controlChange(7, (Integer) newValue);
-        });
+//        master_volume_slider.valueProperty().addListener((observable, oldValue, newValue) -> {
+//            // Et ça marche paaas !
+//            double gain = ((Double) newValue / 100);
+//            CustomReceiver receiver = (CustomReceiver) model.player.receiver;
+//            receiver.channel.controlChange(7, (int) (gain * 127.0));
+//
+//            //model.player.midiChannel.controlChange(7, (Integer) newValue);
+//        });
 
         /* ---- </ Main Event Listener > ---- */
 
