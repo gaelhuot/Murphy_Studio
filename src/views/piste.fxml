@@ -35,8 +35,11 @@
    <center>
       <ScrollPane fx:id="scrollpane" fitToHeight="true" fitToWidth="true" BorderPane.alignment="CENTER">
          <content>
-            <HBox fx:id="piste_timeline" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="124.0" prefWidth="1920.0" styleClass="piste-timeline" />
+            <HBox fx:id="piste_timeline" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="108.0" prefWidth="1781.0" styleClass="piste-timeline" />
          </content>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
       </ScrollPane>
    </center>
 </BorderPane>

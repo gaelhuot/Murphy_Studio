@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="+Infinity" maxWidth="+Infinity" prefHeight="250.0" prefWidth="300.0" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PisteLayoutController">
+<BorderPane maxHeight="+Infinity" maxWidth="+Infinity" prefHeight="250.0" prefWidth="300.0" styleClass="background" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PisteLayoutController">
    <top>
       <ToolBar fx:id="piste_layout_button_bar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: transparent;" BorderPane.alignment="CENTER">
         <items>
@@ -19,9 +19,9 @@
       </ToolBar>
    </top>
    <center>
-      <AnchorPane maxHeight="+Infinity" maxWidth="+Infinity" prefHeight="100.0" prefWidth="100.0" BorderPane.alignment="TOP_LEFT">
+      <AnchorPane maxHeight="+Infinity" maxWidth="+Infinity" prefHeight="100.0" prefWidth="100.0" styleClass="background" BorderPane.alignment="TOP_LEFT">
          <children>
-            <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <content>
                   <VBox id="track_layout_vbox" fx:id="PisteLayoutVBox" maxHeight="+Infinity" maxWidth="+Infinity" minWidth="-Infinity" prefHeight="212.0" prefWidth="300.0" styleClass="background" />
                </content>

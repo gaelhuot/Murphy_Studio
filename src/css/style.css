@@ -50,6 +50,18 @@ Grey color (darker to brightest)
   -fx-background-color: #0A061D;
 }
 
+.piste
+{
+  -fx-border-color: #554C2B;
+  -fx-border-style: solid;
+  -fx-border-width: 1px;
+}
+
+.piste .scroll-pane
+{
+  -fx-background-color: #0A061D;
+}
+
 .control-bar-pane
 {
   -fx-background-color: #040211;
@@ -58,18 +70,13 @@ Grey color (darker to brightest)
 
 .piste-control
 {
-    -fx-border-color: #554C2B;
-    -fx-border-style: solid;
-    -fx-border-width: 1px;
-    -fx-background-color: #0A061D; -fx-max-width: 150px;
+  -fx-background-color: #0A061D;
+  -fx-max-width: 150px;
 }
 
 .piste-timeline
 {
-    -fx-border-color: #554C2B;
-    -fx-border-style: solid;
-    -fx-border-width: 1px 1px 1px 0px;
-    -fx-background-color: #25213B;
+  -fx-background-color: #25213B;
 }
 
 .button
@@ -188,7 +195,7 @@ Grey color (darker to brightest)
 {
     -fx-background-color: -fx-box-border, -fx-control-inner-background;
     -fx-background-insets: 0, 1;
-    -fx-padding: 1;
+    /* -fx-padding: 1; */
 }
 
 .radio-button > .radio, .radio-button:focused > .radio
