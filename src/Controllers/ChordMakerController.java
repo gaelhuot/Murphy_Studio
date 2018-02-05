@@ -119,7 +119,7 @@ public class ChordMakerController extends Controller implements Initializable {
         chordMakerPane.heightProperty().addListener((obs, oldVal, newVal) ->
         {
             System.out.println(this.chordMakerPane.heightProperty().getValue());
-            if (this.chordMakerPane.heightProperty().getValue() < 400)
+            if (this.chordMakerPane.heightProperty().getValue() < 450)
             {
                 piano.setManaged(false); piano.setVisible(false);
                 System.out.println("hide");
