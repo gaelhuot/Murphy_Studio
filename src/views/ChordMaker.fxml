@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="+Infinity" maxWidth="+Infinity" minHeight="-Infinity" prefHeight="400.0" styleClass="background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ChordMakerController">
+<BorderPane fx:id="chordMakerPane" maxHeight="+Infinity" maxWidth="+Infinity" minHeight="-Infinity" prefHeight="400.0" styleClass="background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ChordMakerController">
    <stylesheets>
       <URL value="@../css/chordMaker.css" />
       <URL value="@../css/style.css" />
@@ -65,7 +65,7 @@
       </BorderPane>
    </center>
    <bottom>
-       <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="135.0" prefWidth="867.0" BorderPane.alignment="CENTER">
+       <Pane fx:id="piano" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="135.0" prefWidth="867.0" BorderPane.alignment="CENTER">
            <Pane fx:id="notePane1" layoutX="15.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
            <Pane fx:id="notePane3" layoutX="55.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
            <Pane fx:id="notePane5" layoutX="95.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />

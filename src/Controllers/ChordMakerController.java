@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
 import javax.sound.midi.MidiUnavailableException;
@@ -22,6 +23,8 @@ public class ChordMakerController extends Controller implements Initializable {
     public Label chordNameLabel;
 
     public RadioButton doRadio, reRadio, miRadio, faRadio, solRadio, laRadio, siRadio ;
+    public BorderPane chordMakerPane;
+    public Pane piano;
     private ToggleGroup noteChordGroup = new ToggleGroup();
 
     @FXML
@@ -112,6 +115,26 @@ public class ChordMakerController extends Controller implements Initializable {
             for ( int i = 0; i < accord.getNotes().size(); i++)
                 player.playNote(accord.getNotes().get(i));
         });
+
+        chordMakerPane.heightProperty().addListener((obs, oldVal, newVal) ->
+        {
+            System.out.println(this.chordMakerPane.heightProperty().getValue());
+            if (this.chordMakerPane.heightProperty().getValue() < 400)
+            {
+                piano.setManaged(false); piano.setVisible(false);
+                System.out.println("hide");
+            }
+            else
+            {
+                piano.setManaged(true); piano.setVisible(true);
+                System.out.println("show");
+            }
+        });
+
+
+
+
+
     }
 
     private void updtInfos()
