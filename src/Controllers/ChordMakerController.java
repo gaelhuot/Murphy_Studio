@@ -54,12 +54,6 @@ public class ChordMakerController extends Controller implements Initializable {
 
         doRadio.fire();
 
-        try {
-            player = new Player();
-        } catch (MidiUnavailableException e) {
-            e.printStackTrace();
-        }
-
         accord = new Accord(60, false, false, false);
         accord.setMajor();
         updtInfos();
@@ -144,5 +138,6 @@ public class ChordMakerController extends Controller implements Initializable {
     public void setModel(MainModel model) {
         this.model = model;
         model.setSelectedChord(accord);
+        player = this.model.player;
     }
 }

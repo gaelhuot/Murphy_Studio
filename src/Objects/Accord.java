@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class Accord {
+public class Accord implements Cloneable{
 
     private HashMap<Integer, Character> characterHashMap = new HashMap<Integer, Character>(){{
         put(0, 'C');
@@ -258,5 +258,13 @@ public class Accord {
 
     public ArrayList<Integer> getFifth() {
         return null;
+    }
+
+    public Accord getClone() {
+        try { return (Accord) super.clone(); }
+        catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

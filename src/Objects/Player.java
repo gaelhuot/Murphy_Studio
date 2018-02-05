@@ -4,6 +4,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 import javax.sound.midi.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Player {
 
@@ -11,7 +12,7 @@ public class Player {
 
     public MidiChannel midiChannel;
 
-    public Receiver receiver;
+    public CustomReceiver receiver;
     public Synthesizer synthesizer;
 
     public SimpleIntegerProperty master_volume;
@@ -65,8 +66,7 @@ public class Player {
         }
 
         this.midiChannel = synthesizer.getChannels()[0];
-
-        receiver = new CustomReceiver(midiChannel);
+        receiver = new CustomReceiver(this.midiChannel);
     }
 
     private void addNoteToTrack(int note, int start,int velocity, int duration)
@@ -117,5 +117,10 @@ public class Player {
     {
         this.tempo = tempo;
         sequencer.setTempoInBPM(tempo);
+    }
+
+    public void setVolume(int v) {
+        // C'est horrible mais je vois que ça
+        synthesizer.getChannels()[0].controlChange(7, v);
     }
 }

@@ -22,6 +22,7 @@ import javafx.scene.text.Font;
 import javax.sound.midi.InvalidMidiDataException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -202,8 +203,10 @@ public class ChordSorterController extends Controller {
                 Accord[] accords = new Accord[tiles.size()];
 
                 for ( int i = 0; i < tiles.size(); i++ )
+                {
                     accords[i] = tiles.get(i).accord;
-
+                    System.out.println(tiles.get(i).getName());
+                }
                 try {
                     model.player.createTrackFromChords(accords);
                 } catch (InvalidMidiDataException e) {
@@ -213,11 +216,13 @@ public class ChordSorterController extends Controller {
         });
     }
 
+
     public void setModel(MainModel model) {
         this.model = model;
         crossAdd.setOnMouseClicked(this::createTile);
 
         initTrackBtn();
     }
+
 
 }
