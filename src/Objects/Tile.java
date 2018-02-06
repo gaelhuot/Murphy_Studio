@@ -12,12 +12,23 @@ public class Tile extends StackPane {
     public boolean isRandom;
 
     public Tile() {
-
+        this.accord = null;
+        this.name = "";
+        this.tic = 0;
+        this.velocity = 50;
     }
 
     public Tile(String name, Pane tile) {
         this.name = name;
         this.tic = 8;
+        this.velocity = 50;
+    }
+
+    public Tile(boolean random) {
+        this.isRandom = random;
+        this.accord = null;
+        this.name = "";
+        this.tic = 0;
         this.velocity = 50;
     }
 
@@ -36,6 +47,14 @@ public class Tile extends StackPane {
     public void setTic(int tic){ this.tic = tic; }
 
     public void setVelocity(int velocity){ this.velocity = velocity; }
+
+    public void toggleRandom() {
+        isRandom = !isRandom;
+        this.accord = null;
+        this.name = "";
+        this.tic = 0;
+        this.velocity = 50;
+    }
 
 
 }

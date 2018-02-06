@@ -174,6 +174,9 @@ public class ChordSorterController extends Controller {
 
         Objects.requireNonNull(getChildrenRectangle(newSelectedTile)).setStroke(Color.RED);
         selected = newSelectedTile;
+
+        if ( ! newSelectedTile.isRandom )
+            model.setSelectedChord(newSelectedTile.accord);
     }
 
     private Rectangle getChildrenRectangle(Tile tile)

@@ -20,10 +20,7 @@ import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MidiUnavailableException;
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class MainController extends Controller
 {
@@ -183,9 +180,12 @@ public class MainController extends Controller
         Node newPane = fxmlLoader.load();
 
 
-        /* On charge le controller et on lui passse le model */
+        /* On charge le controller et on lui passe le model */
         Controller ctrl = fxmlLoader.getController();
 
+        if ( ctrl.getClass() == ChordMakerController.class ) model.chordMakerController = (ChordMakerController) ctrl;
+        if ( ctrl.getClass() == ChordSorterController.class ) model.chordSorterController = (ChordSorterController) ctrl;
+        if ( ctrl.getClass() == PisteLayoutController.class ) model.pisteLayoutController = (PisteLayoutController) ctrl;
         ctrl.setModel(model);
 
         /* On l'affiche dans le container */

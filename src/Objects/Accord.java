@@ -1,8 +1,6 @@
 package Objects;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.*;
 
 public class Accord implements Cloneable{
 
@@ -30,7 +28,24 @@ public class Accord implements Cloneable{
     {
         this.dominant = dominant;
         dominantName = characterHashMap.get(dominant%12);
-        notes = new ArrayList<>(Arrays.asList(dominant));
+        notes = new ArrayList<>(Collections.singletonList(dominant));
+    }
+
+    public Accord(Character dominant)
+    {
+        Integer key = null;
+        for (Map.Entry<Integer, Character> entry : characterHashMap.entrySet() )
+            if ( entry.getValue() == dominant ) key = entry.getKey();
+
+        if ( key == null )
+        {
+            System.err.println("Chord dominant " + dominant + " is null.");
+            throw new NullPointerException();
+        }
+
+        this.dominant = key;
+        this.dominantName = dominant;
+        this.notes = new ArrayList<>(Collections.singletonList(key));
     }
 
     public Accord(int dominant, Boolean isMinor, Boolean isFifth, Boolean isSeventh) {
