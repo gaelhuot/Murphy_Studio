@@ -1,5 +1,6 @@
 package Objects;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 
@@ -26,6 +27,14 @@ public class Accord implements Cloneable{
 
     private Character dominantName;
     private String name;
+
+    // Empty
+    public Accord( )
+    {
+        this.dominant = 0;
+        this.dominantName = '#';
+        notes = new ArrayList<>();
+    }
 
     public Accord(int dominant)
     {
@@ -339,5 +348,65 @@ public class Accord implements Cloneable{
 
     public Method getMethodCalled() {
         return methodCalled;
+    }
+
+    public Method[] getMethodList() {
+        try {
+            return new Method[]
+            {
+                Accord.class.getMethod("setMajor"),
+                Accord.class.getMethod("setMinor"),
+                Accord.class.getMethod("setDominantSeven"),
+                Accord.class.getMethod("setMinorSeventh"),
+                Accord.class.getMethod("setMajorSeventh"),
+                Accord.class.getMethod("setDominantSeventhFlattenedFifth"),
+                Accord.class.getMethod("setDominantSeventhSharpedFifth"),
+                Accord.class.getMethod("setSixth"),
+                Accord.class.getMethod("setMinorSixth"),
+                Accord.class.getMethod("setMinorNinth"),
+                Accord.class.getMethod("setMajorNinth"),
+                Accord.class.getMethod("setDiminished"),
+                Accord.class.getMethod("setDiminishedSeventh"),
+                Accord.class.getMethod("setAugmented"),
+                Accord.class.getMethod("setSuspendedFourth"),
+                Accord.class.getMethod("setSuspendedSecond")
+            };
+        }
+        catch (NoSuchMethodException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public void setRandom()
+    {
+        this.dominant = new int[]{0,2,4,5,7,9,11}[new Random().nextInt(7)] + 60;
+        this.dominantName = characterHashMap.get(this.dominant%12);
+        notes = new ArrayList<>(Collections.singletonList(dominant));
+
+        Method[] methods = getMethodList();
+        try {
+            Method randomMethod = methods[new Random().nextInt(methods.length + 1)];
+            this.methodCalled = randomMethod;
+            randomMethod.invoke(this);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setRandom(int dominant)
+    {
+        this.dominant = dominant%12 + 60;
+        this.dominantName = characterHashMap.get(this.dominant%12);
+
+        Method[] methods = getMethodList();
+        try {
+            Method randomMethod = methods[new Random().nextInt(methods.length + 1)];
+            this.methodCalled = randomMethod;
+            randomMethod.invoke(this);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
     }
 }

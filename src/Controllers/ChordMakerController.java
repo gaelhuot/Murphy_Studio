@@ -160,6 +160,7 @@ public class ChordMakerController extends Controller implements Initializable {
     private void colorizeKeys()
     {
         ArrayList<Integer> notes = this.accord.getNotes();
+        System.out.println(notes);
         for (Object note : notes) {
             int notePaneIndex = (int) note - 60;
             notesPane[notePaneIndex].setStyle("-fx-background-color: red");
@@ -176,6 +177,7 @@ public class ChordMakerController extends Controller implements Initializable {
 
     public void setSelected() {
         this.accord = model.getSelectedChord();
+        System.out.println(accord.getDominantName());
 
         switch (accord.getDominantName()) {
             case 'A' : laRadio.fire(); break;
@@ -188,6 +190,7 @@ public class ChordMakerController extends Controller implements Initializable {
             default  : return;
         }
 
+        System.out.println(getChordNameByMethod(accord));
         chordListView.getSelectionModel().select(getChordNameByMethod(accord));
 
         updtInfos();

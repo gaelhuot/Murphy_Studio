@@ -25,6 +25,9 @@ import java.util.ResourceBundle;
 
 public class ChordSorterController extends Controller {
 
+    public Button emptyButton;
+    public Button randomButton;
+
     private MainModel model;
 
     public ImageView crossAdd;
@@ -36,6 +39,9 @@ public class ChordSorterController extends Controller {
     private Tile selected;
 
     private ArrayList<Tile> tiles;
+
+    private boolean isRandomTile = false;
+    private boolean isEmptyTile = false;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -52,8 +58,14 @@ public class ChordSorterController extends Controller {
     public void createTile(MouseEvent event)
     {
         // Création de la tile + composants (Rectangle, Label)
-        Tile newTile = new Tile(model.getSelectedChord());
+        Accord tmpAccord = new Accord();
 
+        if ( ! isRandomTile && ! isEmptyTile ) tmpAccord = model.getSelectedChord();
+        else if ( isRandomTile ) tmpAccord.setRandom();
+
+        Tile newTile = new Tile(tmpAccord);
+
+        isRandomTile = isEmptyTile = false;
 
 
         // Click droit
@@ -143,6 +155,15 @@ public class ChordSorterController extends Controller {
 
         /* --- </Drag and Drop> --- */
 
+        emptyButton.setOnMouseClicked(event -> {
+            isEmptyTile = true;
+            createTile(event);
+        });
+
+        randomButton.setOnMouseClicked(event -> {
+            isRandomTile = true;
+            createTile(event);
+        });
     }
 
     private void deleteSelected()
