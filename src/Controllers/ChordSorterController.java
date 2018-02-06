@@ -5,10 +5,7 @@ import Objects.Accord;
 import Objects.Tile;
 import javafx.event.Event;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
@@ -74,7 +71,15 @@ public class ChordSorterController extends Controller {
         ContextMenu rightClickContext = new ContextMenu();
 
         MenuItem menuItemDelete = new MenuItem("Delete");
-        rightClickContext.getItems().add(menuItemDelete);
+        MenuItem menuItemSetRandom = new MenuItem("Set Random");
+        SeparatorMenuItem seperator = new SeparatorMenuItem();
+        MenuItem menuItemRythm1 = new MenuItem("Rythme 1");
+        MenuItem menuItemRythm2 = new MenuItem("Rythme 2");
+        MenuItem menuItemRythm3 = new MenuItem("Rythme 3");
+
+        rightClickContext.setStyle("-fx-background: #fff");
+
+        rightClickContext.getItems().addAll(menuItemDelete, menuItemSetRandom, seperator, menuItemRythm1, menuItemRythm2, menuItemRythm3);
 
         menuItemDelete.setOnAction(MouseEvent -> {
             if ( selected == null ) return;
@@ -98,8 +103,6 @@ public class ChordSorterController extends Controller {
         deleteBtn.setVisible(true);
 
         event.consume();
-
-
     }
 
     private void initEventHandler(Tile newTile)

@@ -209,6 +209,10 @@ Grey color (darker to brightest)
     -fx-background-radius: 3, 3;
 }
 
+.menu-item .label{
+    -fx-text-fill: #000;
+}
+
 /*
 Documentation :
 https://docs.oracle.com/javafx/2/api/javafx/scene/doc-files/cssref.html

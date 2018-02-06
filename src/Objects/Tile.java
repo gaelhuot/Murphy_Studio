@@ -9,6 +9,7 @@ public class Tile extends StackPane {
     private int tic; //time
     private int velocity;
     public Accord accord;
+    public boolean isRandom;
 
     public Tile() {
 
