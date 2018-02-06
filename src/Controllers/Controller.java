@@ -30,4 +30,7 @@ public abstract class Controller implements Initializable {
         return newPane;
     }
 
+    public void test() {
+        System.out.println("dd");
+    };
 }

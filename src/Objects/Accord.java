@@ -1,5 +1,6 @@
 package Objects;
 
+import java.lang.reflect.Method;
 import java.util.*;
 
 public class Accord implements Cloneable{
@@ -18,6 +19,8 @@ public class Accord implements Cloneable{
     private boolean isMinor;
     private boolean isFifth;
     private boolean isSeventh;
+
+    private Method methodCalled;
 
     private ArrayList<Integer> notes;
 
@@ -91,12 +94,18 @@ public class Accord implements Cloneable{
     {
         isMinor = false;
         switchType();
+
+        try { methodCalled = Accord.class.getMethod("setMajor"); }
+        catch (NoSuchMethodException e) { e.printStackTrace(); }
     }
 
     public void setMinor()
     {
         isMinor = true;
         switchType();
+
+        try { methodCalled = Accord.class.getMethod("setMinor"); }
+        catch (NoSuchMethodException e) { e.printStackTrace(); }
     }
 
     private void switchType()
@@ -135,6 +144,9 @@ public class Accord implements Cloneable{
         notes = getMajor();
         notes.add(dominant+10);
         name = dominantName + "7";
+
+        try { methodCalled = Accord.class.getMethod("setDominantSeven"); }
+        catch (NoSuchMethodException e) { e.printStackTrace(); }
     }
 
     public void setMinorSeventh()
@@ -142,6 +154,9 @@ public class Accord implements Cloneable{
         notes = getMinor();
         notes.add(dominant+10);
         name = dominantName + "m7";
+
+        try { methodCalled = Accord.class.getMethod("setMinorSeventh"); }
+        catch (NoSuchMethodException e) { e.printStackTrace(); }
     }
 
     public void setMajorSeventh()
@@ -149,18 +164,27 @@ public class Accord implements Cloneable{
         notes = getMajor();
         notes.add(dominant+11);
         name = dominantName + "maj7";
+
+        try { methodCalled = Accord.class.getMethod("setMajorSeventh"); }
+        catch (NoSuchMethodException e) { e.printStackTrace(); }
     }
 
     public void setDominantSeventhFlattenedFifth()
     {
         notes = new ArrayList<>(Arrays.asList(dominant, dominant+4, dominant+8, dominant+10));
         name = dominantName + "7b5";
+
+        try { methodCalled = Accord.class.getMethod("setDominantSeventhFlattenedFifth"); }
+        catch (NoSuchMethodException e) { e.printStackTrace(); }
     }
 
     public void setDominantSeventhSharpedFifth()
     {
         notes = new ArrayList<>(Arrays.asList(dominant, dominant+4, dominant+8, dominant+10));
         name = dominantName + "7#5";
+
+        try { methodCalled = Accord.class.getMethod("setDominantSeventhSharpedFifth"); }
+        catch (NoSuchMethodException e) { e.printStackTrace(); }
     }
 
     public void setSixth()
@@ -168,6 +192,9 @@ public class Accord implements Cloneable{
         notes = getMajor();
         notes.add(dominant+9);
         name = dominantName + "6";
+
+        try { methodCalled = Accord.class.getMethod("setSixth"); }
+        catch (NoSuchMethodException e) { e.printStackTrace(); }
     }
 
     public void setMinorSixth()
@@ -176,6 +203,8 @@ public class Accord implements Cloneable{
         notes.add(dominant+9);
         name = dominantName + "m6";
 
+        try { methodCalled = Accord.class.getMethod("setMinorSixth"); }
+        catch (NoSuchMethodException e) { e.printStackTrace(); }
     }
 
     public void setMinorNinth()
@@ -183,6 +212,9 @@ public class Accord implements Cloneable{
         setMinorSeventh();
         notes.add(dominant+14);
         name = dominantName + "m9";
+
+        try { methodCalled = Accord.class.getMethod("setMinorNinth"); }
+        catch (NoSuchMethodException e) { e.printStackTrace(); }
     }
 
     public void setMajorNinth()
@@ -190,12 +222,18 @@ public class Accord implements Cloneable{
         setMajorSeventh();
         notes.add(dominant+14);
         name = dominantName + "maj9";
+
+        try { methodCalled = Accord.class.getMethod("setMajorNinth"); }
+        catch (NoSuchMethodException e) { e.printStackTrace(); }
     }
 
     public void setDiminished()
     {
         notes = new ArrayList<>(Arrays.asList(dominant, dominant+3, dominant+6));
         name = dominantName + "dim";
+
+        try { methodCalled = Accord.class.getMethod("setDiminished"); }
+        catch (NoSuchMethodException e) { e.printStackTrace(); }
     }
 
     public void setDiminishedSeventh()
@@ -203,24 +241,36 @@ public class Accord implements Cloneable{
         setDiminished();
         notes.add(dominant+9);
         name = dominantName + "dim7";
+
+        try { methodCalled = Accord.class.getMethod("setDiminishedSeventh"); }
+        catch (NoSuchMethodException e) { e.printStackTrace(); }
     }
 
     public void setAugmented()
     {
         notes = new ArrayList<>(Arrays.asList(dominant, dominant+3, dominant+8));
         name = dominantName + "aug";
+
+        try { methodCalled = Accord.class.getMethod("setAugmented"); }
+        catch (NoSuchMethodException e) { e.printStackTrace(); }
     }
 
     public void setSuspendedFourth()
     {
         notes = new ArrayList<>(Arrays.asList(dominant, dominant+5, dominant+7));
         name = dominantName + "sus4";
+
+        try { methodCalled = Accord.class.getMethod("setSuspendedFourth"); }
+        catch (NoSuchMethodException e) { e.printStackTrace(); }
     }
 
     public void setSuspendedSecond()
     {
         notes = new ArrayList<>(Arrays.asList(dominant, dominant+2, dominant+7));
         name = dominantName + "sus2";
+
+        try { methodCalled = Accord.class.getMethod("setSuspendedSecond"); }
+        catch (NoSuchMethodException e) { e.printStackTrace(); }
     }
 
     public void setFifth() {
@@ -281,5 +331,13 @@ public class Accord implements Cloneable{
             e.printStackTrace();
             return null;
         }
+    }
+
+    public Character getDominantName() {
+        return dominantName;
+    }
+
+    public Method getMethodCalled() {
+        return methodCalled;
     }
 }

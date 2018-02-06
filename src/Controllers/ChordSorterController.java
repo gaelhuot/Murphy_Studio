@@ -49,23 +49,12 @@ public class ChordSorterController extends Controller {
         initDeleteBtnEvent();
     }
 
-    private void createTile(MouseEvent event)
+    public void createTile(MouseEvent event)
     {
         // Création de la tile + composants (Rectangle, Label)
-        Tile newTile = new Tile();
+        Tile newTile = new Tile(model.getSelectedChord());
 
-        newTile.accord = model.getSelectedChord();
 
-        Rectangle tileSquare = new Rectangle(80, 80);
-        Label tileLabel = new Label(newTile.accord.getName());
-
-        tileLabel.setFont(new Font(20));
-
-        tileSquare.setFill(Color.GRAY);
-        tileSquare.setStroke(Color.DARKGRAY);
-        tileSquare.setStrokeWidth(5);
-
-        newTile.getChildren().addAll(tileSquare, tileLabel);
 
         // Click droit
         ContextMenu rightClickContext = new ContextMenu();
@@ -176,7 +165,10 @@ public class ChordSorterController extends Controller {
         selected = newSelectedTile;
 
         if ( ! newSelectedTile.isRandom )
+        {
             model.setSelectedChord(newSelectedTile.accord);
+            model.chordMakerController.setSelected();
+        }
     }
 
     private Rectangle getChildrenRectangle(Tile tile)
@@ -220,6 +212,13 @@ public class ChordSorterController extends Controller {
                 }
             }
         });
+    }
+
+    public void changeSelectedTileChord(Accord accord)
+    {
+        if ( selected == null ) return;
+        selected.accord = accord.getClone();
+        selected.setName(accord.getName());
     }
 
 

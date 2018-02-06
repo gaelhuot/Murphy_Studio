@@ -5,9 +5,11 @@ import Controllers.ChordSorterController;
 import Controllers.PisteLayoutController;
 import Objects.Accord;
 import Objects.Player;
+import Objects.Tile;
 
 import java.lang.invoke.SerializedLambda;
 import java.lang.reflect.Array;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 public class MainModel {
