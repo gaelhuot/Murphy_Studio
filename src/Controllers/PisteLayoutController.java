@@ -43,7 +43,10 @@ public class PisteLayoutController extends Controller
 
             pisteController.setName("Piste #" + pistes.size());
             PisteLayoutVBox.getChildren().add(piste);
+
             pisteController.scrollpane.hvalueProperty().bindBidirectional(this.timeline_scrollbar.valueProperty());
+            this.timeline_scrollbar.maxProperty().bind(pisteController.scrollpane.vmaxProperty());
+
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -60,6 +63,7 @@ public class PisteLayoutController extends Controller
                 pisteController.setName("Piste #" + pistes.size());
                 PisteLayoutVBox.getChildren().add(piste);
                 pisteController.scrollpane.hvalueProperty().bindBidirectional(this.timeline_scrollbar.valueProperty());
+                this.timeline_scrollbar.maxProperty().bind(pisteController.scrollpane.vmaxProperty());
 
             } catch (IOException e) {
                 e.printStackTrace();

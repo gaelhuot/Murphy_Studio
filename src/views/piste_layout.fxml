@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="+Infinity" maxWidth="+Infinity" prefHeight="250.0" prefWidth="300.0" styleClass="background" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PisteLayoutController">
+<BorderPane maxHeight="+Infinity" maxWidth="+Infinity" prefHeight="250.0" prefWidth="300.0" styleClass="background" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PisteLayoutController">
    <top>
       <ToolBar fx:id="piste_layout_button_bar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: transparent;" BorderPane.alignment="CENTER">
         <items>
@@ -30,6 +30,6 @@
       </AnchorPane>
    </center>
    <bottom>
-      <ScrollBar fx:id="timeline_scrollbar" max="80.0" BorderPane.alignment="CENTER" />
+      <ScrollBar fx:id="timeline_scrollbar" blockIncrement="0.1" max="10.0" unitIncrement="0.1" visibleAmount="0.3" BorderPane.alignment="CENTER" />
    </bottom>
 </BorderPane>

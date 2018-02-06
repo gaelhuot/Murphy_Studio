@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="chordMakerPane" maxHeight="+Infinity" maxWidth="+Infinity" minHeight="50.0" prefHeight="400.0" styleClass="background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ChordMakerController">
+<BorderPane fx:id="chordMakerPane" maxHeight="+Infinity" maxWidth="+Infinity" minHeight="50.0" prefHeight="400.0" styleClass="background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ChordMakerController">
    <stylesheets>
       <URL value="@../css/chordMaker.css" />
       <URL value="@../css/style.css" />
@@ -47,7 +47,7 @@
                         </font>
                     </Button>
       
-                                                                       <Label fx:id="chordNameLabel" alignment="CENTER" layoutX="1.0" layoutY="43.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" text="#chordName" textAlignment="CENTER" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="43.0">
+                                                                       <Label fx:id="chordNameLabel" alignment="CENTER" layoutX="1.0" layoutY="43.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" text="#chordName" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="43.0">
                         <font>
                             <Font name="Century Gothic" size="18.0" />
                         </font>
