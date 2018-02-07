@@ -28,12 +28,18 @@ public class Accord implements Cloneable{
     private Character dominantName;
     private String name;
 
+    private boolean isEmpty;
+    private boolean isRandom;
+
     // Empty
     public Accord( )
     {
-        this.dominant = 0;
+        this.dominant = 60;
         this.dominantName = '#';
         notes = new ArrayList<>();
+
+        this.isEmpty = true;
+        this.isRandom = false;
     }
 
     public Accord(int dominant)
@@ -381,6 +387,9 @@ public class Accord implements Cloneable{
 
     public void setRandom()
     {
+        this.isRandom = true;
+        this.isEmpty = false;
+
         this.dominant = new int[]{0,2,4,5,7,9,11}[new Random().nextInt(7)] + 60;
         this.dominantName = characterHashMap.get(this.dominant%12);
         notes = new ArrayList<>(Collections.singletonList(dominant));
@@ -397,6 +406,9 @@ public class Accord implements Cloneable{
 
     public void setRandom(int dominant)
     {
+        this.isEmpty = false;
+        this.isRandom = true;
+
         this.dominant = dominant%12 + 60;
         this.dominantName = characterHashMap.get(this.dominant%12);
 
@@ -408,5 +420,13 @@ public class Accord implements Cloneable{
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean isEmpty() {
+        return isEmpty;
+    }
+
+    public boolean isRandom() {
+        return isRandom;
     }
 }
