@@ -25,6 +25,8 @@ public class PisteController extends Controller
     public HBox piste_timeline;
     @FXML
     public ScrollPane scrollpane;
+    @FXML
+    public Button deletePistePtn;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -34,14 +36,15 @@ public class PisteController extends Controller
             La méthode initialize est appelée lorsque l'on fait FXMLLoader.load(); (CF application.Controller - @loadView() )
          */
         /* Tout ce qui agit sur le fxml, tu le code ici */
-        ScrollBar bar = new ScrollBar();
-//        bar.get
     }
 
     private void initAll()
     {
         /* TOut ce qui agit sur le model, tu le code ici */
-//        this.model.player.tracks[le_bon_track].volume.bind(this.track_volume_slider);
+        this.deletePistePtn.setOnMouseClicked(event -> {
+            //TODO Supprimer la piste courante
+        });
+
     }
 
     public void setName(String name)

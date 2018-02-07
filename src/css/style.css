@@ -163,6 +163,12 @@
   -fx-fill: #FFFFFF;
 }
 
+.button.button-delete .text
+{
+  -fx-fill: red;
+}
+
+
 .radio-button
 {
   -fx-border-width: 2px;

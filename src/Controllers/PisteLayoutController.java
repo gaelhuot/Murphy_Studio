@@ -43,6 +43,8 @@ public class PisteLayoutController extends Controller
             PisteLayoutVBox.getChildren().remove(pistes.size() - 1);
             pistes.remove(pistes.size() - 1);
         });
+
+
     }
 
     public void setModel(MainModel model)
