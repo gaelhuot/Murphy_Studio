@@ -33,41 +33,9 @@ public class PisteLayoutController extends Controller
     }
 
     private void initPistesLayout() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/piste.fxml"));
-            Pane piste = fxmlLoader.load();
-
-            PisteController pisteController = fxmlLoader.getController();
-            pisteController.setModel(model);
-            pistes.add(pisteController);
-
-            pisteController.setName("Piste #" + pistes.size());
-            PisteLayoutVBox.getChildren().add(piste);
-
-            pisteController.scrollpane.hvalueProperty().bindBidirectional(this.timeline_scrollbar.valueProperty());
-            this.timeline_scrollbar.maxProperty().bind(pisteController.scrollpane.vmaxProperty());
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        addPiste();
         addPisteBtn.setOnMouseClicked(event -> {
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/piste.fxml"));
-                Pane piste = fxmlLoader.load();
-
-                PisteController pisteController = fxmlLoader.getController();
-                pisteController.setModel(model);
-                pistes.add(pisteController);
-
-                pisteController.setName("Piste #" + pistes.size());
-                PisteLayoutVBox.getChildren().add(piste);
-                pisteController.scrollpane.hvalueProperty().bindBidirectional(this.timeline_scrollbar.valueProperty());
-                this.timeline_scrollbar.maxProperty().bind(pisteController.scrollpane.vmaxProperty());
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            addPiste();
         });
 
         removePisteBtn.setOnMouseClicked(event -> {
@@ -83,5 +51,24 @@ public class PisteLayoutController extends Controller
         initPistesLayout();
     }
 
+    private void addPiste()
+    {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/piste.fxml"));
+            Pane piste = fxmlLoader.load();
+
+            PisteController pisteController = fxmlLoader.getController();
+            pisteController.setModel(model);
+            pistes.add(pisteController);
+
+            pisteController.setName("Piste #" + pistes.size());
+            PisteLayoutVBox.getChildren().add(piste);
+            pisteController.scrollpane.hvalueProperty().bindBidirectional(this.timeline_scrollbar.valueProperty());
+            this.timeline_scrollbar.maxProperty().bind(pisteController.scrollpane.vmaxProperty());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
