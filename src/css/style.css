@@ -20,22 +20,16 @@
 
 }
 
-
-
-.main
+.dark
 {
-    -fx-border-style: solid;
-    -fx-border-width: 1px 0px;
-}
-
-.dark.main
-{
+  -fx-border-style: solid;
+  -fx-border-width: 1px 0px;
   -fx-background-color: -fx-dark-blue-1;
   -fx-color: -fx-secondary-accent-color-1;
   -fx-border-color: -fx-dark-blue-5;
 }
 
-.light.main
+.light
 {
   -fx-background-color: #FFFFFF;
   -fx-color: -fx-secondary-accent-color-1;
@@ -60,18 +54,31 @@
 {
   -fx-background-color: transparent;
 }
+.light .menu-bar .text
+{
+  -fx-fill: -fx-dark-blue-5;
+}
 
 .dark .menu-bar .context-menu
 {
   -fx-background-color: -fx-dark-blue-4;
 }
-.light .menu-bar .text
+.dark .menu-bar .context-menu .label
 {
-  -fx-fill: -fx-dark-blue-5;
+  -fx-text-fill: #FFFFFF;
 }
-.menu-bar .context-menu
+.dark .context-menu .menu-item:hover
+{
+  -fx-background-color: -fx-dark-blue-3;
+}
+
+.light .menu-bar .context-menu
 {
   -fx-background-color: -fx-secondary-accent-color-4;
+}
+.light .context-menu .menu-item:hover
+{
+  -fx-background-color: -fx-secondary-accent-color-3
 }
 
 .piste
@@ -248,6 +255,15 @@
   -fx-background-color: -fx-secondary-accent-color-4;
 }
 
+.light .state-bar Text
+{
+  -fx-fill: -fx-dark-blue-5;
+}
+.dark .state-bar Text
+{
+  -fx-fill: -fx-secondary-accent-color-3;
+}
+
 
 .button:focused,
 .toggle-button:focused,
@@ -279,6 +295,10 @@
 .radio-button > .radio, .radio-button:focused > .radio
 {
     -fx-background-radius: 1.0em; /* large value to make sure this remains circular */
+}
+.menu-item:focused
+{
+  -fx-background-color: transparent;
 }
 .split-menu-button:focused
 {
