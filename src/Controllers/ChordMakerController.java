@@ -2,7 +2,7 @@ package Controllers;
 
 import Models.MainModel;
 import Objects.Accord;
-import Objects.Player;
+import Objects.Tile;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -39,6 +39,9 @@ public class ChordMakerController extends Controller implements Initializable {
     private ObservableList<String> items;
 
     private MainModel model;
+
+    // 0 : Not / 1 : In function / 2 : Function finished
+    private int printFromTile = 0;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -82,16 +85,15 @@ public class ChordMakerController extends Controller implements Initializable {
             items.add(entry.getKey());
 
         chordListView.setItems(items);
-        //chordListView.getSelectionModel().select(1);
+        chordListView.getSelectionModel().select(1);
 
         chordListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if ( newValue == null ) return;
+            if ( newValue == null || printFromTile == 1 ) return;
+
 
             try {
                 listToFunc.get(newValue).invoke(model.selectedChord);
-                model.setSelectedChord(model.selectedChord);
                 updtInfos();
-
             } catch (IllegalAccessException | InvocationTargetException e) {
                 e.printStackTrace();
             }
@@ -108,13 +110,13 @@ public class ChordMakerController extends Controller implements Initializable {
             if (newValue == laRadio )   model.selectedChord = new Accord(69, isMinor, isFifth, isSeventh);
             if (newValue == siRadio )   model.selectedChord = new Accord(71, isMinor, isFifth, isSeventh);
 
-            model.setSelectedChord(model.selectedChord);
             updtInfos();
         });
 
         playChordButton.setOnMouseClicked(event -> {
-            for (int i = 0; i < model.selectedChord.getNotes().size(); i++)
-                this.model.player.playNote(model.selectedChord.getNotes().get(i));
+            Accord ch = ( printFromTile == 2 ) ? model.selectedTile.accord : model.selectedChord;
+            for (int i = 0; i < ch.getNotes().size(); i++)
+                this.model.player.playNote(ch.getNotes().get(i));
         });
 
         saveChordButton.setOnMouseClicked(event -> saveChord());
@@ -141,6 +143,7 @@ public class ChordMakerController extends Controller implements Initializable {
 
     private void updtInfos()
     {
+        if ( printFromTile == 2 ) printFromTile = 0;
         chordNameLabel.setText(model.selectedChord.getName());
         resetKeys();
         colorizeKeys();
@@ -148,8 +151,9 @@ public class ChordMakerController extends Controller implements Initializable {
 
     private void saveChord()
     {
-        if ( model != null && model.selectedChord != null)
+        if ( model != null && model.selectedChord != null && printFromTile != 1 )
             model.chordSorterController.changeSelectedTileChord(model.selectedChord);
+
     }
 
     private void resetKeys()
@@ -177,8 +181,9 @@ public class ChordMakerController extends Controller implements Initializable {
         return name;
     }
 
-    public void setSelected() {
-        switch (model.selectedChord.getDominantName()) {
+    private void fireRadio(Accord ch)
+    {
+        switch (ch.getDominantName()) {
             case 'A' : laRadio.fire(); break;
             case 'B' : siRadio.fire(); break;
             case 'C' : doRadio.fire(); break;
@@ -186,13 +191,25 @@ public class ChordMakerController extends Controller implements Initializable {
             case 'E' : miRadio.fire(); break;
             case 'F' : faRadio.fire(); break;
             case 'G' : solRadio.fire(); break;
-            default  : return;
+        }
+    }
+
+    public void updateFromTile(Tile tile)
+    {
+        printFromTile = 1;
+
+        Accord ch = tile.accord;
+        chordListView.getSelectionModel().select(getChordNameByMethod(model.selectedTile.accord));
+        fireRadio(ch);
+
+        chordNameLabel.setText(ch.getName());
+        for (Pane aNotesPane : notesPane) aNotesPane.setStyle(null);
+        for (int note : ch.getNotes()) {
+            int notePaneIndex = note - 60;
+            notesPane[notePaneIndex].setStyle("-fx-background-color: red");
         }
 
-        chordListView.getSelectionModel().select(getChordNameByMethod(model.selectedChord));
-
-        System.out.println("setSelected : " + model.selectedChord.getMethodCalled().getName());
-        updtInfos();
+        printFromTile = 2;
     }
 
     public void setModel(MainModel model) {

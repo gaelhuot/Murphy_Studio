@@ -396,7 +396,7 @@ public class Accord implements Cloneable{
 
         Method[] methods = getMethodList();
         try {
-            Method randomMethod = methods[new Random().nextInt(methods.length + 1)];
+            Method randomMethod = methods[new Random().nextInt(methods.length)];
             this.methodCalled = randomMethod;
             randomMethod.invoke(this);
         } catch (IllegalAccessException | InvocationTargetException e) {

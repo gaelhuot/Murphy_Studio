@@ -179,13 +179,15 @@ public class ChordSorterController extends Controller {
 
     private void setSelected(Tile newSelectedTile)
     {
+
         if ( selected != null )
             selected.rectangle.setStroke(Color.DARKGRAY);
 
         newSelectedTile.rectangle.setStroke(Color.RED);
         selected = newSelectedTile;
 
-        model.setSelectedChord(newSelectedTile.accord.getClone());
+        model.selectedTile = newSelectedTile;
+        model.chordMakerController.updateFromTile(newSelectedTile);
     }
 
     private Rectangle getChildrenRectangle(Tile tile)

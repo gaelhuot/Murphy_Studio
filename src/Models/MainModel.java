@@ -34,6 +34,7 @@ public class MainModel {
 
 
     public Accord selectedChord;
+    public Tile selectedTile;
 
     public MainModel()
     {
@@ -43,12 +44,6 @@ public class MainModel {
         this.applicationPistes = new ArrayList<>();
 
         this.pisteToTracks = new HashMap<>();
-    }
-
-    public void setSelectedChord(Accord accord)
-    {
-        this.selectedChord = accord.getClone();
-        chordMakerController.setSelected();
     }
 
     public void setPisteToTracks(Track track, PisteController piste)
