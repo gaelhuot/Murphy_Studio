@@ -25,6 +25,7 @@ import java.util.*;
 public class MainController extends Controller
 {
 
+    public BorderPane main_pane;
     public HBox state_bar;
 
     public MenuBar menu_bar;
@@ -34,6 +35,8 @@ public class MainController extends Controller
     public MenuItem menu_file_quit;
     public MenuItem menu_edit_undo;
     public MenuItem menu_edit_redo;
+    public MenuItem menu_view_set_light_theme;
+    public MenuItem menu_view_set_dark_theme;
 
     public Slider master_volume_slider;
     public TextField sequencer_tempo;
@@ -82,6 +85,14 @@ public class MainController extends Controller
         menu_file_quit.setOnAction(e -> System.out.println("Quit"));
         menu_edit_undo.setOnAction(e -> System.out.println("Undo"));
         menu_edit_redo.setOnAction(e -> System.out.println("Redo"));
+        menu_view_set_dark_theme.setOnAction(e -> {
+            main_pane.getStyleClass().remove("light");
+            main_pane.getStyleClass().add("dark");
+        });
+        menu_view_set_light_theme.setOnAction(e -> {
+            main_pane.getStyleClass().remove("dark");
+            main_pane.getStyleClass().add("light");
+        });
 
         /* On charge la vue par defaut (piste_layout) */
         try {

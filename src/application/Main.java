@@ -19,8 +19,6 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/main_layout.fxml"));
         Parent root = fxmlLoader.load();
-        root.getStyleClass().remove("dark");
-        root.getStyleClass().add("light");
 
         Rectangle2D bounds = Screen.getPrimary().getBounds();
 
