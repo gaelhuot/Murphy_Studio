@@ -21,5 +21,8 @@
       </cursor>
    </Button>
 
-   <Button fx:id="togglePlayTrack" layoutX="500.0" layoutY="292.0" mnemonicParsing="false" text="Play"/>
+   <Button fx:id="togglePlayTrack" layoutX="500.0" layoutY="292.0" mnemonicParsing="false" text="Play" />
+
+   <Button fx:id="emptyButton" layoutX="211.0" layoutY="292.0" mnemonicParsing="false" text="Empty" />
+   <Button fx:id="randomButton" layoutX="82.0" layoutY="292.0" mnemonicParsing="false" text="Random" />
 </Pane>

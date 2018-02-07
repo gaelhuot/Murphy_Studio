@@ -5,10 +5,7 @@ import Objects.Accord;
 import Objects.Tile;
 import javafx.event.Event;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
@@ -28,6 +25,9 @@ import java.util.ResourceBundle;
 
 public class ChordSorterController extends Controller {
 
+    public Button emptyButton;
+    public Button randomButton;
+
     private MainModel model;
 
     public ImageView crossAdd;
@@ -39,6 +39,9 @@ public class ChordSorterController extends Controller {
     private Tile selected;
 
     private ArrayList<Tile> tiles;
+
+    private boolean isRandomTile = false;
+    private boolean isEmptyTile = false;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -52,29 +55,32 @@ public class ChordSorterController extends Controller {
         initDeleteBtnEvent();
     }
 
-    private void createTile(MouseEvent event)
+    public void createTile(MouseEvent event)
     {
         // Création de la tile + composants (Rectangle, Label)
-        Tile newTile = new Tile();
+        Accord tmpAccord = new Accord();
 
-        newTile.accord = model.getSelectedChord();
+        if ( ! isRandomTile && ! isEmptyTile ) tmpAccord = model.getSelectedChord();
+        else if ( isRandomTile ) tmpAccord.setRandom();
 
-        Rectangle tileSquare = new Rectangle(80, 80);
-        Label tileLabel = new Label(newTile.accord.getName());
+        Tile newTile = new Tile(tmpAccord);
 
-        tileLabel.setFont(new Font(20));
+        isRandomTile = isEmptyTile = false;
 
-        tileSquare.setFill(Color.GRAY);
-        tileSquare.setStroke(Color.DARKGRAY);
-        tileSquare.setStrokeWidth(5);
-
-        newTile.getChildren().addAll(tileSquare, tileLabel);
 
         // Click droit
         ContextMenu rightClickContext = new ContextMenu();
 
         MenuItem menuItemDelete = new MenuItem("Delete");
-        rightClickContext.getItems().add(menuItemDelete);
+        MenuItem menuItemSetRandom = new MenuItem("Set Random");
+        SeparatorMenuItem seperator = new SeparatorMenuItem();
+        MenuItem menuItemRythm1 = new MenuItem("Rythme 1");
+        MenuItem menuItemRythm2 = new MenuItem("Rythme 2");
+        MenuItem menuItemRythm3 = new MenuItem("Rythme 3");
+
+        rightClickContext.setStyle("-fx-background: #fff");
+
+        rightClickContext.getItems().addAll(menuItemDelete, menuItemSetRandom, seperator, menuItemRythm1, menuItemRythm2, menuItemRythm3);
 
         menuItemDelete.setOnAction(MouseEvent -> {
             if ( selected == null ) return;
@@ -98,8 +104,6 @@ public class ChordSorterController extends Controller {
         deleteBtn.setVisible(true);
 
         event.consume();
-
-
     }
 
     private void initEventHandler(Tile newTile)
@@ -151,6 +155,15 @@ public class ChordSorterController extends Controller {
 
         /* --- </Drag and Drop> --- */
 
+        emptyButton.setOnMouseClicked(event -> {
+            isEmptyTile = true;
+            createTile(event);
+        });
+
+        randomButton.setOnMouseClicked(event -> {
+            isRandomTile = true;
+            createTile(event);
+        });
     }
 
     private void deleteSelected()
@@ -171,6 +184,12 @@ public class ChordSorterController extends Controller {
 
         Objects.requireNonNull(getChildrenRectangle(newSelectedTile)).setStroke(Color.RED);
         selected = newSelectedTile;
+
+        if ( ! newSelectedTile.isRandom )
+        {
+            model.setSelectedChord(newSelectedTile.accord);
+            model.chordMakerController.setSelected();
+        }
     }
 
     private Rectangle getChildrenRectangle(Tile tile)
@@ -214,6 +233,13 @@ public class ChordSorterController extends Controller {
                 }
             }
         });
+    }
+
+    public void changeSelectedTileChord(Accord accord)
+    {
+        if ( selected == null ) return;
+        selected.accord = accord.getClone();
+        selected.setName(accord.getName());
     }
 
 

@@ -52,6 +52,11 @@
                             <Font name="Century Gothic" size="18.0" />
                         </font>
                     </Label>
+                  <Button fx:id="saveChordButton" alignment="CENTER" layoutX="11.0" layoutY="193.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="119.0" text="Save Chord">
+                     <font>
+                        <Font name="Century Gothic" size="12.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
          </right>
