@@ -123,20 +123,31 @@ public class ChordMakerController extends Controller implements Initializable {
 
         chordMakerPane.heightProperty().addListener((obs, oldVal, newVal) ->
         {
-            if (this.chordMakerPane.heightProperty().getValue() < 450)
-            {
-                piano.setManaged(false); piano.setVisible(false);
-            }
-            else
-            {
-                piano.setManaged(true); piano.setVisible(true);
-            }
+            checkPianoSize();
+        });
+
+        chordMakerPane.widthProperty().addListener((obs, oldVal, newVal) ->
+        {
+            checkPianoSize();
+            System.out.println(chordMakerPane.widthProperty().doubleValue());
         });
 
 
 
 
 
+    }
+
+    private void checkPianoSize()
+    {
+        if (this.chordMakerPane.heightProperty().getValue() < 450 || this.chordMakerPane.widthProperty().getValue() < 875)
+        {
+            piano.setManaged(false); piano.setVisible(false);
+        }
+        else
+        {
+            piano.setManaged(true); piano.setVisible(true);
+        }
     }
 
     private void updtInfos()

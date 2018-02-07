@@ -125,16 +125,10 @@ public class MainController extends Controller
             if ( wasRunning ) model.player.sequencer.start();
         });
 
-        this.model.player.master_volume.bind(this.master_volume_slider.valueProperty());
         this.master_volume_slider.setValue(50);
 
         master_volume_slider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            // Et ça marche ENNNNFIIIIN
-            // TOUT CA PARCE QU'IL Y AVAIT DEUX INSTANCES DE PLAYER
-            // FAT CHIIIIIIIIIIIIIIIIIIIIIER
-            // sʇɐɥɔ séqéq sǝp ɹǝnʇ sıɐʌ ǝظ
-            /*
-                    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▄███▄▄▄░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+                  /*░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▄███▄▄▄░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
                     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▄▄▄██▀▀▀▀███▄░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
                     ░░░░░░░░░░░░░░░░░▄▀▀▀▄░░░░░░░░░░░░▄▀▀░░░░░░░░░░░▀█░░░░░░░░░▄▀▀▀▄░░░░░░░░░░░░░░░░░
                     ░░░░░░░░░░░░░░░░▌░░░◐░▀███▄░░░░▄▄▀░░░░░░░░░░░░░░░▀█░░░▄███▀░◐░░░▌░░░░░░░░░░░░░░░░
@@ -150,8 +144,7 @@ public class MainController extends Controller
                     ░░░░░░░░░░░▌▌░▌▌░░░░░░░░░░░░░░░░░█░░░░░░░░░░░░▄█░░░░░░░░░░░░░░░░░▌▌░▌▌░░░░░░░░░░░
                     ░░░░░░░░░░░▌▌▄▌▌▄▄░░░░░░░░░░░░░░░░██░░░░░█▄▄▀▀░█░░░░░░░░░░░░░░░▄▄▌▌▄▌▌░░░░░░░░░░░
                     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▀▀█▀▀▀▀░░░░░░█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-                    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█░░░░░░░░░░░░█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-             */
+                    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█░░░░░░░░░░░░█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░*/
             model.player.setVolume(newValue.intValue());
         });
 
