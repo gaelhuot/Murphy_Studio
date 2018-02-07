@@ -39,13 +39,6 @@ public class Main extends Application {
             mainController.exit();
             System.exit(0);
         });
-
-        //TODO charger les vues suivantes :
-        // mainContainer -> split pane
-        // split pane top -> track_layout.fxml
-        // track_layout_vbox -> track.fxml
-        // split pane bottom -> chords.fxml (apres avoir retire le surperflu)
-
     }
 
 
