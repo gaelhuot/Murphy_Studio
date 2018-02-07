@@ -35,9 +35,20 @@
   -fx-border-color: -fx-dark-blue-5;
 }
 
+.light.main
+{
+  -fx-background-color: #FFFFFF;
+  -fx-color: -fx-secondary-accent-color-1;
+  -fx-border-color: -fx-dark-blue-5;
+}
+
 .dark .background
 {
   -fx-background-color: -fx-dark-blue-1;
+}
+.light .background
+{
+  -fx-background-color: #FFFFFF;
 }
 
 .menu-bar
@@ -54,15 +65,19 @@
 {
   -fx-background-color: -fx-dark-blue-4;
 }
+.light .menu-bar .text
+{
+  -fx-fill: -fx-dark-blue-5;
+}
+.menu-bar .context-menu
+{
+  -fx-background-color: -fx-secondary-accent-color-4;
+}
 
 .piste
 {
   -fx-border-style: solid;
   -fx-border-width: 1px;
-}
-
-.dark .piste
-{
   -fx-border-color: -fx-accent-color-2;
 }
 
@@ -70,11 +85,20 @@
 {
   -fx-background-color: -fx-dark-blue-4;
 }
+.light .piste .scroll-pane
+{
+  -fx-background-color: #FFFFFF;
+}
 
 .dark .control-bar-pane
 {
   -fx-background-color: -fx-dark-blue-5;
   -fx-color: #000000;
+}
+.dark .control-bar-pane
+{
+  -fx-background-color: #FFFFFF;
+  -fx-color: -fx-dark-blue-5;
 }
 
 .piste-control
@@ -86,10 +110,18 @@
 {
   -fx-background-color: -fx-dark-blue-4;
 }
+.light .piste-control
+{
+  -fx-background-color: -fx-secondary-accent-color-4;
+}
 
 .dark .piste-timeline
 {
   -fx-background-color: -fx-dark-blue-2;
+}
+.light .piste-timeline
+{
+  -fx-background-color: -fx-secondary-accent-color-4;
 }
 
 .button
@@ -104,7 +136,7 @@
 
 .button:pressed
 {
-  -fx-background-color: ; -fx-secondary-accent-color-2;
+  -fx-background-color: -fx-secondary-accent-color-2;
 }
 
 .button:armed, .button:focused
@@ -127,7 +159,7 @@
 .radio-button
 {
   -fx-border-width: 2px;
-  -fx-border-color: blue;
+  -fx-border-color: -fx-secondary-accent-color-1;
   -fx-border-style: solid;
   -fx-padding : 6px 20px;
   -fx-border-insets: 0 1px 0 0;
@@ -135,7 +167,7 @@
 
 .radio-button:selected
 {
-  -fx-border-color: yellow;
+  -fx-border-color: -fx-secondary-accent-color-4;
 }
 
 .radio-button .radio
@@ -150,9 +182,14 @@
   -fx-pref-height: 0;
 }
 
-.radio-button .text
+.dark .radio-button .text
 {
-  -fx-fill: white;
+  -fx-fill: #FFFFFF;
+}
+
+.light .radio-button .text
+{
+  -fx-fill: -fx-dark-blue-5;
 }
 
 .dark .list-view
@@ -180,19 +217,35 @@
   -fx-background-color : -fx-dark-blue-3;
 }
 
-.scroll-bar
+.dark .scroll-bar
 {
   -fx-background-color: -fx-dark-blue-4;
 }
 
-.scroll-bar .thumb
+.dark .scroll-bar .thumb
 {
   -fx-background-color: -fx-secondary-accent-color-1;
 }
 
-.split-pane-divider
+
+.light .scroll-bar
+{
+  -fx-background-color: -fx-secondary-accent-color-5;
+}
+
+.light .scroll-bar .thumb
+{
+  -fx-background-color: -fx-secondary-accent-color-3;
+}
+
+.dark .split-pane-divider
 {
   -fx-background-color: -fx-secondary-accent-color-1;
+}
+
+.light .split-pane-divider
+{
+  -fx-background-color: -fx-secondary-accent-color-4;
 }
 
 
