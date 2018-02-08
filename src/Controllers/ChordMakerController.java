@@ -129,7 +129,6 @@ public class ChordMakerController extends Controller implements Initializable {
         chordMakerPane.widthProperty().addListener((obs, oldVal, newVal) ->
         {
             checkPianoSize();
-            System.out.println(chordMakerPane.widthProperty().doubleValue());
         });
 
 

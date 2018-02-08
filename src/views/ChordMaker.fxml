@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="chordMakerPane" maxHeight="+Infinity" maxWidth="+Infinity" minHeight="50.0" prefHeight="400.0" styleClass="background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ChordMakerController">
+<BorderPane fx:id="chordMakerPane" maxHeight="+Infinity" maxWidth="+Infinity" minHeight="50.0" minWidth="400.0" prefHeight="440.0" prefWidth="900.0" styleClass="background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ChordMakerController">
    <stylesheets>
       <URL value="@../css/chordMaker.css" />
       <URL value="@../css/style.css" />
@@ -41,18 +41,22 @@
          <right>
             <AnchorPane BorderPane.alignment="CENTER">
                <children>
-                    <Button fx:id="playChordButton" alignment="CENTER" layoutX="1.0" layoutY="183.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="119.0" text="Play Chord" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="157.0">
+                  <AnchorPane layoutX="1.0" layoutY="43.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
+                     <children>
+            
+                                                                             <Label fx:id="chordNameLabel" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" styleClass="chord-name" text="C#" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
+                              <font>
+                                  <Font size="24.0" />
+                              </font>
+                          </Label>
+                     </children>
+                  </AnchorPane>
+                    <Button fx:id="playChordButton" alignment="CENTER" layoutX="7.0" layoutY="80.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="119.0" text="Play Chord" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="120.0">
                         <font>
                             <Font name="Century Gothic" size="12.0" />
                         </font>
                     </Button>
-      
-                                                                       <Label fx:id="chordNameLabel" alignment="CENTER" layoutX="1.0" layoutY="43.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" text="#chordName" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="43.0">
-                        <font>
-                            <Font name="Century Gothic" size="18.0" />
-                        </font>
-                    </Label>
-                  <Button fx:id="saveChordButton" alignment="CENTER" layoutX="11.0" layoutY="193.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="119.0" text="Save Chord">
+                  <Button fx:id="saveChordButton" alignment="CENTER" layoutY="117.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="119.0" text="Save Chord" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="160.0">
                      <font>
                         <Font name="Century Gothic" size="12.0" />
                      </font>

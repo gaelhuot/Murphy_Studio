@@ -175,7 +175,7 @@
   -fx-border-color: -fx-secondary-accent-color-1;
   -fx-border-style: solid;
   -fx-padding : 6px 20px;
-  -fx-border-insets: 0 1px 0 0;
+  -fx-border-insets: 0 1px 5px 0;
 }
 
 .radio-button:selected
@@ -228,6 +228,27 @@
 .dark .list-cell:odd
 {
   -fx-background-color : -fx-dark-blue-3;
+}
+
+.light .chord-name .text
+{
+  -fx-fill : -fx-dark-blue-5;
+}
+
+.chord-name
+{
+  -fx-border-style: solid;
+  -fx-border-width: 4px;
+}
+
+.light .chord-name
+{
+  -fx-border-color: -fx-dark-blue-5;
+}
+
+.dark .chord-name
+{
+  -fx-border-color: -fx-secondary-accent-color-2;
 }
 
 .dark .scroll-bar
