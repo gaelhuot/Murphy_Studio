@@ -24,7 +24,6 @@ public class PisteLayoutController extends Controller
 
     public ToolBar piste_layout_button_bar;
     public Button addPisteBtn;
-    public Button removePisteBtn;
     public Button playPisteBtn;
     public VBox PisteLayoutVBox;
 
@@ -36,12 +35,6 @@ public class PisteLayoutController extends Controller
         addPiste();
         addPisteBtn.setOnMouseClicked(event -> {
             addPiste();
-        });
-
-        removePisteBtn.setOnMouseClicked(event -> {
-            if ( pistes.size() == 0 ) return;
-            PisteLayoutVBox.getChildren().remove(pistes.size() - 1);
-            pistes.remove(pistes.size() - 1);
         });
     }
 
