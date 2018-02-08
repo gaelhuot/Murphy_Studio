@@ -122,14 +122,19 @@
   -fx-background-color: -fx-secondary-accent-color-4;
 }
 
-.dark .piste-timeline
+.piste-timeline
+{
+  -fx-background-color: radial-gradient(center 50% 50%, radius 60%, reflect, #1B1733, black );
+}
+
+/* .dark .piste-timeline
 {
   -fx-background-color: -fx-dark-blue-2;
 }
 .light .piste-timeline
 {
   -fx-background-color: -fx-secondary-accent-color-4;
-}
+} */
 
 .button
 {
@@ -166,6 +171,10 @@
 .button.button-delete .text
 {
   -fx-fill: red;
+}
+.button.button-add .text
+{
+  -fx-fill: green;
 }
 
 

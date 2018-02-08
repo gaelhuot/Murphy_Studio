@@ -8,13 +8,12 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="+Infinity" maxWidth="+Infinity" prefHeight="250.0" prefWidth="300.0" styleClass="background" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Controllers.PisteLayoutController">
+<BorderPane maxHeight="+Infinity" maxWidth="+Infinity" prefHeight="250.0" prefWidth="300.0" styleClass="background" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PisteLayoutController">
    <top>
       <ToolBar fx:id="piste_layout_button_bar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: transparent;" BorderPane.alignment="CENTER">
         <items>
             <Button fx:id="playPisteBtn" mnemonicParsing="false" text="Play" />
-            <Button fx:id="addPisteBtn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Add" />
-            <Button fx:id="removePisteBtn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Remove" />
+            <Button fx:id="addPisteBtn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" styleClass="button-add" text="+" />
         </items>
       </ToolBar>
    </top>

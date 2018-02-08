@@ -22,7 +22,7 @@
                         <Insets right="5.0" />
                      </HBox.margin>
                   </TextField>
-                  <Button fx:id="deletePistePtn" mnemonicParsing="false" styleClass="button-delete" text="x" textFill="WHITE" />
+                  <Button fx:id="deletePistePtn" mnemonicParsing="false" styleClass="button-delete" text="x" />
                </children>
             </HBox>
             <Slider fx:id="piste_volume_slider" />
@@ -43,9 +43,9 @@
       </VBox>
    </left>
    <center>
-      <ScrollPane fx:id="scrollpane" fitToHeight="true" fitToWidth="true" vbarPolicy="NEVER" BorderPane.alignment="CENTER">
+      <ScrollPane fx:id="scrollpane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="NEVER" BorderPane.alignment="CENTER">
          <content>
-            <HBox fx:id="piste_timeline" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="108.0" prefWidth="1781.0" styleClass="piste-timeline" />
+            <HBox fx:id="piste_timeline" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="128.0" prefWidth="1781.0" styleClass="piste-timeline" />
          </content>
          <BorderPane.margin>
             <Insets />
