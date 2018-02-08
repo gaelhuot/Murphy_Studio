@@ -43,13 +43,12 @@ public class PisteLayoutController extends Controller
             PisteLayoutVBox.getChildren().remove(pistes.size() - 1);
             pistes.remove(pistes.size() - 1);
         });
-
-
     }
 
     public void setModel(MainModel model)
     {
         this.model = model;
+        this.model.pisteLayoutController = this;
         initPistesLayout();
     }
 
@@ -70,6 +69,19 @@ public class PisteLayoutController extends Controller
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void removePiste(PisteController piste)
+    {
+        for (int i = this.pistes.size() - 1; i >= 0; i--)
+        {
+            System.out.println(this.pistes.get(i));
+            if (this.pistes.get(i) == piste)
+            {
+                PisteLayoutVBox.getChildren().remove(i);
+                pistes.remove(i);
+            }
         }
     }
 

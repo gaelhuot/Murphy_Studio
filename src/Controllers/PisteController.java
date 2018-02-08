@@ -30,7 +30,8 @@ public class PisteController extends Controller
     public Button deletePistePtn;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources)
+    {
         /*
             /!\ ATTENTION /!\
             Ici le controller n'est pas encore chargé.
@@ -41,10 +42,10 @@ public class PisteController extends Controller
 
     private void initAll()
     {
-        /* TOut ce qui agit sur le model, tu le code ici */
         this.deletePistePtn.setOnMouseClicked(event -> {
-            //TODO Supprimer la piste courante
+            this.model.pisteLayoutController.removePiste(this);
         });
+
 
     }
 
