@@ -52,10 +52,10 @@ public class ChordSorterController extends Controller {
         deleteBtn.setVisible(false);
         tileContainer.setSpacing(5);
 
-        initDeleteBtnEvent();
+        initBtnsEvent();
     }
 
-    public void createTile(MouseEvent event)
+    private void createTile(MouseEvent event)
     {
         // Création de la tile + composants (Rectangle, Label)
         Accord tmpAccord = new Accord();
@@ -99,10 +99,10 @@ public class ChordSorterController extends Controller {
 
         tiles.add(newTile);
         tileContainer.getChildren().add(newTile);
-
         initEventHandler(newTile);
-        deleteBtn.setVisible(true);
+        setSelected(newTile);
 
+        deleteBtn.setVisible(true);
         event.consume();
     }
 
@@ -128,7 +128,7 @@ public class ChordSorterController extends Controller {
 
     }
 
-    private void initDeleteBtnEvent()
+    private void initBtnsEvent()
     {
         deleteBtn.setOnMouseClicked(event -> {
             if ( selected == null ) return;
@@ -170,11 +170,13 @@ public class ChordSorterController extends Controller {
     {
         tileContainer.getChildren().remove(selected);
         tiles.remove(selected);
-
-        if ( tiles.size() == 0 )
-            deleteBtn.setVisible(false);
-
         selected = null;
+        if ( tiles.size() == 0 ) {
+            deleteBtn.setVisible(false);
+        }else {
+            setSelected(tiles.get(tiles.size() - 1));
+        }
+
     }
 
     private void setSelected(Tile newSelectedTile)
@@ -244,6 +246,5 @@ public class ChordSorterController extends Controller {
 
         initTrackBtn();
     }
-
 
 }

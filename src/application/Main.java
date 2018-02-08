@@ -15,8 +15,11 @@ import static javafx.application.Platform.exit;
 
 public class Main extends Application {
 
+    private static Stage primaryStage;
+
     @Override
     public void start(Stage primaryStage) throws Exception{
+        setPrimaryStage(primaryStage);
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/main_layout.fxml"));
         Parent root = fxmlLoader.load();
 
@@ -39,6 +42,14 @@ public class Main extends Application {
             mainController.exit();
             System.exit(0);
         });
+    }
+
+    public static Stage getPrimaryStage(){
+        return Main.primaryStage;
+    }
+
+    private void setPrimaryStage(Stage p){
+        this.primaryStage = p;
     }
 
 

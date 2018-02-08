@@ -5,6 +5,8 @@ import Models.MainModel;
 import Objects.Accord;
 import Objects.Player;
 import Objects.CustomReceiver;
+import application.Main;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,9 +17,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MidiUnavailableException;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -79,8 +85,8 @@ public class MainController extends Controller
 
 
         /* Assignation des actions de la barre des menus */
-        menu_file_new.setOnAction(e -> System.out.println("New File"));
-        menu_file_save.setOnAction(e -> System.out.println("Save"));
+        menu_file_new.setOnAction(e -> loadFile());
+        menu_file_save.setOnAction(e -> saveFile());
         menu_file_saveas.setOnAction(e -> System.out.println("Save as"));
         menu_file_quit.setOnAction(e -> System.out.println("Quit"));
         menu_edit_undo.setOnAction(e -> System.out.println("Undo"));
@@ -200,5 +206,17 @@ public class MainController extends Controller
         model.player.synthesizer.close();
         model.player.receiver.close();
         model.player.sequencer.close();
+    }
+
+    private void loadFile(){
+        FileChooser dialog = new FileChooser();
+        dialog.setTitle("Open midi File");
+        File file = dialog.showOpenDialog(Main.getPrimaryStage());
+    }
+
+    private void saveFile(){
+        FileChooser dialog = new FileChooser();
+        dialog.setTitle("Save midi File");
+        File file = dialog.showSaveDialog(Main.getPrimaryStage());
     }
 }
