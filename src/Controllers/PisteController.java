@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
+import javax.sound.midi.Track;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -57,4 +58,7 @@ public class PisteController extends Controller
         initAll();
     }
 
+    public void setTrack(Track track) {
+
+    }
 }

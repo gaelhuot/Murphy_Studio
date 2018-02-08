@@ -179,17 +179,15 @@ public class ChordSorterController extends Controller {
 
     private void setSelected(Tile newSelectedTile)
     {
-        if ( selected != null )
-            Objects.requireNonNull(getChildrenRectangle(selected)).setStroke(Color.DARKGRAY);
 
-        Objects.requireNonNull(getChildrenRectangle(newSelectedTile)).setStroke(Color.RED);
+        if ( selected != null )
+            selected.rectangle.setStroke(Color.DARKGRAY);
+
+        newSelectedTile.rectangle.setStroke(Color.RED);
         selected = newSelectedTile;
 
-        if ( ! newSelectedTile.isRandom )
-        {
-            model.setSelectedChord(newSelectedTile.accord);
-            model.chordMakerController.setSelected();
-        }
+        model.selectedTile = newSelectedTile;
+        model.chordMakerController.updateFromTile(newSelectedTile);
     }
 
     private Rectangle getChildrenRectangle(Tile tile)
@@ -222,10 +220,7 @@ public class ChordSorterController extends Controller {
                 Accord[] accords = new Accord[tiles.size()];
 
                 for ( int i = 0; i < tiles.size(); i++ )
-                {
                     accords[i] = tiles.get(i).accord;
-                    System.out.println(tiles.get(i).getName());
-                }
                 try {
                     model.player.createTrackFromChords(accords);
                 } catch (InvalidMidiDataException e) {

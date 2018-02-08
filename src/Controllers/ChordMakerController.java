@@ -2,7 +2,7 @@ package Controllers;
 
 import Models.MainModel;
 import Objects.Accord;
-import Objects.Player;
+import Objects.Tile;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -32,9 +32,6 @@ public class ChordMakerController extends Controller implements Initializable {
     private Pane notePane1,notePane2,notePane3,notePane4,notePane5,notePane6,notePane7,notePane8,notePane9,notePane10,notePane11,notePane12,notePane13,notePane14,notePane15,notePane16,notePane17,notePane18,notePane19,notePane20,notePane21,notePane22,notePane23,notePane24,notePane25,notePane26,notePane27,notePane28,notePane29,notePane30,notePane31,notePane32,notePane33,notePane34,notePane35,notePane36;
     private Pane[] notesPane;
 
-    private Accord accord;
-    private Player player;
-
     private Boolean isSeventh = false, isFifth = false, isMinor = false;
 
     private LinkedHashMap<String, Method> listToFunc;
@@ -42,6 +39,9 @@ public class ChordMakerController extends Controller implements Initializable {
     private ObservableList<String> items;
 
     private MainModel model;
+
+    // 0 : Not / 1 : In function / 2 : Function finished
+    private int printFromTile = 0;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -58,10 +58,6 @@ public class ChordMakerController extends Controller implements Initializable {
         siRadio.setToggleGroup(noteChordGroup);
 
         doRadio.fire();
-
-        accord = new Accord(60, false, false, false);
-        accord.setMajor();
-        updtInfos();
 
         try {
             listToFunc.put(("Minor"), Accord.class.getMethod("setMinor"));
@@ -92,48 +88,48 @@ public class ChordMakerController extends Controller implements Initializable {
         chordListView.getSelectionModel().select(1);
 
         chordListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if ( newValue == null || printFromTile == 1 ) return;
+
+
             try {
-                listToFunc.get(newValue).invoke(accord);
+                listToFunc.get(newValue).invoke(model.selectedChord);
                 updtInfos();
-                model.setSelectedChord(accord);
             } catch (IllegalAccessException | InvocationTargetException e) {
                 e.printStackTrace();
             }
         });
 
         noteChordGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue == doRadio )   this.accord = new Accord(60, isMinor, isFifth, isSeventh);
-            if (newValue == reRadio )   this.accord = new Accord(62, isMinor, isFifth, isSeventh);
-            if (newValue == miRadio )   this.accord = new Accord(64, isMinor, isFifth, isSeventh);
-            if (newValue == faRadio )   this.accord = new Accord(65, isMinor, isFifth, isSeventh);
-            if (newValue == solRadio)   this.accord = new Accord(67, isMinor, isFifth, isSeventh);
-            if (newValue == laRadio )   this.accord = new Accord(69, isMinor, isFifth, isSeventh);
-            if (newValue == siRadio )   this.accord = new Accord(71, isMinor, isFifth, isSeventh);
+            if ( newValue == null ) return;
+
+            if (newValue == doRadio )   model.selectedChord = new Accord(60, isMinor, isFifth, isSeventh);
+            if (newValue == reRadio )   model.selectedChord = new Accord(62, isMinor, isFifth, isSeventh);
+            if (newValue == miRadio )   model.selectedChord = new Accord(64, isMinor, isFifth, isSeventh);
+            if (newValue == faRadio )   model.selectedChord = new Accord(65, isMinor, isFifth, isSeventh);
+            if (newValue == solRadio)   model.selectedChord = new Accord(67, isMinor, isFifth, isSeventh);
+            if (newValue == laRadio )   model.selectedChord = new Accord(69, isMinor, isFifth, isSeventh);
+            if (newValue == siRadio )   model.selectedChord = new Accord(71, isMinor, isFifth, isSeventh);
 
             updtInfos();
-            model.setSelectedChord(accord);
         });
 
         playChordButton.setOnMouseClicked(event -> {
-            for ( int i = 0; i < accord.getNotes().size(); i++)
-                player.playNote(accord.getNotes().get(i));
+            Accord ch = ( printFromTile == 2 ) ? model.selectedTile.accord : model.selectedChord;
+            for (int i = 0; i < ch.getNotes().size(); i++)
+                this.model.player.playNote(ch.getNotes().get(i));
         });
 
         saveChordButton.setOnMouseClicked(event -> saveChord());
 
         chordMakerPane.heightProperty().addListener((obs, oldVal, newVal) ->
-        {
-            checkPianoSize();
-        });
+                checkPianoSize());
 
         chordMakerPane.widthProperty().addListener((obs, oldVal, newVal) ->
         {
             checkPianoSize();
         });
 
-
-
-
+        checkPianoSize();
 
     }
 
@@ -151,15 +147,17 @@ public class ChordMakerController extends Controller implements Initializable {
 
     private void updtInfos()
     {
-        chordNameLabel.setText(accord.getName());
+        if ( printFromTile == 2 ) printFromTile = 0;
+        chordNameLabel.setText(model.selectedChord.getName());
         resetKeys();
         colorizeKeys();
     }
 
     private void saveChord()
     {
-        if ( model != null && accord != null)
-            model.chordSorterController.changeSelectedTileChord(accord);
+        if ( model != null && model.selectedChord != null && printFromTile != 1 )
+            model.chordSorterController.changeSelectedTileChord(model.selectedChord);
+
     }
 
     private void resetKeys()
@@ -169,8 +167,7 @@ public class ChordMakerController extends Controller implements Initializable {
 
     private void colorizeKeys()
     {
-        ArrayList<Integer> notes = this.accord.getNotes();
-        System.out.println(notes);
+        ArrayList<Integer> notes = model.selectedChord.getNotes();
         for (Object note : notes) {
             int notePaneIndex = (int) note - 60;
             notesPane[notePaneIndex].setStyle("-fx-background-color: red");
@@ -180,16 +177,17 @@ public class ChordMakerController extends Controller implements Initializable {
 
     private String getChordNameByMethod(Accord accord)
     {
+        String name = null;
         for ( Map.Entry<String, Method> entry : listToFunc.entrySet() )
-            if (entry.getValue().getName().equals(accord.getMethodCalled().getName())) return entry.getKey();
-        return null;
+            if (entry.getValue().getName().equals(accord.getMethodCalled().getName())) name = entry.getKey();
+
+        System.out.println("RETURN " + name);
+        return name;
     }
 
-    public void setSelected() {
-        this.accord = model.getSelectedChord();
-        System.out.println(accord.getDominantName());
-
-        switch (accord.getDominantName()) {
+    private void fireRadio(Accord ch)
+    {
+        switch (ch.getDominantName()) {
             case 'A' : laRadio.fire(); break;
             case 'B' : siRadio.fire(); break;
             case 'C' : doRadio.fire(); break;
@@ -197,18 +195,33 @@ public class ChordMakerController extends Controller implements Initializable {
             case 'E' : miRadio.fire(); break;
             case 'F' : faRadio.fire(); break;
             case 'G' : solRadio.fire(); break;
-            default  : return;
+        }
+    }
+
+    public void updateFromTile(Tile tile)
+    {
+        printFromTile = 1;
+
+        Accord ch = tile.accord;
+        chordListView.getSelectionModel().select(getChordNameByMethod(model.selectedTile.accord));
+        fireRadio(ch);
+
+        chordNameLabel.setText(ch.getName());
+        for (Pane aNotesPane : notesPane) aNotesPane.setStyle(null);
+        for (int note : ch.getNotes()) {
+            int notePaneIndex = note - 60;
+            notesPane[notePaneIndex].setStyle("-fx-background-color: red");
         }
 
-        System.out.println(getChordNameByMethod(accord));
-        chordListView.getSelectionModel().select(getChordNameByMethod(accord));
-
-        updtInfos();
+        printFromTile = 2;
     }
 
     public void setModel(MainModel model) {
         this.model = model;
-        model.setSelectedChord(accord);
-        player = this.model.player;
+
+        model.selectedChord = new Accord(60, false, false, false);
+        model.selectedChord.setMajor();
+        updtInfos();
+
     }
 }
