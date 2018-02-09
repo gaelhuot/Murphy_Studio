@@ -177,6 +177,8 @@ public class ChordMakerController extends Controller implements Initializable {
 
     private String getChordNameByMethod(Accord accord)
     {
+        if ( accord.getMethodCalled() == null ) return null;
+
         String name = null;
         for ( Map.Entry<String, Method> entry : listToFunc.entrySet() )
             if (entry.getValue().getName().equals(accord.getMethodCalled().getName())) name = entry.getKey();
