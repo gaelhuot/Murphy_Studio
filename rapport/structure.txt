@@ -1,0 +1,34 @@
+Cahier des charges
+
+Presentation de l'interface
+
+Presentation de JAVAFX
+	MVC
+
+MIDI
+
+Outils utilisés
+	IntelliJ
+	SceneBuilder
+	Git/GitHu
+
+Conception de l'inteface 
+	SceneBuilder
+		IntelliJ/Gluon/Atom
+		Gluon : léger, aperçu en direct, analyseur CSS
+		placement FXML, style CSS
+	Elements
+		id/classe/fx:id
+		size
+	Panes 
+		AnchorPane
+		BorderPane
+		SplitPane
+		Scrollbars bindées
+	CSS
+		Définition variables
+		
+
+
+...
+data-binding
