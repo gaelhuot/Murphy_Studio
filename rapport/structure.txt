@@ -4,20 +4,21 @@ Presentation de l'interface
 
 Presentation de JAVAFX
 	MVC
+	Data-binding
 
 MIDI
 
 Outils utilisés
 	IntelliJ
 	SceneBuilder
-	Git/GitHu
+	Git/GitHub
 
 Conception de l'inteface 
 	SceneBuilder
 		IntelliJ/Gluon/Atom
 		Gluon : léger, aperçu en direct, analyseur CSS
 		placement FXML, style CSS
-	Elements
+	Elements FXML
 		id/classe/fx:id
 		size
 	Panes 
@@ -27,7 +28,7 @@ Conception de l'inteface
 		Scrollbars bindées
 	CSS
 		Définition variables
-		
+		Palette de couleurs		
 
 
 ...
