@@ -5,7 +5,7 @@ Presentation de l'interface
 Presentation de JAVAFX
 	MVC
 
-MIDI
+MIDI -> javaSound -> séquenceur
 
 Outils utilisés
 	IntelliJ
