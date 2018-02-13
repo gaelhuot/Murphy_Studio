@@ -13,6 +13,7 @@ Outils utilisés
 	Git/GitHu
 
 Conception de l'inteface 
+	MVC ?
 	SceneBuilder
 		IntelliJ/Gluon/Atom
 		Gluon : léger, aperçu en direct, analyseur CSS
@@ -20,6 +21,8 @@ Conception de l'inteface
 	Elements
 		id/classe/fx:id
 		size
+	Events
+		handler dnd, (resize)
 	Panes 
 		AnchorPane
 		BorderPane
