@@ -3,7 +3,7 @@ package Controllers;
 import Models.MainModel;
 import Objects.Accord;
 import Objects.Tile;
-import javafx.collections.ObservableList;
+import Objects.DragResizer;
 import javafx.event.Event;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -12,7 +12,6 @@ import javafx.scene.input.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
 
 import javax.sound.midi.InvalidMidiDataException;
 import java.net.URL;
@@ -105,6 +104,9 @@ public class ChordSorterController extends Controller {
 
         /* --- <Drag and Drop> --- */
         newTile.setOnDragDetected(event -> {
+            if(DragResizer.isInResizeZone(event)) {
+                return;
+            }
             setSelected(newTile);
 
             final Dragboard dragboard = newTile.startDragAndDrop(TransferMode.ANY);
@@ -227,6 +229,8 @@ public class ChordSorterController extends Controller {
 
         model.selectedTile = newSelectedTile;
         model.chordMakerController.updateFromTile(newSelectedTile);
+
+        DragResizer.makeResizable(selected.rectangle);
     }
 
     private Rectangle getChildrenRectangle(Tile tile)
