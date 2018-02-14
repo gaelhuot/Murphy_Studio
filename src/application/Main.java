@@ -49,7 +49,7 @@ public class Main extends Application {
     }
 
     private void setPrimaryStage(Stage p){
-        this.primaryStage = p;
+        primaryStage = p;
     }
 
 
