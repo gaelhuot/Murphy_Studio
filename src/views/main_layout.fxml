@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane id="main" fx:id="main_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="600.0" prefHeight="800.0" prefWidth="880.0" styleClass="light" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainController">
+<BorderPane id="main" fx:id="main_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="600.0" prefHeight="800.0" prefWidth="880.0" styleClass="dark" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainController">
    <top>
       <BorderPane id="top_border_pane" BorderPane.alignment="CENTER">
          <top>
@@ -81,14 +81,19 @@
       </HBox>
    </bottom>
    <center>
-      <SplitPane fx:id="split_workspace" dividerPositions="0.5" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="50.0" orientation="VERTICAL" prefHeight="160.0" prefWidth="160.0" BorderPane.alignment="CENTER">
-        <items>
-          <AnchorPane fx:id="mainContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" styleClass="background" />
-          <AnchorPane fx:id="secondContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" styleClass="background" />
-        </items>
+      <SplitPane fx:id="splitPaneVertical" dividerPositions="0.667" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
          </BorderPane.margin>
+         <items>
+            <SplitPane fx:id="splitPaneHorizontal" dividerPositions="0.5" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="50.0" orientation="VERTICAL" prefHeight="160.0" prefWidth="160.0">
+              <items>
+                <AnchorPane fx:id="mainContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" styleClass="background" />
+                <AnchorPane fx:id="secondContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" styleClass="background" />
+              </items>
+            </SplitPane>
+            <AnchorPane fx:id="sideContainer" prefHeight="200.0" prefWidth="200.0" styleClass="background" />
+         </items>
       </SplitPane>
    </center>
 </BorderPane>

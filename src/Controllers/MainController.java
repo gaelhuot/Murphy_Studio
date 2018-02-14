@@ -48,11 +48,13 @@ public class MainController extends Controller
     public TextField sequencer_tempo;
 
     public AnchorPane secondContainer;
-    public SplitPane split_workspace;
+    public AnchorPane sideContainer;
 
     public Button chordMakerView;
     public Button chordSorterView;
     public Button tracksView;
+    public SplitPane splitPaneHorizontal;
+    public SplitPane splitPaneVertical;
 
 
     private Scene scene;
@@ -177,10 +179,19 @@ public class MainController extends Controller
         }
 
         try {
-            loadView("ChordMaker.fxml", secondContainer);
+            loadView("ChordSorter.fxml", secondContainer);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        try {
+            loadView("ChordMaker.fxml", sideContainer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        splitPaneVertical.setDividerPosition(0,0.66);
+        splitPaneHorizontal.setDividerPosition(0, 0.66);
 
     }
 
