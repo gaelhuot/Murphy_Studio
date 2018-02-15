@@ -7,10 +7,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
 import java.lang.reflect.InvocationTargetException;
@@ -29,7 +27,6 @@ public class ChordMakerController extends Controller implements Initializable {
     public BorderPane chordMakerPane;
     public Pane piano;
     private ToggleGroup noteChordGroup = new ToggleGroup();
-    private ToggleGroup chordChordGroup = new ToggleGroup();
 
     @FXML
     private Pane notePane1,notePane2,notePane3,notePane4,notePane5,notePane6,notePane7,notePane8,notePane9,notePane10,notePane11,notePane12,notePane13,notePane14,notePane15,notePane16,notePane17,notePane18,notePane19,notePane20,notePane21,notePane22,notePane23,notePane24,notePane25,notePane26,notePane27,notePane28,notePane29,notePane30,notePane31,notePane32,notePane33,notePane34,notePane35,notePane36;
@@ -38,11 +35,8 @@ public class ChordMakerController extends Controller implements Initializable {
     private Boolean isSeventh = false, isFifth = false, isMinor = false;
 
     private LinkedHashMap<String, Method> listToFunc;
-    //    public ListView<String> chordListView;
+    public ListView<String> chordListView;
     private ObservableList<String> items;
-
-    public GridPane chordGrid;
-    private ArrayList<RadioButton> gridItems;
 
     private MainModel model;
 
@@ -87,22 +81,23 @@ public class ChordMakerController extends Controller implements Initializable {
         }
         this.items = FXCollections.observableArrayList();
 
-        this.gridItems = new ArrayList<RadioButton>();
         for(Map.Entry <String, Method> entry : listToFunc.entrySet())
-        {
-            RadioButton button = new RadioButton(entry.getKey());
-            button.setToggleGroup(chordChordGroup);
-            button.setOnMouseClicked(event -> {
-                if ( printFromTile == 1 ) return;
-                try {
-                    listToFunc.get(entry.getKey()).invoke(model.selectedChord);
-                    updtInfos();
-                } catch (IllegalAccessException | InvocationTargetException e) {
-                    e.printStackTrace();
-                }
-            });
-            this.gridItems.add(button);
-        }
+            items.add(entry.getKey());
+
+        chordListView.setItems(items);
+        chordListView.getSelectionModel().select(1);
+
+        chordListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if ( newValue == null || printFromTile == 1 ) return;
+
+
+            try {
+                listToFunc.get(newValue).invoke(model.selectedChord);
+                updtInfos();
+            } catch (IllegalAccessException | InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        });
 
         noteChordGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
             if ( newValue == null ) return;
@@ -135,7 +130,6 @@ public class ChordMakerController extends Controller implements Initializable {
         });
 
         checkPianoSize();
-        setUIsmall();
 
     }
 
@@ -206,26 +200,12 @@ public class ChordMakerController extends Controller implements Initializable {
         }
     }
 
-    private void setUIsmall()
-    {
-        //TODO Stocker l'ensemble des elements dans une liste, clear le grid pane et le recreer
-         this.chordGrid.getChildren().clear();
-         int size = this.gridItems.size();
-         for (int i = 0; i < 4; i++){this.chordGrid.addColumn(i);}
-         this.chordGrid.setGridLinesVisible(true);
-         for (int i = 0; i < size; i++)
-         {
-             if (i%2 == 0){this.chordGrid.addRow(i);}
-             this.chordGrid.add(this.gridItems.get(i), i % 2, i/2);
-         }
-    }
-
     public void updateFromTile(Tile tile)
     {
         printFromTile = 1;
 
         Accord ch = tile.accord;
-//        chordListView.getSelectionModel().select(getChordNameByMethod(model.selectedTile.accord));
+        chordListView.getSelectionModel().select(getChordNameByMethod(model.selectedTile.accord));
         fireRadio(ch);
 
         chordNameLabel.setText(ch.getName());
