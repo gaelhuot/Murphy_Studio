@@ -3,15 +3,17 @@ package Controllers;
 import Models.MainModel;
 import Objects.Accord;
 import Objects.Tile;
+import javafx.beans.property.BooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.HPos;
+import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -43,6 +45,7 @@ public class ChordMakerController extends Controller implements Initializable {
 
     public GridPane chordGrid;
     private ArrayList<RadioButton> gridItems;
+    private boolean smallGridUI;
 
     private MainModel model;
 
@@ -91,14 +94,13 @@ public class ChordMakerController extends Controller implements Initializable {
         for(Map.Entry <String, Method> entry : listToFunc.entrySet())
         {
             RadioButton button = new RadioButton(entry.getKey());
-            button.setMinHeight(0);
-            button.setPrefHeight(32.0);
+            button.setMinHeight(64);
+            button.setPrefHeight(64);
             button.setMaxHeight(Integer.MAX_VALUE);
-
-            button.setMinWidth(0);
-            button.setPrefWidth(64.0);
+//
+            button.setMinWidth(32);
+            button.setPrefWidth(128);
             button.setMaxWidth(Integer.MAX_VALUE);
-            //TODO Utiliser des pourcentages dans la fonction setGridUI
 
 
             button.setToggleGroup(chordChordGroup);
@@ -134,30 +136,23 @@ public class ChordMakerController extends Controller implements Initializable {
                 this.model.player.playNote(ch.getNotes().get(i));
         });
 
-        saveChordButton.setOnMouseClicked(event -> saveChord());
+        this.saveChordButton.setOnMouseClicked(event -> saveChord());
 
-        chordMakerPane.heightProperty().addListener((obs, oldVal, newVal) ->
+        this.chordMakerPane.heightProperty().addListener((obs, oldVal, newVal) ->
                 checkPianoSize());
 
-        chordMakerPane.widthProperty().addListener((obs, oldVal, newVal) ->
+        this.chordMakerPane.widthProperty().addListener((obs, oldVal, newVal) ->
         {
             checkPianoSize();
         });
 
         this.chordMakerPane.widthProperty().addListener((obs, oldVal, newVal) ->
         {
-            if(this.chordMakerPane.widthProperty().getValue() <= 600)
-            {
-                setGridUI(2);
-            }
-            else
-            {
-                setGridUI(4);
-            }
+            checkGridSize();
         });
 
         checkPianoSize();
-        setGridUI(2);
+        checkGridSize();
 
     }
 
@@ -170,6 +165,26 @@ public class ChordMakerController extends Controller implements Initializable {
         else
         {
             piano.setManaged(true); piano.setVisible(true);
+        }
+    }
+
+    private void checkGridSize()
+    {
+        if(this.chordMakerPane.widthProperty().getValue() <= 600)
+        {
+            if(!this.smallGridUI)
+            {
+                setGridUI(2);
+                this.smallGridUI = true;
+            }
+        }
+        else
+        {
+            if(this.smallGridUI)
+            {
+                setGridUI(4);
+                this.smallGridUI = false;
+            }
         }
     }
 
@@ -232,12 +247,35 @@ public class ChordMakerController extends Controller implements Initializable {
     {
         this.chordGrid.getChildren().clear();
         int size = this.gridItems.size();
-        for (int i = 0; i < x; i++){this.chordGrid.addColumn(i);}
+        int y = (int)Math.ceil(size / x);
+        this.chordGrid.getColumnConstraints().removeAll();
+        this.chordGrid.getRowConstraints().removeAll();
+        System.out.println(x+" "+y);
+        for (int i = 0; i < x; i++)
+        {
+            ColumnConstraints cc = new ColumnConstraints();
+            cc.setHalignment(HPos.CENTER);
+            cc.setPercentWidth(-1);
+            this.chordGrid.getColumnConstraints().add(cc);
+            System.out.println(i+" col "+cc.getPercentWidth());
+        }
+        for (int i = 0; i < y; i++)
+        {
+            RowConstraints rc = new RowConstraints();
+            rc.setValignment(VPos.BOTTOM);
+            rc.setPercentHeight(-1);
+            this.chordGrid.getRowConstraints().add(rc);
+            System.out.println(i+" row "+rc.getPercentHeight());
+        }
+
+        chordGrid.setGridLinesVisible(true);
+
+
         for (int i = 0; i < size; i++)
         {
-            if (i%x == 0){this.chordGrid.addRow(i);}
             this.chordGrid.add(this.gridItems.get(i), i % x, i/x);
         }
+        this.smallGridUI = (x == 2);
     }
 
     public void updateFromTile(Tile tile)
