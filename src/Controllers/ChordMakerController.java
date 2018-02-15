@@ -91,6 +91,16 @@ public class ChordMakerController extends Controller implements Initializable {
         for(Map.Entry <String, Method> entry : listToFunc.entrySet())
         {
             RadioButton button = new RadioButton(entry.getKey());
+            button.setMinHeight(0);
+            button.setPrefHeight(32.0);
+            button.setMaxHeight(Integer.MAX_VALUE);
+
+            button.setMinWidth(0);
+            button.setPrefWidth(64.0);
+            button.setMaxWidth(Integer.MAX_VALUE);
+            //TODO Utiliser des pourcentages dans la fonction setGridUI
+
+
             button.setToggleGroup(chordChordGroup);
             button.setOnMouseClicked(event -> {
                 if ( printFromTile == 1 ) return;
@@ -134,8 +144,20 @@ public class ChordMakerController extends Controller implements Initializable {
             checkPianoSize();
         });
 
+        this.chordMakerPane.widthProperty().addListener((obs, oldVal, newVal) ->
+        {
+            if(this.chordMakerPane.widthProperty().getValue() <= 600)
+            {
+                setGridUI(2);
+            }
+            else
+            {
+                setGridUI(4);
+            }
+        });
+
         checkPianoSize();
-        setUIsmall();
+        setGridUI(2);
 
     }
 
@@ -206,18 +228,16 @@ public class ChordMakerController extends Controller implements Initializable {
         }
     }
 
-    private void setUIsmall()
+    private void setGridUI(int x)
     {
-        //TODO Stocker l'ensemble des elements dans une liste, clear le grid pane et le recreer
-         this.chordGrid.getChildren().clear();
-         int size = this.gridItems.size();
-         for (int i = 0; i < 4; i++){this.chordGrid.addColumn(i);}
-         this.chordGrid.setGridLinesVisible(true);
-         for (int i = 0; i < size; i++)
-         {
-             if (i%2 == 0){this.chordGrid.addRow(i);}
-             this.chordGrid.add(this.gridItems.get(i), i % 2, i/2);
-         }
+        this.chordGrid.getChildren().clear();
+        int size = this.gridItems.size();
+        for (int i = 0; i < x; i++){this.chordGrid.addColumn(i);}
+        for (int i = 0; i < size; i++)
+        {
+            if (i%x == 0){this.chordGrid.addRow(i);}
+            this.chordGrid.add(this.gridItems.get(i), i % x, i/x);
+        }
     }
 
     public void updateFromTile(Tile tile)
