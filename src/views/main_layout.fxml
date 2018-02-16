@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -15,11 +14,40 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane id="main" fx:id="main_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="600.0" prefHeight="800.0" prefWidth="880.0" styleClass="dark" stylesheets="@../css/style.css" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainController">
+<BorderPane id="main" fx:id="main_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="600.0" prefHeight="800.0" prefWidth="880.0" styleClass="dark" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainController">
+   <bottom>
+      <HBox fx:id="state_bar" alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="24.0" prefWidth="600.0" styleClass="state-bar" BorderPane.alignment="CENTER">
+         <children>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Barre d'etat">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Text>
+         </children>
+      </HBox>
+   </bottom>
+   <center>
+      <SplitPane fx:id="splitPaneVertical" dividerPositions="0.667" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+         </BorderPane.margin>
+         <items>
+            <SplitPane fx:id="splitPaneHorizontal" dividerPositions="0.5" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="50.0" orientation="VERTICAL" prefHeight="160.0" prefWidth="160.0">
+              <items>
+                <AnchorPane fx:id="mainContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" styleClass="background" />
+                <AnchorPane fx:id="secondContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" styleClass="background" />
+              </items>
+            </SplitPane>
+            <AnchorPane fx:id="sideContainer" prefHeight="200.0" prefWidth="200.0" styleClass="background" />
+         </items>
+      </SplitPane>
+   </center>
    <top>
-      <BorderPane id="top_border_pane" BorderPane.alignment="CENTER">
-         <top>
-            <MenuBar id="menu_bar" fx:id="menu_bar" BorderPane.alignment="CENTER">
+      <ButtonBar id="top_button_bar" prefHeight="32.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <buttons>
+          <TextField fx:id="sequencer_tempo" maxWidth="5.0" ButtonBar.buttonData="RIGHT" />
+          <Slider id="slider_master_volume" fx:id="master_volume_slider" maxWidth="400.0" minWidth="100.0" prefWidth="200.0" ButtonBar.buttonData="RIGHT" />
+            <MenuBar id="menu_bar" fx:id="menu_bar" ButtonBar.buttonData="LEFT">
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
@@ -54,46 +82,7 @@
                   </Menu>
               </menus>
             </MenuBar>
-         </top>
-         <bottom>
-            <ButtonBar id="top_button_bar" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-              <buttons>
-                <Button fx:id="tracksView" mnemonicParsing="false" text="Tracks" ButtonBar.buttonData="LEFT" />
-                <Button fx:id="chordMakerView" mnemonicParsing="false" text="CMaker" ButtonBar.buttonData="LEFT" />
-                <Button fx:id="chordSorterView" mnemonicParsing="false" text="CSorter" ButtonBar.buttonData="LEFT" />
-
-                <TextField fx:id="sequencer_tempo" maxWidth="5.0" />
-                <Slider id="slider_master_volume" fx:id="master_volume_slider" />
-              </buttons>
-            </ButtonBar>
-         </bottom>
-      </BorderPane>
+        </buttons>
+      </ButtonBar>
    </top>
-   <bottom>
-      <HBox fx:id="state_bar" alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="24.0" prefWidth="600.0" styleClass="state-bar" BorderPane.alignment="CENTER">
-         <children>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Barre d'etat">
-               <HBox.margin>
-                  <Insets left="10.0" />
-               </HBox.margin>
-            </Text>
-         </children>
-      </HBox>
-   </bottom>
-   <center>
-      <SplitPane fx:id="splitPaneVertical" dividerPositions="0.667" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-         </BorderPane.margin>
-         <items>
-            <SplitPane fx:id="splitPaneHorizontal" dividerPositions="0.5" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="50.0" orientation="VERTICAL" prefHeight="160.0" prefWidth="160.0">
-              <items>
-                <AnchorPane fx:id="mainContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" styleClass="background" />
-                <AnchorPane fx:id="secondContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" styleClass="background" />
-              </items>
-            </SplitPane>
-            <AnchorPane fx:id="sideContainer" prefHeight="200.0" prefWidth="200.0" styleClass="background" />
-         </items>
-      </SplitPane>
-   </center>
 </BorderPane>

@@ -50,19 +50,11 @@ public class MainController extends Controller
     public AnchorPane secondContainer;
     public AnchorPane sideContainer;
 
-    public Button chordMakerView;
-    public Button chordSorterView;
-    public Button tracksView;
     public SplitPane splitPaneHorizontal;
     public SplitPane splitPaneVertical;
 
 
     private Scene scene;
-
-    /* Elements qui permettent de changer de page */
-    @FXML
-    private Button chordGridView, changeVue;
-    private HashMap<Button, String> views = new HashMap<Button, String>();
 
     /* Container */
     @FXML
@@ -156,26 +148,6 @@ public class MainController extends Controller
 
         /* ---- </ Main Event Listener > ---- */
 
-        views.put(tracksView, "piste_layout.fxml");
-        views.put(chordMakerView, "ChordMaker.fxml");
-        views.put(chordSorterView, "ChordSorter.fxml");
-    /* On ajoute les différentes pages qu'on lie à chacun des buttons */
-        for (Map.Entry<Button, String> entry: views.entrySet())
-        {
-            Button fxmlID = entry.getKey();
-            String viewName = entry.getValue();
-
-            /* Pour chaque button, on créé un event qui va permettre de charger la page correspondante */
-            fxmlID.setOnMouseClicked(event -> {
-                try {
-                    Pane container = ( fxmlID == tracksView || fxmlID == chordSorterView ) ? this.mainContainer : this.secondContainer;
-                    loadView(viewName, container);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
-        }
-
         try {
             loadView("ChordSorter.fxml", secondContainer);
         } catch (IOException e) {
@@ -231,13 +203,16 @@ public class MainController extends Controller
 
     public void setDarkTheme()
     {
+        //Besoin de retirer la classe dark si elle est déjà présente pour ne pas la dupliquer
         main_pane.getStyleClass().remove("light");
+        main_pane.getStyleClass().remove("dark");
         main_pane.getStyleClass().add("dark");
     }
 
     public void setLightTheme()
     {
         main_pane.getStyleClass().remove("dark");
+        main_pane.getStyleClass().remove("light");
         main_pane.getStyleClass().add("light");
     }
 }
