@@ -243,6 +243,10 @@
 {
   -fx-fill : -fx-dark-blue-5;
 }
+.dark .chord-name .text
+{
+  -fx-fill : white;
+}
 
 .chord-name
 {
