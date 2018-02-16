@@ -69,7 +69,6 @@ public class PisteLayoutController extends Controller
     {
         for (int i = this.pistes.size() - 1; i >= 0; i--)
         {
-            System.out.println(this.pistes.get(i));
             if (this.pistes.get(i) == piste)
             {
                 PisteLayoutVBox.getChildren().remove(i);

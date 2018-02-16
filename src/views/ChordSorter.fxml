@@ -7,25 +7,15 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="164.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9" fx:controller="Controllers.ChordSorterController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="164.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ChordSorterController">
    <children>
-      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0">
-         <children>
-            <Button fx:id="deleteBtn" layoutX="349.0" layoutY="3.0" mnemonicParsing="false" text="Delete">
-               <cursor>
-                  <Cursor fx:constant="OPEN_HAND" />
-               </cursor>
-            </Button>
-
-                  <Button fx:id="togglePlayTrack" layoutX="500.0" layoutY="3.0" mnemonicParsing="false" text="Play" />
-
-                  <Button fx:id="emptyButton" layoutX="211.0" layoutY="3.0" mnemonicParsing="false" text="Empty" />
-            <Button fx:id="randomButton" layoutX="82.0" layoutY="3.0" mnemonicParsing="false" text="Random" />
-         </children>
-      </Pane>
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" />
       <HBox fx:id="tileContainer" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="126.0" prefWidth="Infinity" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="3.0">
          <children>
             <ImageView fx:id="crossAdd" fitHeight="91.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
@@ -39,5 +29,28 @@
             <ListView fx:id="tileList" cacheShape="false" centerShape="false" editable="true" focusTraversable="false" maxWidth="1.7976931348623157E308" orientation="HORIZONTAL" prefHeight="126.0" prefWidth="498.0" scaleShape="false" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
+      <GridPane alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="132.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button fx:id="deleteBtn" mnemonicParsing="false" text="Delete" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+            </Button>
+
+                  <Button fx:id="togglePlayTrack" mnemonicParsing="false" text="Play" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
+
+                  <Button fx:id="emptyButton" mnemonicParsing="false" text="Empty" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
+            <Button fx:id="randomButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Random" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
+         </children>
+      </GridPane>
    </children>
 </AnchorPane>
