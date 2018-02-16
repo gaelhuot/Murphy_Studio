@@ -94,12 +94,10 @@ public class MainController extends Controller
         menu_edit_undo.setOnAction(e -> System.out.println("Undo"));
         menu_edit_redo.setOnAction(e -> System.out.println("Redo"));
         menu_view_set_dark_theme.setOnAction(e -> {
-            main_pane.getStyleClass().remove("light");
-            main_pane.getStyleClass().add("dark");
+            this.setDarkTheme();
         });
         menu_view_set_light_theme.setOnAction(e -> {
-            main_pane.getStyleClass().remove("dark");
-            main_pane.getStyleClass().add("light");
+            this.setLightTheme();
         });
 
         /* On charge la vue par defaut (piste_layout) */
@@ -229,5 +227,17 @@ public class MainController extends Controller
         FileChooser dialog = new FileChooser();
         dialog.setTitle("Save midi File");
         File file = dialog.showSaveDialog(Main.getPrimaryStage());
+    }
+
+    public void setDarkTheme()
+    {
+        main_pane.getStyleClass().remove("light");
+        main_pane.getStyleClass().add("dark");
+    }
+
+    public void setLightTheme()
+    {
+        main_pane.getStyleClass().remove("dark");
+        main_pane.getStyleClass().add("light");
     }
 }

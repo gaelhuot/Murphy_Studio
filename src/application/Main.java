@@ -27,6 +27,7 @@ public class Main extends Application {
 
 
         MainController mainController = fxmlLoader.getController();
+        mainController.setLightTheme();
 
         Scene scene = new Scene(root);
         primaryStage.setTitle("Hello World");
