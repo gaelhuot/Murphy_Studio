@@ -82,7 +82,7 @@ public class MainController extends Controller
         menu_file_new.setOnAction(e -> loadFile());
         menu_file_save.setOnAction(e -> saveFile());
         menu_file_saveas.setOnAction(e -> System.out.println("Save as"));
-        menu_file_quit.setOnAction(e -> System.out.println("Quit"));
+        menu_file_quit.setOnAction(e -> exit());
         menu_edit_undo.setOnAction(e -> System.out.println("Undo"));
         menu_edit_redo.setOnAction(e -> System.out.println("Redo"));
         menu_view_set_dark_theme.setOnAction(e -> {
@@ -188,6 +188,7 @@ public class MainController extends Controller
         model.player.synthesizer.close();
         model.player.receiver.close();
         model.player.sequencer.close();
+        System.exit(0);
     }
 
     private void loadFile(){
