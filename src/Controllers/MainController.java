@@ -123,8 +123,6 @@ public class MainController extends Controller
             if ( wasRunning ) model.player.sequencer.start();
         });
 
-        this.master_volume_slider.setValue(50);
-
         master_volume_slider.valueProperty().addListener((observable, oldValue, newValue) -> {
                   /*░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▄███▄▄▄░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
                     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▄▄▄██▀▀▀▀███▄░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -145,6 +143,9 @@ public class MainController extends Controller
                     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█░░░░░░░░░░░░█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░*/
             model.player.setVolume(newValue.intValue());
         });
+
+        this.master_volume_slider.setValue(75);
+
 
         /* ---- </ Main Event Listener > ---- */
 
