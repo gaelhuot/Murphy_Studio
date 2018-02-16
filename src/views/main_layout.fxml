@@ -32,10 +32,10 @@
             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
          </BorderPane.margin>
          <items>
-            <SplitPane fx:id="splitPaneHorizontal" dividerPositions="0.5" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="50.0" orientation="VERTICAL" prefHeight="160.0" prefWidth="160.0">
+            <SplitPane fx:id="splitPaneHorizontal" dividerPositions="0.5" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="-Infinity" orientation="VERTICAL" prefHeight="160.0" prefWidth="400.0">
               <items>
-                <AnchorPane fx:id="mainContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" styleClass="background" />
-                <AnchorPane fx:id="secondContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" styleClass="background" />
+                <AnchorPane fx:id="mainContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="160.0" styleClass="background" />
+                <AnchorPane fx:id="secondContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="164.0" prefWidth="160.0" styleClass="background" />
               </items>
             </SplitPane>
             <AnchorPane fx:id="sideContainer" prefHeight="200.0" prefWidth="200.0" styleClass="background" />
