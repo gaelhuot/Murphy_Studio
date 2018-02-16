@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="708.0" prefWidth="873.0" style="-fx-background-color: orange;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Chords">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="708.0" prefWidth="873.0" style="-fx-background-color: orange;" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Chords">
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="378.0" prefWidth="871.0">
           <Label alignment="CENTER" layoutX="14.0" layoutY="35.0" prefHeight="17.0" prefWidth="78.0" text="Do" textAlignment="CENTER" textFill="WHITE">
          <font>

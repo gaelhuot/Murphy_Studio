@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane id="main" fx:id="main_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="600.0" prefHeight="800.0" prefWidth="880.0" styleClass="dark" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainController">
+<BorderPane id="main" fx:id="main_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="600.0" prefHeight="800.0" prefWidth="880.0" styleClass="dark" stylesheets="@../css/style.css" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainController">
    <top>
       <BorderPane id="top_border_pane" BorderPane.alignment="CENTER">
          <top>

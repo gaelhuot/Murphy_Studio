@@ -90,7 +90,6 @@ public class ChordMakerController extends Controller implements Initializable {
         chordListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if ( newValue == null || printFromTile == 1 ) return;
 
-
             try {
                 listToFunc.get(newValue).invoke(model.selectedChord);
                 updtInfos();
@@ -102,6 +101,8 @@ public class ChordMakerController extends Controller implements Initializable {
         noteChordGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
             if ( newValue == null ) return;
 
+            Method lastFunction = model.selectedChord.getMethodCalled();
+
             if (newValue == doRadio )   model.selectedChord = new Accord(60, isMinor, isFifth, isSeventh);
             if (newValue == reRadio )   model.selectedChord = new Accord(62, isMinor, isFifth, isSeventh);
             if (newValue == miRadio )   model.selectedChord = new Accord(64, isMinor, isFifth, isSeventh);
@@ -109,6 +110,12 @@ public class ChordMakerController extends Controller implements Initializable {
             if (newValue == solRadio)   model.selectedChord = new Accord(67, isMinor, isFifth, isSeventh);
             if (newValue == laRadio )   model.selectedChord = new Accord(69, isMinor, isFifth, isSeventh);
             if (newValue == siRadio )   model.selectedChord = new Accord(71, isMinor, isFifth, isSeventh);
+
+            try {
+                Accord.class.getMethod(lastFunction.getName()).invoke(model.selectedChord);
+            } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+                e.printStackTrace();
+            }
 
             updtInfos();
         });
