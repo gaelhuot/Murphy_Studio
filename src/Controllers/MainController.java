@@ -36,6 +36,7 @@ public class MainController extends Controller
 
     public MenuBar menu_bar;
     public MenuItem menu_file_new;
+    public MenuItem menu_file_open;
     public MenuItem menu_file_save;
     public MenuItem menu_file_saveas;
     public MenuItem menu_file_quit;
@@ -79,9 +80,10 @@ public class MainController extends Controller
 
 
         /* Assignation des actions de la barre des menus */
-        menu_file_new.setOnAction(e -> loadFile());
-        menu_file_save.setOnAction(e -> saveFile());
-        menu_file_saveas.setOnAction(e -> System.out.println("Save as"));
+        menu_file_new.setOnAction(e -> System.out.println("New"));
+        menu_file_open.setOnAction(e -> loadFile());
+        menu_file_save.setOnAction(e -> System.out.println("Save"));
+        menu_file_saveas.setOnAction(e -> saveFile());
         menu_file_quit.setOnAction(e -> exit());
         menu_edit_undo.setOnAction(e -> System.out.println("Undo"));
         menu_edit_redo.setOnAction(e -> System.out.println("Redo"));
