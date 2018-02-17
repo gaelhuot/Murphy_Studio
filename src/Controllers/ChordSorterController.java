@@ -62,7 +62,6 @@ public class ChordSorterController extends Controller {
         chordSorterPane.heightProperty().addListener((obs, oldVal, newVal) ->
         {
             checkPianoSize();
-            System.out.println(newVal);
         });
 
         chordSorterPane.widthProperty().addListener((obs, oldVal, newVal) ->
@@ -75,7 +74,8 @@ public class ChordSorterController extends Controller {
 
     private void checkPianoSize()
     {
-        if (this.chordSorterPane.heightProperty().getValue() < 320 || this.chordSorterPane.widthProperty().getValue() < 875)
+        if (this.chordSorterPane.heightProperty().getValue() < this.chordSorterPane.getPrefHeight()
+                || this.chordSorterPane.widthProperty().getValue() < this.chordSorterPane.getPrefWidth())
         {
             piano.setManaged(false); piano.setVisible(false);
         }

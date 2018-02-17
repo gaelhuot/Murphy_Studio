@@ -8,11 +8,10 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="chordMakerPane" maxHeight="+Infinity" maxWidth="+Infinity" minHeight="50.0" minWidth="420.0" prefHeight="440.0" prefWidth="900.0" styleClass="background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9" fx:controller="Controllers.ChordMakerController">
+<BorderPane fx:id="chordMakerPane" maxHeight="+Infinity" maxWidth="+Infinity" minHeight="50.0" minWidth="420.0" prefHeight="440.0" prefWidth="900.0" styleClass="background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ChordMakerController">
    <stylesheets>
       <URL value="@../css/chordMaker.css" />
       <URL value="@../css/style.css" />
@@ -73,47 +72,4 @@
          </center>
       </BorderPane>
    </center>
-   <bottom>
-       <Pane fx:id="piano" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="135.0" prefWidth="867.0" BorderPane.alignment="CENTER">
-           <Pane fx:id="notePane1" layoutX="15.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-           <Pane fx:id="notePane3" layoutX="55.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-           <Pane fx:id="notePane5" layoutX="95.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-           <Pane fx:id="notePane6" layoutX="133.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-           <Pane fx:id="notePane8" layoutX="173.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-           <Pane fx:id="notePane10" layoutX="213.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-           <Pane fx:id="notePane12" layoutX="253.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-           <Pane fx:id="notePane13" layoutX="293.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-           <Pane fx:id="notePane15" layoutX="333.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-           <Pane fx:id="notePane17" layoutX="373.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-           <Pane fx:id="notePane18" layoutX="413.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-           <Pane fx:id="notePane20" layoutX="453.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-           <Pane fx:id="notePane22" layoutX="493.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-           <Pane fx:id="notePane24" layoutX="533.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-           <Pane fx:id="notePane25" layoutX="573.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-           <Pane fx:id="notePane27" layoutX="613.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-           <Pane fx:id="notePane29" layoutX="653.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-           <Pane fx:id="notePane31" layoutX="693.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-           <Pane fx:id="notePane32" layoutX="733.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-           <Pane fx:id="notePane34" layoutX="773.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-           <Pane fx:id="notePane36" layoutX="813.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-           <Pane fx:id="notePane2" layoutX="163.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-           <Pane fx:id="notePane4" layoutX="85.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-           <Pane fx:id="notePane7" layoutX="45.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-           <Pane fx:id="notePane9" layoutX="203.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-           <Pane fx:id="notePane11" layoutX="238.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-           <Pane fx:id="notePane14" layoutX="324.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-           <Pane fx:id="notePane16" layoutX="367.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-           <Pane fx:id="notePane19" layoutX="442.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-           <Pane fx:id="notePane21" layoutX="480.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-           <Pane fx:id="notePane23" layoutX="526.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-           <Pane fx:id="notePane26" layoutX="603.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-           <Pane fx:id="notePane28" layoutX="643.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-           <Pane fx:id="notePane30" layoutX="723.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-           <Pane fx:id="notePane33" layoutX="763.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-           <Pane fx:id="notePane35" layoutX="803.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-         <BorderPane.margin>
-            <Insets bottom="10.0" left="2.0" right="2.0" top="2.0" />
-         </BorderPane.margin>
-       </Pane>
-   </bottom>
 </BorderPane>

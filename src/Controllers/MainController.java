@@ -163,8 +163,8 @@ public class MainController extends Controller
             e.printStackTrace();
         }
 
-        splitPaneVertical.setDividerPosition(0,0.66);
-        splitPaneHorizontal.setDividerPosition(0, 0.60);
+        splitPaneVertical.setDividerPosition(0,0.63);
+        splitPaneHorizontal.setDividerPosition(0, 0.59);
 
     }
 

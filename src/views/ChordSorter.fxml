@@ -14,9 +14,8 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane fx:id="chordSorterPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="164.0" minWidth="400.0" prefHeight="336.0" prefWidth="880.0" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ChordSorterController">
+<AnchorPane fx:id="chordSorterPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="164.0" minWidth="400.0" prefHeight="300.0" prefWidth="842.0" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ChordSorterController">
    <children>
-      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" />
       <HBox fx:id="tileContainer" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="126.0" prefWidth="Infinity" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="3.0">
          <children>
             <ImageView fx:id="crossAdd" fitHeight="91.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
@@ -53,47 +52,50 @@
             <Button fx:id="randomButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Random" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
          </children>
       </GridPane>
-      <BorderPane layoutX="5.0" layoutY="187.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
+      <BorderPane layoutX="5.0" layoutY="187.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <bottom>
-            <Pane fx:id="piano" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="135.0" prefWidth="868.0" BorderPane.alignment="CENTER">
-                <Pane fx:id="notePane1" layoutX="15.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-                <Pane fx:id="notePane3" layoutX="55.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-                <Pane fx:id="notePane5" layoutX="95.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-                <Pane fx:id="notePane6" layoutX="133.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-                <Pane fx:id="notePane8" layoutX="173.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-                <Pane fx:id="notePane10" layoutX="213.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-                <Pane fx:id="notePane12" layoutX="253.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-                <Pane fx:id="notePane13" layoutX="293.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-                <Pane fx:id="notePane15" layoutX="333.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-                <Pane fx:id="notePane17" layoutX="373.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-                <Pane fx:id="notePane18" layoutX="413.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-                <Pane fx:id="notePane20" layoutX="453.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-                <Pane fx:id="notePane22" layoutX="493.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-                <Pane fx:id="notePane24" layoutX="533.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-                <Pane fx:id="notePane25" layoutX="573.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-                <Pane fx:id="notePane27" layoutX="613.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-                <Pane fx:id="notePane29" layoutX="653.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-                <Pane fx:id="notePane31" layoutX="693.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-                <Pane fx:id="notePane32" layoutX="733.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-                <Pane fx:id="notePane34" layoutX="773.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-                <Pane fx:id="notePane36" layoutX="813.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
-                <Pane fx:id="notePane2" layoutX="163.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-                <Pane fx:id="notePane4" layoutX="85.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-                <Pane fx:id="notePane7" layoutX="45.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-                <Pane fx:id="notePane9" layoutX="203.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-                <Pane fx:id="notePane11" layoutX="238.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-                <Pane fx:id="notePane14" layoutX="324.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-                <Pane fx:id="notePane16" layoutX="367.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-                <Pane fx:id="notePane19" layoutX="442.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-                <Pane fx:id="notePane21" layoutX="480.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-                <Pane fx:id="notePane23" layoutX="526.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-                <Pane fx:id="notePane26" layoutX="603.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-                <Pane fx:id="notePane28" layoutX="643.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-                <Pane fx:id="notePane30" layoutX="723.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-                <Pane fx:id="notePane33" layoutX="763.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
-                <Pane fx:id="notePane35" layoutX="803.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
+            <Pane fx:id="piano" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="135.0" prefWidth="839.0" BorderPane.alignment="CENTER">
+                <Pane fx:id="notePane1" layoutY="1.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                <Pane fx:id="notePane3" layoutX="40.0" layoutY="1.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                <Pane fx:id="notePane5" layoutX="80.0" layoutY="1.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                <Pane fx:id="notePane6" layoutX="118.0" layoutY="1.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                <Pane fx:id="notePane8" layoutX="158.0" layoutY="1.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                <Pane fx:id="notePane10" layoutX="198.0" layoutY="1.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                <Pane fx:id="notePane12" layoutX="238.0" layoutY="1.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                <Pane fx:id="notePane13" layoutX="278.0" layoutY="1.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                <Pane fx:id="notePane15" layoutX="318.0" layoutY="1.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                <Pane fx:id="notePane17" layoutX="358.0" layoutY="1.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                <Pane fx:id="notePane18" layoutX="398.0" layoutY="1.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                <Pane fx:id="notePane20" layoutX="438.0" layoutY="1.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                <Pane fx:id="notePane22" layoutX="478.0" layoutY="1.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                <Pane fx:id="notePane24" layoutX="518.0" layoutY="1.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                <Pane fx:id="notePane25" layoutX="558.0" layoutY="1.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                <Pane fx:id="notePane27" layoutX="598.0" layoutY="1.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                <Pane fx:id="notePane29" layoutX="638.0" layoutY="1.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                <Pane fx:id="notePane31" layoutX="678.0" layoutY="1.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                <Pane fx:id="notePane32" layoutX="718.0" layoutY="1.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                <Pane fx:id="notePane34" layoutX="758.0" layoutY="1.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                <Pane fx:id="notePane36" layoutX="798.0" layoutY="1.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
+                <Pane fx:id="notePane2" layoutX="148.0" layoutY="1.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
+                <Pane fx:id="notePane4" layoutX="70.0" layoutY="1.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
+                <Pane fx:id="notePane7" layoutX="30.0" layoutY="1.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
+                <Pane fx:id="notePane9" layoutX="188.0" layoutY="1.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
+                <Pane fx:id="notePane11" layoutX="223.0" layoutY="1.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
+                <Pane fx:id="notePane14" layoutX="309.0" layoutY="1.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
+                <Pane fx:id="notePane16" layoutX="352.0" layoutY="1.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
+                <Pane fx:id="notePane19" layoutX="427.0" layoutY="1.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
+                <Pane fx:id="notePane21" layoutX="465.0" layoutY="1.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
+                <Pane fx:id="notePane23" layoutX="511.0" layoutY="1.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
+                <Pane fx:id="notePane26" layoutX="588.0" layoutY="1.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
+                <Pane fx:id="notePane28" layoutX="628.0" layoutY="1.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
+                <Pane fx:id="notePane30" layoutX="708.0" layoutY="1.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
+                <Pane fx:id="notePane33" layoutX="748.0" layoutY="1.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
+                <Pane fx:id="notePane35" layoutX="788.0" layoutY="1.0" prefHeight="85.0" prefWidth="20.0" styleClass="NOIR" />
             </Pane>
          </bottom>
+         <padding>
+            <Insets bottom="1.0" />
+         </padding>
       </BorderPane>
    </children>
 </AnchorPane>
