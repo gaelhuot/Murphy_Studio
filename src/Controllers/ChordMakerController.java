@@ -25,12 +25,7 @@ public class ChordMakerController extends Controller implements Initializable {
 
     public RadioButton doRadio, reRadio, miRadio, faRadio, solRadio, laRadio, siRadio ;
     public BorderPane chordMakerPane;
-    public Pane piano;
     private ToggleGroup noteChordGroup = new ToggleGroup();
-
-    @FXML
-    private Pane notePane1,notePane2,notePane3,notePane4,notePane5,notePane6,notePane7,notePane8,notePane9,notePane10,notePane11,notePane12,notePane13,notePane14,notePane15,notePane16,notePane17,notePane18,notePane19,notePane20,notePane21,notePane22,notePane23,notePane24,notePane25,notePane26,notePane27,notePane28,notePane29,notePane30,notePane31,notePane32,notePane33,notePane34,notePane35,notePane36;
-    private Pane[] notesPane;
 
     private Boolean isSeventh = false, isFifth = false, isMinor = false;
 
@@ -46,8 +41,6 @@ public class ChordMakerController extends Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         listToFunc = new LinkedHashMap<>();
-
-        notesPane = new Pane[]{notePane1,notePane2,notePane3,notePane4,notePane5,notePane6,notePane7,notePane8,notePane9,notePane10,notePane11,notePane12,notePane13,notePane14,notePane15,notePane16,notePane17,notePane18,notePane19,notePane20,notePane21,notePane22,notePane23,notePane24,notePane25,notePane26,notePane27,notePane28,notePane29,notePane30,notePane31,notePane32,notePane33,notePane34,notePane35,notePane36};
 
         doRadio.setToggleGroup(noteChordGroup);
         reRadio.setToggleGroup(noteChordGroup);
@@ -128,36 +121,14 @@ public class ChordMakerController extends Controller implements Initializable {
 
         saveChordButton.setOnMouseClicked(event -> saveChord());
 
-        chordMakerPane.heightProperty().addListener((obs, oldVal, newVal) ->
-                checkPianoSize());
-
-        chordMakerPane.widthProperty().addListener((obs, oldVal, newVal) ->
-        {
-            checkPianoSize();
-        });
-
-        checkPianoSize();
-
-    }
-
-    private void checkPianoSize()
-    {
-        if (this.chordMakerPane.heightProperty().getValue() < 450 || this.chordMakerPane.widthProperty().getValue() < 875)
-        {
-            piano.setManaged(false); piano.setVisible(false);
-        }
-        else
-        {
-            piano.setManaged(true); piano.setVisible(true);
-        }
     }
 
     private void updtInfos()
     {
         if ( printFromTile == 2 ) printFromTile = 0;
         chordNameLabel.setText(model.selectedChord.getName());
-        resetKeys();
-        colorizeKeys();
+        this.model.chordSorterController.resetKeys();
+        this.model.chordSorterController.colorizeKeys();
     }
 
     private void saveChord()
@@ -165,20 +136,6 @@ public class ChordMakerController extends Controller implements Initializable {
         if ( model != null && model.selectedChord != null && printFromTile != 1 )
             model.chordSorterController.changeSelectedTileChord(model.selectedChord);
 
-    }
-
-    private void resetKeys()
-    {
-        for (Pane aNotesPane : notesPane) aNotesPane.setStyle(null);
-    }
-
-    private void colorizeKeys()
-    {
-        ArrayList<Integer> notes = model.selectedChord.getNotes();
-        for (Object note : notes) {
-            int notePaneIndex = (int) note - 60;
-            notesPane[notePaneIndex].setStyle("-fx-background-color: red");
-        }
     }
 
 
@@ -216,10 +173,10 @@ public class ChordMakerController extends Controller implements Initializable {
         fireRadio(ch);
 
         chordNameLabel.setText(ch.getName());
-        for (Pane aNotesPane : notesPane) aNotesPane.setStyle(null);
+        for (Pane aNotesPane : this.model.chordSorterController.notesPane) aNotesPane.setStyle(null);
         for (int note : ch.getNotes()) {
             int notePaneIndex = note - 60;
-            notesPane[notePaneIndex].setStyle("-fx-background-color: red");
+            this.model.chordSorterController.notesPane[notePaneIndex].setStyle("-fx-background-color: red");
         }
 
         printFromTile = 2;

@@ -173,7 +173,6 @@ public class MainController extends Controller
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/" + viewName));
         Node newPane = fxmlLoader.load();
 
-
         /* On charge le controller et on lui passe le model */
         Controller ctrl = fxmlLoader.getController();
 

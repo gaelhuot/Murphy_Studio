@@ -5,11 +5,14 @@ import Objects.Accord;
 import Objects.Tile;
 import Objects.DragResizer;
 import javafx.event.Event;
+import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -21,6 +24,7 @@ public class ChordSorterController extends Controller {
 
     public Button emptyButton;
     public Button randomButton;
+    public AnchorPane chordSorterPane;
 
     private MainModel model;
 
@@ -37,6 +41,11 @@ public class ChordSorterController extends Controller {
     private boolean isRandomTile = false;
     private boolean isEmptyTile = false;
 
+    @FXML
+    private Pane notePane1,notePane2,notePane3,notePane4,notePane5,notePane6,notePane7,notePane8,notePane9,notePane10,notePane11,notePane12,notePane13,notePane14,notePane15,notePane16,notePane17,notePane18,notePane19,notePane20,notePane21,notePane22,notePane23,notePane24,notePane25,notePane26,notePane27,notePane28,notePane29,notePane30,notePane31,notePane32,notePane33,notePane34,notePane35,notePane36;
+    public Pane piano;
+    public Pane[] notesPane;
+
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
@@ -46,7 +55,48 @@ public class ChordSorterController extends Controller {
         deleteBtn.setVisible(false);
         tileContainer.setSpacing(5);
 
+        notesPane = new Pane[]{notePane1,notePane2,notePane3,notePane4,notePane5,notePane6,notePane7,notePane8,notePane9,notePane10,notePane11,notePane12,notePane13,notePane14,notePane15,notePane16,notePane17,notePane18,notePane19,notePane20,notePane21,notePane22,notePane23,notePane24,notePane25,notePane26,notePane27,notePane28,notePane29,notePane30,notePane31,notePane32,notePane33,notePane34,notePane35,notePane36};
+
         initBtnsEvent();
+
+        chordSorterPane.heightProperty().addListener((obs, oldVal, newVal) ->
+        {
+            checkPianoSize();
+            System.out.println(newVal);
+        });
+
+        chordSorterPane.widthProperty().addListener((obs, oldVal, newVal) ->
+        {
+            checkPianoSize();
+        });
+
+        checkPianoSize();
+    }
+
+    private void checkPianoSize()
+    {
+        if (this.chordSorterPane.heightProperty().getValue() < 320 || this.chordSorterPane.widthProperty().getValue() < 875)
+        {
+            piano.setManaged(false); piano.setVisible(false);
+        }
+        else
+        {
+            piano.setManaged(true); piano.setVisible(true);
+        }
+    }
+
+    public void resetKeys()
+    {
+        for (Pane aNotesPane : notesPane) aNotesPane.setStyle(null);
+    }
+
+    public void colorizeKeys()
+    {
+        ArrayList<Integer> notes = model.selectedChord.getNotes();
+        for (Object note : notes) {
+            int notePaneIndex = (int) note - 60;
+            notesPane[notePaneIndex].setStyle("-fx-background-color: red");
+        }
     }
 
     private void createTile(MouseEvent event)

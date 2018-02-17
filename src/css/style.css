@@ -304,6 +304,15 @@
   -fx-fill: -fx-secondary-accent-color-3;
 }
 
+.NOIR{
+    -fx-background-color: black;
+    -fx-border-color: #000;
+}
+
+.BLANC{
+    -fx-background-color: white;
+    -fx-border-color: #000;
+}
 
 .button:focused,
 .toggle-button:focused,
