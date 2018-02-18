@@ -74,7 +74,7 @@ public class ChordSorterController extends Controller {
 
     private void checkPianoSize()
     {
-        if (this.chordSorterPane.heightProperty().getValue() < this.chordSorterPane.getPrefHeight()
+        if (this.chordSorterPane.heightProperty().getValue() < this.chordSorterPane.getPrefHeight() - 100
                 || this.chordSorterPane.widthProperty().getValue() < this.chordSorterPane.getPrefWidth())
         {
             piano.setManaged(false); piano.setVisible(false);

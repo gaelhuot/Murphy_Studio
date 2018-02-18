@@ -52,7 +52,7 @@
             <Button fx:id="randomButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Random" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
          </children>
       </GridPane>
-      <BorderPane layoutX="5.0" layoutY="187.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <BorderPane layoutX="5.0" layoutY="187.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="164.0">
          <bottom>
             <Pane fx:id="piano" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="135.0" prefWidth="839.0" BorderPane.alignment="CENTER">
                 <Pane fx:id="notePane1" layoutY="1.0" prefHeight="133.0" prefWidth="40.0" styleClass="BLANC" />
