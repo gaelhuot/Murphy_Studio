@@ -40,6 +40,7 @@ public class ChordSorterController extends Controller {
 
     private boolean isRandomTile = false;
     private boolean isEmptyTile = false;
+    private boolean pianoVisible;
 
     @FXML
     private Pane notePane1,notePane2,notePane3,notePane4,notePane5,notePane6,notePane7,notePane8,notePane9,notePane10,notePane11,notePane12,notePane13,notePane14,notePane15,notePane16,notePane17,notePane18,notePane19,notePane20,notePane21,notePane22,notePane23,notePane24,notePane25,notePane26,notePane27,notePane28,notePane29,notePane30,notePane31,notePane32,notePane33,notePane34,notePane35,notePane36;
@@ -77,11 +78,19 @@ public class ChordSorterController extends Controller {
         if (this.chordSorterPane.heightProperty().getValue() < this.chordSorterPane.getPrefHeight() - 100
                 || this.chordSorterPane.widthProperty().getValue() < this.chordSorterPane.getPrefWidth())
         {
-            piano.setManaged(false); piano.setVisible(false);
+            if(pianoVisible)
+            {
+                piano.setManaged(false); piano.setVisible(false);
+                pianoVisible = false;
+            }
         }
         else
         {
-            piano.setManaged(true); piano.setVisible(true);
+            if(!pianoVisible)
+            {
+                piano.setManaged(true); piano.setVisible(true);
+                pianoVisible = true;
+            }
         }
     }
 
