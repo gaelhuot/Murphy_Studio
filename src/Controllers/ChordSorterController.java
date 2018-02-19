@@ -30,7 +30,7 @@ public class ChordSorterController extends Controller {
 
     public ImageView crossAdd;
     public HBox tileContainer;
-    public ListView tileList;
+    public ListView<Object> tileList;
     public Button deleteBtn;
     public Button togglePlayTrack;
 
@@ -126,21 +126,13 @@ public class ChordSorterController extends Controller {
 
         rightClickContext.getItems().addAll(menuItemDelete, menuItemSetRandom, seperator, menuItemRythm1, menuItemRythm2, menuItemRythm3);
 
-        menuItemDelete.setOnAction(MouseEvent -> {
-            if ( selected == null ) return;
-
-            tileContainer.getChildren().remove(selected);
-            tiles.remove(selected);
-
-            if ( tileContainer.getChildren() == null )
-                deleteBtn.setVisible(false);
-
-            selected = null;
-        });
+        menuItemDelete.setOnAction(MouseEvent -> deleteSelected());
 
         // On affiche le Context Menu
         newTile.setOnContextMenuRequested(contextMenuEvent -> rightClickContext.show(newTile, contextMenuEvent.getScreenX(), contextMenuEvent.getScreenY()));
+
         tileList.getItems().add(newTile);
+
         tiles.add(newTile);
         initEventHandler(newTile);
         setSelected(newTile);

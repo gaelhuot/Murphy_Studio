@@ -147,7 +147,6 @@ public class ChordMakerController extends Controller implements Initializable {
         for ( Map.Entry<String, Method> entry : listToFunc.entrySet() )
             if (entry.getValue().getName().equals(accord.getMethodCalled().getName())) name = entry.getKey();
 
-        System.out.println("RETURN " + name);
         return name;
     }
 
