@@ -15,7 +15,7 @@ public class Player {
     public CustomReceiver receiver;
     public Synthesizer synthesizer;
 
-    public SimpleIntegerProperty master_volume;
+    public int master_volume;
 
     private int tick = 4;
     public int tempo = 200;
@@ -24,7 +24,6 @@ public class Player {
     private Track track;
 
     public Player() throws MidiUnavailableException {
-        master_volume = new SimpleIntegerProperty(50);
         initSequencer();
     }
 
@@ -81,6 +80,7 @@ public class Player {
         for ( int i = 0; i < partition.length; i++ )
             for (Object note : partition[i].getNotes() ) addNoteToTrack((Integer) note, i * 8, 93, 8);
 
+        synthesizer.getChannels()[0].controlChange(7, master_volume);
         sequencer.setSequence(sequence);
         sequencer.setTempoInBPM(tempo);
         sequencer.setLoopCount(160);
@@ -121,6 +121,23 @@ public class Player {
 
     public void setVolume(int v) {
         // C'est horrible mais je vois que ça
+        this.master_volume = v;
         synthesizer.getChannels()[0].controlChange(7, v);
+    }
+
+    public void startRecording() {
+        try {
+            this.sequence = new Sequence(Sequence.PPQ, tick);
+            this.sequencer.setSequence(sequence);
+            this.sequencer.startRecording();
+        } catch (InvalidMidiDataException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Track stopRecording() {
+
+        System.out.println(Arrays.toString(this.sequence.getTracks()));
+        return null;
     }
 }

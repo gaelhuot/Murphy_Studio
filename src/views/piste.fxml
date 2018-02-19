@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="128.0" prefWidth="500.0" styleClass="piste" stylesheets="@../css/style.css" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PisteController">
    <left>
@@ -17,11 +18,12 @@
          <children>
             <HBox>
                <children>
-                  <TextField fx:id="piste_name_input">
+                  <TextField fx:id="piste_name_input" prefHeight="31.0" prefWidth="116.0">
                      <HBox.margin>
                         <Insets right="5.0" />
                      </HBox.margin>
                   </TextField>
+                  <Button fx:id="recordPisteBtn"  mnemonicParsing="false" styleClass="button-delete" text="○" />
                   <Button fx:id="deletePistePtn" mnemonicParsing="false" styleClass="button-delete" text="x" />
                </children>
             </HBox>
