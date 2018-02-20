@@ -45,6 +45,8 @@ public class Main extends Application {
             mainController.exit();
             System.exit(0);
         });
+
+        scene.setOnKeyPressed(ke -> mainController.setKeyPressed(ke.getCode()) );
     }
 
     public static Stage getPrimaryStage(){

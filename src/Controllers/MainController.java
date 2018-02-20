@@ -16,6 +16,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -224,5 +229,24 @@ public class MainController extends Controller
         this.popup_about_vbox.getStyleClass().remove("dark");
         this.popup_about_vbox.getStyleClass().remove("light");
         this.popup_about_vbox.getStyleClass().add("light");
+    }
+
+    public void setKeyPressed(KeyCode code) {
+        switch ( code )
+        {
+            case DELETE:
+                model.chordSorterController.deleteSelected();
+                break;
+            case ADD:
+                model.chordSorterController.isRandomTile = true;
+                model.chordSorterController.createTile();
+                break;
+            case PAGE_DOWN:
+                model.chordSorterController.previousTile();
+                break;
+            case PAGE_UP:
+                model.chordSorterController.nextTile();
+                break;
+        }
     }
 }
