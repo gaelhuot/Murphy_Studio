@@ -2,20 +2,13 @@ package Controllers;
 
 import Models.ChordModel;
 import Models.MainModel;
-import Objects.Accord;
 import Objects.Player;
-import Objects.CustomReceiver;
 import application.Main;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.*;
-import javafx.scene.text.Text;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -24,9 +17,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
-import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MidiUnavailableException;
 import java.io.File;
 import java.io.IOException;
@@ -61,7 +52,7 @@ public class MainController extends Controller
     public MenuItem menu_help_about;
 
     private Stage popup_about;
-    private VBox popup_about_vbox;
+    private Pane popup_about_container;
 
     private Scene scene;
 
@@ -113,16 +104,16 @@ public class MainController extends Controller
         this.popup_about.setTitle("About");
         this.popup_about.initModality(Modality.APPLICATION_MODAL);
         this.popup_about.initOwner(Main.getPrimaryStage());
-        this.popup_about_vbox = new VBox(20);
+        this.popup_about_container = new Pane();
 
 
+        try {
+            loadView("about.fxml", popup_about_container);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-
-
-//        popup_about_vbox.getStylesheets().add("/css/style.css");
-//        popup_about_vbox.getStyleClass().add("background");
-//        popup_about_vbox.getChildren().add(new Text("This is a Dialog"));
-//        Scene popupScene = new Scene(root, 300, 200);
+        Scene popupScene = new Scene(popup_about_container, 300, 200);
         this.popup_about.setScene(popupScene);
 
 
@@ -182,10 +173,13 @@ public class MainController extends Controller
         /* On charge le controller et on lui passe le model */
         Controller ctrl = fxmlLoader.getController();
 
-        if ( ctrl.getClass() == ChordMakerController.class ) model.chordMakerController = (ChordMakerController) ctrl;
-        if ( ctrl.getClass() == ChordSorterController.class ) model.chordSorterController = (ChordSorterController) ctrl;
-        if ( ctrl.getClass() == PisteLayoutController.class ) model.pisteLayoutController = (PisteLayoutController) ctrl;
-        ctrl.setModel(model);
+        if(ctrl != null)
+        {
+            if ( ctrl.getClass() == ChordMakerController.class ) model.chordMakerController = (ChordMakerController) ctrl;
+            if ( ctrl.getClass() == ChordSorterController.class ) model.chordSorterController = (ChordSorterController) ctrl;
+            if ( ctrl.getClass() == PisteLayoutController.class ) model.pisteLayoutController = (PisteLayoutController) ctrl;
+            ctrl.setModel(model);
+        }
 
         /* On l'affiche dans le container */
         container.getChildren().setAll(newPane);
@@ -216,9 +210,9 @@ public class MainController extends Controller
         this.main_pane.getStyleClass().remove("light");
         this.main_pane.getStyleClass().remove("dark");
         this.main_pane.getStyleClass().add("dark");
-        this.popup_about_vbox.getStyleClass().remove("light");
-        this.popup_about_vbox.getStyleClass().remove("dark");
-        this.popup_about_vbox.getStyleClass().add("dark");
+        this.popup_about_container.getStyleClass().remove("light");
+        this.popup_about_container.getStyleClass().remove("dark");
+        this.popup_about_container.getStyleClass().add("dark");
     }
 
     public void setLightTheme()
@@ -226,9 +220,9 @@ public class MainController extends Controller
         this.main_pane.getStyleClass().remove("dark");
         this.main_pane.getStyleClass().remove("light");
         this.main_pane.getStyleClass().add("light");
-        this.popup_about_vbox.getStyleClass().remove("dark");
-        this.popup_about_vbox.getStyleClass().remove("light");
-        this.popup_about_vbox.getStyleClass().add("light");
+        this.popup_about_container.getStyleClass().remove("dark");
+        this.popup_about_container.getStyleClass().remove("light");
+        this.popup_about_container.getStyleClass().add("light");
     }
 
     public void setKeyPressed(KeyCode code) {
