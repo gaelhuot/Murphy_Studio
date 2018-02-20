@@ -67,8 +67,8 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="View">
                   <items>
-                    <MenuItem fx:id="menu_view_set_light_theme" mnemonicParsing="false" text="Set light theme" />
-                        <MenuItem fx:id="menu_view_set_dark_theme" mnemonicParsing="false" text="Set dark theme" />
+                    <MenuItem fx:id="menu_view_set_light_theme" mnemonicParsing="false" text="Set Light Theme" />
+                        <MenuItem fx:id="menu_view_set_dark_theme" mnemonicParsing="false" text="Set Dark Theme" />
                   </items>
                 </Menu>
                   <Menu mnemonicParsing="false" text="Options">
