@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
@@ -18,10 +19,17 @@
       </VBox>
    </bottom>
    <top>
-      <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="360.0" style="-fx-background-color: red;" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="360.0" BorderPane.alignment="CENTER">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nom du programme" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="[Inserer nom du programme]" />
          </children>
       </VBox>
    </top>
+   <center>
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="128.0" prefWidth="128.0" style="-fx-background-color: red;" BorderPane.alignment="CENTER">
+         <children>
+            <Text layoutX="20.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="[Inserer logo]" />
+         </children>
+      </Pane>
+   </center>
 </BorderPane>
