@@ -65,11 +65,20 @@
 .dark .background
 {
   -fx-background-color: -fx-dark-blue-1;
-  -fx-text-fill: #FFFFFF;
 }
 .light .background
 {
   -fx-background-color: #FFFFFF;
+}
+
+.light Text
+{
+  -fx-fill: -fx-dark-blue-5;
+}
+
+.dark Text
+{
+  -fx-fill: #FFFFFF;
 }
 
 .menu-bar

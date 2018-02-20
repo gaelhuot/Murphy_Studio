@@ -113,9 +113,10 @@ public class MainController extends Controller
             e.printStackTrace();
         }
 
-        Scene popupScene = new Scene(popup_about_container, 300, 200);
-        this.popup_about.setScene(popupScene);
 
+        Scene popupScene = new Scene(popup_about_container, 360, 250);
+        this.popup_about.setScene(popupScene);
+//        this.popup_about.setResizable(false);
 
         sequencer_tempo.setText("120");
         model.player.sequencer.setTempoInBPM(120);
