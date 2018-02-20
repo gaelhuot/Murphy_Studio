@@ -11,13 +11,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
@@ -55,6 +55,8 @@ public class MainController extends Controller
     public SplitPane splitPaneVertical;
     public MenuItem menu_help_about;
 
+    private Stage popup_about;
+    private VBox popup_about_vbox;
 
     private Scene scene;
 
@@ -90,8 +92,9 @@ public class MainController extends Controller
         menu_edit_redo.setOnAction(e -> System.out.println("Redo"));
         menu_view_set_dark_theme.setOnAction(e -> {this.setDarkTheme();});
         menu_view_set_light_theme.setOnAction(e -> {this.setLightTheme();});
-        menu_help_about.setOnAction(e -> {System.out.println("About");});
-        
+        menu_help_about.setOnAction(e -> {popup_about.show();});
+
+
 
         /* On charge la vue par defaut (piste_layout) */
         try {
@@ -100,6 +103,22 @@ public class MainController extends Controller
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        this.popup_about = new Stage();
+        this.popup_about.setTitle("About");
+        this.popup_about.initModality(Modality.APPLICATION_MODAL);
+        this.popup_about.initOwner(Main.getPrimaryStage());
+        this.popup_about_vbox = new VBox(20);
+
+
+
+
+
+//        popup_about_vbox.getStylesheets().add("/css/style.css");
+//        popup_about_vbox.getStyleClass().add("background");
+//        popup_about_vbox.getChildren().add(new Text("This is a Dialog"));
+//        Scene popupScene = new Scene(root, 300, 200);
+        this.popup_about.setScene(popupScene);
 
 
         sequencer_tempo.setText("120");
@@ -125,23 +144,6 @@ public class MainController extends Controller
         });
 
         master_volume_slider.valueProperty().addListener((observable, oldValue, newValue) -> {
-                  /*░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▄███▄▄▄░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-                    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▄▄▄██▀▀▀▀███▄░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-                    ░░░░░░░░░░░░░░░░░▄▀▀▀▄░░░░░░░░░░░░▄▀▀░░░░░░░░░░░▀█░░░░░░░░░▄▀▀▀▄░░░░░░░░░░░░░░░░░
-                    ░░░░░░░░░░░░░░░░▌░░░◐░▀███▄░░░░▄▄▀░░░░░░░░░░░░░░░▀█░░░▄███▀░◐░░░▌░░░░░░░░░░░░░░░░
-                    ░░░░░░░░░░░░░░░░▐░░░░░▌░░░░░░░█░░░░░▀▄░░▄▀░░░░░░░░█░░░░░░░▌░░░░░▐░░░░░░░░░░░░░░░░
-                    ░░░░░░░░░░░░░░░░▐░░░░░▐░░░░░░░▐██▄░░▀▄▀▀▄▀░░▄██▀░▐▌░░░░░░░▐░░░░░▐░░░░░░░░░░░░░░░░
-                    ░░░░░░░░░░░░░░▄▄▐░░░░░▌░░░░░░░█▀█░▀░░░▀▀░░░▀░█▀░░▐▌░░░░░░░▌░░░░░▐▄▄░░░░░░░░░░░░░░
-                    ░░░░░░░░░▄▀▀▀▀▒▒▀▄░░░░▌░░░░░░░█░░▀▐░░░░░░░░▌▀░░░░░█░░░░░░░▌░░░░▄▀▒▒▀▀▀▀▄░░░░░░░░░
-                    ░░░░░░░▄▀▀▒▒▒▒▒▒▒▒▐░░░░▐░░░░░░█░░░░░░░░░░░░░░░░░░░█░░░░░░▐░░░░▐▒▒▒▒▒▒▒▒▀▀▄░░░░░░░
-                    ░░░░░▄▀▒▒▒▒▒▒▒▒▒▒▄▐░░░░▐░░░░░░░█░░▀▄░░░░▄▀░░░░░░░░█░░░░░░▐░░░░▐▄▒▒▒▒▒▒▒▒▒▒▀▄░░░░░
-                    ░░░▄▀▒▒▒▒▒▒▒▒▒▒▄▀░░░░▄▀░░░░░░░░█░░░░░░░░░░░▄▄░░░░█░░░░░░░░▀▄░░░░▀▄▒▒▒▒▒▒▒▒▒▒▀▄░░░
-                    ░▄▀▄▄▄▄▄▄▄▄▄▄▄█▄▄▄▄▄▀░░░░░░░░░░░█▀██▀▀▀▀██▀░░░░░░█░░░░░░░░░░▀▄▄▄▄▄█▄▄▄▄▄▄▄▄▄▄▄▀▄░
-                    ░░░░░░░░░░░▌▌░▌▌░░░░░░░░░░░░░░░░█░░▀████▀░░░░░░░█░░░░░░░░░░░░░░░░▌▌░▌▌░░░░░░░░░░░
-                    ░░░░░░░░░░░▌▌░▌▌░░░░░░░░░░░░░░░░░█░░░░░░░░░░░░▄█░░░░░░░░░░░░░░░░░▌▌░▌▌░░░░░░░░░░░
-                    ░░░░░░░░░░░▌▌▄▌▌▄▄░░░░░░░░░░░░░░░░██░░░░░█▄▄▀▀░█░░░░░░░░░░░░░░░▄▄▌▌▄▌▌░░░░░░░░░░░
-                    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▀▀█▀▀▀▀░░░░░░█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-                    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█░░░░░░░░░░░░█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░*/
             model.player.setVolume(newValue.intValue());
         });
 
@@ -206,15 +208,21 @@ public class MainController extends Controller
     public void setDarkTheme()
     {
         //Besoin de retirer la classe dark si elle est déjà présente pour ne pas la dupliquer
-        main_pane.getStyleClass().remove("light");
-        main_pane.getStyleClass().remove("dark");
-        main_pane.getStyleClass().add("dark");
+        this.main_pane.getStyleClass().remove("light");
+        this.main_pane.getStyleClass().remove("dark");
+        this.main_pane.getStyleClass().add("dark");
+        this.popup_about_vbox.getStyleClass().remove("light");
+        this.popup_about_vbox.getStyleClass().remove("dark");
+        this.popup_about_vbox.getStyleClass().add("dark");
     }
 
     public void setLightTheme()
     {
-        main_pane.getStyleClass().remove("dark");
-        main_pane.getStyleClass().remove("light");
-        main_pane.getStyleClass().add("light");
+        this.main_pane.getStyleClass().remove("dark");
+        this.main_pane.getStyleClass().remove("light");
+        this.main_pane.getStyleClass().add("light");
+        this.popup_about_vbox.getStyleClass().remove("dark");
+        this.popup_about_vbox.getStyleClass().remove("light");
+        this.popup_about_vbox.getStyleClass().add("light");
     }
 }

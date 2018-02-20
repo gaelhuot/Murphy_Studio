@@ -39,6 +39,7 @@
 .dark .background
 {
   -fx-background-color: -fx-dark-blue-1;
+  -fx-text-fill: #FFFFFF;
 }
 .light .background
 {
