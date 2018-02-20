@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -217,5 +218,24 @@ public class MainController extends Controller
         main_pane.getStyleClass().remove("dark");
         main_pane.getStyleClass().remove("light");
         main_pane.getStyleClass().add("light");
+    }
+
+    public void setKeyPressed(KeyCode code) {
+        switch ( code )
+        {
+            case DELETE:
+                model.chordSorterController.deleteSelected();
+                break;
+            case ADD:
+                model.chordSorterController.isRandomTile = true;
+                model.chordSorterController.createTile();
+                break;
+            case PAGE_DOWN:
+                model.chordSorterController.previousTile();
+                break;
+            case PAGE_UP:
+                model.chordSorterController.nextTile();
+                break;
+        }
     }
 }

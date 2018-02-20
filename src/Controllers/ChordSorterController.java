@@ -38,7 +38,7 @@ public class ChordSorterController extends Controller {
 
     private ArrayList<Tile> tiles;
 
-    private boolean isRandomTile = false;
+    public boolean isRandomTile = false;
     private boolean isEmptyTile = false;
     private boolean pianoVisible;
 
@@ -108,7 +108,7 @@ public class ChordSorterController extends Controller {
         }
     }
 
-    private void createTile(MouseEvent event)
+    public void createTile()
     {
         // Création de la tile + composants (Rectangle, Label)
         Accord tmpAccord = new Accord();
@@ -146,7 +146,6 @@ public class ChordSorterController extends Controller {
         initEventHandler(newTile);
         setSelected(newTile);
         deleteBtn.setVisible(true);
-        event.consume();
     }
 
     private void initEventHandler(Tile newTile)
@@ -246,16 +245,16 @@ public class ChordSorterController extends Controller {
 
         emptyButton.setOnMouseClicked(event -> {
             isEmptyTile = true;
-            createTile(event);
+            createTile();
         });
 
         randomButton.setOnMouseClicked(event -> {
             isRandomTile = true;
-            createTile(event);
+            createTile();
         });
     }
 
-    private void deleteSelected()
+    public void deleteSelected()
     {
         //tileContainer.getChildren().remove(selected);
         tiles.remove(selected);
@@ -331,10 +330,31 @@ public class ChordSorterController extends Controller {
         selected.setName(accord.getName());
     }
 
+    public int getSelectedIndex()
+    {
+        for ( int i = 0; i < tiles.size(); i++ )
+            if ( tiles.get(i) == selected ) return i;
+        return -1;
+    }
+
+    public void nextTile()
+    {
+        int index = getSelectedIndex();
+        if ( index == tiles.size()-1 ) return;
+        setSelected(tiles.get(index));
+    }
+
+    public void previousTile()
+    {
+        int index = getSelectedIndex();
+        if ( index == 0 ) return;
+        setSelected(tiles.get(index));
+    }
+
 
     public void setModel(MainModel model) {
         this.model = model;
-        crossAdd.setOnMouseClicked(this::createTile);
+        crossAdd.setOnMouseClicked(event -> createTile());
 
         initTrackBtn();
     }
