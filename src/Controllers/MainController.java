@@ -53,6 +53,7 @@ public class MainController extends Controller
 
     public SplitPane splitPaneHorizontal;
     public SplitPane splitPaneVertical;
+    public MenuItem menu_help_about;
 
 
     private Scene scene;
@@ -87,12 +88,10 @@ public class MainController extends Controller
         menu_file_quit.setOnAction(e -> exit());
         menu_edit_undo.setOnAction(e -> System.out.println("Undo"));
         menu_edit_redo.setOnAction(e -> System.out.println("Redo"));
-        menu_view_set_dark_theme.setOnAction(e -> {
-            this.setDarkTheme();
-        });
-        menu_view_set_light_theme.setOnAction(e -> {
-            this.setLightTheme();
-        });
+        menu_view_set_dark_theme.setOnAction(e -> {this.setDarkTheme();});
+        menu_view_set_light_theme.setOnAction(e -> {this.setLightTheme();});
+        menu_help_about.setOnAction(e -> {System.out.println("About");});
+        
 
         /* On charge la vue par defaut (piste_layout) */
         try {
