@@ -32,7 +32,7 @@ public class Main extends Application {
         mainController.setLightTheme();
 
         Scene scene = new Scene(root);
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Murphy Studio");
         primaryStage.setScene(scene);
         primaryStage.setMinWidth(root.minWidth(-1));
         primaryStage.setMinHeight(root.minHeight(-1) + 50);

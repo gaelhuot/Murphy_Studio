@@ -22,7 +22,7 @@
    <top>
       <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="360.0" BorderPane.alignment="CENTER">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="[Inserer nom du programme]" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Murphy Studio" />
          </children>
       </VBox>
    </top>
