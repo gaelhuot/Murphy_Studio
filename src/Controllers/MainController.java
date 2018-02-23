@@ -22,7 +22,8 @@ import javax.sound.midi.MidiUnavailableException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.*;
+import java.util.Objects;
+import java.util.ResourceBundle;
 
 public class MainController extends Controller
 {
@@ -42,27 +43,24 @@ public class MainController extends Controller
     public MenuItem menu_view_set_dark_theme;
     public MenuItem menu_help_about;
     public MenuItem menu_options_options;
-    public MenuItem menu_options_options;
 
     public Slider master_volume_slider;
     public TextField sequencer_tempo;
 
-    public AnchorPane secondContainer;
-    public AnchorPane sideContainer;
 
     public SplitPane splitPaneHorizontal;
     public SplitPane splitPaneVertical;
 
     private Stage popup;
-    private Pane popup_container;
 
     private Scene scene;
 
-    /* Container */
-    @FXML
-    private BorderPane workspace_pane;
+    /* Containers */
     @FXML
     private Pane mainContainer;
+    public AnchorPane secondContainer;
+    public AnchorPane sideContainer;
+    private Pane popup_container;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
