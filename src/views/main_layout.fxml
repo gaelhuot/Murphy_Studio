@@ -63,6 +63,7 @@
                   <items>
                     <MenuItem fx:id="menu_edit_undo" mnemonicParsing="false" text="Undo" />
                     <MenuItem fx:id="menu_edit_redo" mnemonicParsing="false" text="Redo" />
+                    <MenuItem fx:id="menu_edit_options" mnemonicParsing="false" text="Options" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="View">

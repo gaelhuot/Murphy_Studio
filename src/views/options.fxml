@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane prefHeight="250.0" prefWidth="360.0" styleClass="background" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.OptionsController">
+   <bottom>
+      <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="360.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Antoine Bachetti" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gael Huot" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Thibaud Jeannin" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Université de Franche Comté" />
+            <Hyperlink fx:id="link_github" text="GitHub" />
+         </children>
+      </VBox>
+   </bottom>
+   <top>
+      <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="360.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="[Inserer nom du programme]" />
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <ImageView fitHeight="128.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+         <image>
+            <Image url="@../icon.png" />
+         </image>
+      </ImageView>
+   </center>
+</BorderPane>

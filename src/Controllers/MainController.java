@@ -50,9 +50,10 @@ public class MainController extends Controller
     public SplitPane splitPaneHorizontal;
     public SplitPane splitPaneVertical;
     public MenuItem menu_help_about;
+    public MenuItem menu_edit_options;
 
-    private Stage popup_about;
-    private Pane popup_about_container;
+    private Stage popup;
+    private Pane popup_container;
 
     private Scene scene;
 
@@ -86,9 +87,10 @@ public class MainController extends Controller
         menu_file_quit.setOnAction(e -> exit());
         menu_edit_undo.setOnAction(e -> System.out.println("Undo"));
         menu_edit_redo.setOnAction(e -> System.out.println("Redo"));
+        menu_edit_options.setOnAction(e -> setPopup("options.fxml", 360, 250));
         menu_view_set_dark_theme.setOnAction(e -> {this.setDarkTheme();});
         menu_view_set_light_theme.setOnAction(e -> {this.setLightTheme();});
-        menu_help_about.setOnAction(e -> {popup_about.show();});
+        menu_help_about.setOnAction(e -> setPopup("about.fxml", 360, 250));
 
 
 
@@ -100,23 +102,14 @@ public class MainController extends Controller
             e.printStackTrace();
         }
 
-        this.popup_about = new Stage();
-        this.popup_about.setTitle("About");
-        this.popup_about.initModality(Modality.APPLICATION_MODAL);
-        this.popup_about.initOwner(Main.getPrimaryStage());
-        this.popup_about_container = new Pane();
+        this.popup = new Stage();
+        this.popup.initModality(Modality.APPLICATION_MODAL);
+        this.popup.initOwner(Main.getPrimaryStage());
+        this.popup_container = new Pane();
 
-
-        try {
-            loadView("about.fxml", popup_about_container);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-        Scene popupScene = new Scene(popup_about_container, 360, 250);
-        this.popup_about.setScene(popupScene);
-        this.popup_about.setResizable(false);
+        Scene popup_scene = new Scene(popup_container);
+        this.popup.setScene(popup_scene);
+        this.popup.setResizable(false);
 
         sequencer_tempo.setText("120");
         model.player.sequencer.setTempoInBPM(120);
@@ -211,9 +204,9 @@ public class MainController extends Controller
         this.main_pane.getStyleClass().remove("light");
         this.main_pane.getStyleClass().remove("dark");
         this.main_pane.getStyleClass().add("dark");
-        this.popup_about_container.getStyleClass().remove("light");
-        this.popup_about_container.getStyleClass().remove("dark");
-        this.popup_about_container.getStyleClass().add("dark");
+        this.popup_container.getStyleClass().remove("light");
+        this.popup_container.getStyleClass().remove("dark");
+        this.popup_container.getStyleClass().add("dark");
     }
 
     public void setLightTheme()
@@ -221,9 +214,25 @@ public class MainController extends Controller
         this.main_pane.getStyleClass().remove("dark");
         this.main_pane.getStyleClass().remove("light");
         this.main_pane.getStyleClass().add("light");
-        this.popup_about_container.getStyleClass().remove("dark");
-        this.popup_about_container.getStyleClass().remove("light");
-        this.popup_about_container.getStyleClass().add("light");
+        this.popup_container.getStyleClass().remove("dark");
+        this.popup_container.getStyleClass().remove("light");
+        this.popup_container.getStyleClass().add("light");
+    }
+
+    public void setPopup(String viewName, int width, int height)
+    {
+        String title = viewName.substring(0, 1).toUpperCase() + viewName.substring(1).replace(".fxml", "");
+        this.popup.setTitle(title);
+
+        try {
+            loadView(viewName, popup_container);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        popup.setHeight(height+30);
+        popup.setWidth(width);
+        popup.show();
     }
 
     public void setKeyPressed(KeyCode code) {
