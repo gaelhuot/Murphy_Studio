@@ -200,23 +200,24 @@ public class MainController extends Controller
 
     public void setDarkTheme()
     {
-        //Besoin de retirer la classe dark si elle est déjà présente pour ne pas la dupliquer
-        this.main_pane.getStyleClass().remove("light");
-        this.main_pane.getStyleClass().remove("dark");
+        this.resetTheme();
         this.main_pane.getStyleClass().add("dark");
-        this.popup_container.getStyleClass().remove("light");
-        this.popup_container.getStyleClass().remove("dark");
         this.popup_container.getStyleClass().add("dark");
     }
 
     public void setLightTheme()
     {
+        this.resetTheme();
+        this.main_pane.getStyleClass().add("light");
+        this.popup_container.getStyleClass().add("light");
+    }
+
+    //Besoin de retirer la classe dark si elle est déjà présente pour ne pas la dupliquer
+    public void resetTheme(){
         this.main_pane.getStyleClass().remove("dark");
         this.main_pane.getStyleClass().remove("light");
-        this.main_pane.getStyleClass().add("light");
         this.popup_container.getStyleClass().remove("dark");
         this.popup_container.getStyleClass().remove("light");
-        this.popup_container.getStyleClass().add("light");
     }
 
     public void setPopup(String viewName, int width, int height)
