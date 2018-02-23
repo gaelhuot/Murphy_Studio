@@ -87,7 +87,7 @@ public class MainController extends Controller
         menu_file_quit.setOnAction(e -> exit());
         menu_edit_undo.setOnAction(e -> System.out.println("Undo"));
         menu_edit_redo.setOnAction(e -> System.out.println("Redo"));
-        menu_edit_options.setOnAction(e -> setPopup("options.fxml", 360, 250));
+        menu_edit_options.setOnAction(e -> setPopup("options.fxml", 600, 400));
         menu_view_set_dark_theme.setOnAction(e -> {this.setDarkTheme();});
         menu_view_set_light_theme.setOnAction(e -> {this.setLightTheme();});
         menu_help_about.setOnAction(e -> setPopup("about.fxml", 360, 250));
