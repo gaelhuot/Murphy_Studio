@@ -116,7 +116,7 @@ public class MainController extends Controller
 
         Scene popupScene = new Scene(popup_about_container, 360, 250);
         this.popup_about.setScene(popupScene);
-//        this.popup_about.setResizable(false);
+        this.popup_about.setResizable(false);
 
         sequencer_tempo.setText("120");
         model.player.sequencer.setTempoInBPM(120);
