@@ -17,4 +17,15 @@ public class OptionsController extends Controller {
     {
 
     }
+
+    private void init()
+    {
+
+    }
+
+    public void setModel(MainModel model)
+    {
+        this.model = model;
+        init();
+    }
 }
