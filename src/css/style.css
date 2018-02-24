@@ -252,7 +252,7 @@
 
 .dark .list-view
 {
-  -fx-background-color: -fx-dark-blue-5;
+  -fx-background-color: -fx-dark-blue-4;
 }
 
 .dark .list-cell .text
@@ -273,6 +273,10 @@
 .dark .list-cell:odd
 {
   -fx-background-color : -fx-dark-blue-3;
+}
+
+.light .nostripes .list-cell, .dark .nostripes .list-cell{
+  -fx-background-color : transparent;
 }
 
 .light .chord-name .text
