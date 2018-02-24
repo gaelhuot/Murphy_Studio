@@ -110,7 +110,7 @@ public class DragResizer {
             double mousey = event.getY();
 
             System.out.println(mousey);
-            double newHeight = region.getHeight() + (y - mousey);
+            double newHeight = region.getHeight() + (y - mousey*2);
             if(newHeight < MIN_H){
                 region.setHeight(MIN_H);
             }else if (newHeight > MAX_H){
