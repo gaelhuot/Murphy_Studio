@@ -13,6 +13,7 @@ import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -34,7 +35,7 @@ public class ChordSorterController extends Controller {
     public Button deleteBtn;
     public Button togglePlayTrack;
 
-    private Tile selected;
+    private static Tile selected;
 
     private ArrayList<Tile> tiles;
 
@@ -154,7 +155,7 @@ public class ChordSorterController extends Controller {
 
         /* --- <Drag and Drop> --- */
         newTile.setOnDragDetected(event -> {
-            if(DragResizer.isInResizeZone(event)) {
+            if(DragResizer.getStatusResize()) {
                 return;
             }
             setSelected(newTile);
@@ -335,6 +336,14 @@ public class ChordSorterController extends Controller {
         for ( int i = 0; i < tiles.size(); i++ )
             if ( tiles.get(i) == selected ) return i;
         return -1;
+    }
+
+    public static void setTileVelocity(int velocity){
+        selected.setVelocity(velocity);
+    }
+
+    public static void setTileTic(int tic){
+        selected.setTic(tic);
     }
 
     public void nextTile()
