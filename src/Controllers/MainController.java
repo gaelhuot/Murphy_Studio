@@ -154,7 +154,7 @@ public class MainController extends Controller
         }
 
         splitPaneVertical.setDividerPosition(0,0.63);
-        splitPaneHorizontal.setDividerPosition(0, 0.59);
+        splitPaneHorizontal.setDividerPosition(0, 0);
 
     }
 
