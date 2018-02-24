@@ -1,5 +1,6 @@
 package Objects;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -58,6 +59,7 @@ public class Tile extends StackPane {
         this.rectangle.setFill(Color.GRAY);
         this.rectangle.setStroke(Color.DARKGRAY);
         this.rectangle.setStrokeWidth(5);
+        this.setAlignment(Pos.BOTTOM_CENTER);
 
         this.getChildren().addAll(this.rectangle, this.label);
     }
