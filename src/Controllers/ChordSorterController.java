@@ -132,7 +132,7 @@ public class ChordSorterController extends Controller {
         MenuItem menuItemRythm2 = new MenuItem("Rythme 2");
         MenuItem menuItemRythm3 = new MenuItem("Rythme 3");
 
-        rightClickContext.setStyle("-fx-background: #fff");
+        rightClickContext.getStyleClass().add("background");
 
         rightClickContext.getItems().addAll(menuItemDelete, menuItemSetRandom, seperator, menuItemRythm1, menuItemRythm2, menuItemRythm3);
 

@@ -95,11 +95,11 @@
   -fx-fill: -fx-dark-blue-5;
 }
 
-.dark .menu-bar .context-menu
+.dark .context-menu
 {
   -fx-background-color: -fx-dark-blue-4;
 }
-.dark .menu-bar .context-menu .label
+.dark .context-menu .label
 {
   -fx-text-fill: #FFFFFF;
 }
@@ -108,7 +108,7 @@
   -fx-background-color: -fx-dark-blue-3;
 }
 
-.light .menu-bar .context-menu
+.light .context-menu
 {
   -fx-background-color: -fx-secondary-accent-color-4;
 }
