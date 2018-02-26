@@ -11,6 +11,8 @@ public class ExternInterface {
 
     private MidiDevice MidiInput = null;
 
+    private MidiKeyboard midiKeyboard = null;
+
     // Volume interface
     private Mixer mixer = null;
     private Mixer microphone = null;
@@ -57,6 +59,15 @@ public class ExternInterface {
         for (Mixer.Info mixerInfo : mixers) {
             // Getting the speaker
             Mixer mixer = AudioSystem.getMixer(mixerInfo);
+
+            /*
+            System.out.println("SPEAKER : " + mixer.isLineSupported(Port.Info.SPEAKER));
+            System.out.println("MICROPHONE : " + mixer.isLineSupported(Port.Info.MICROPHONE));
+            System.out.println("HEADPHONE : " + mixer.isLineSupported(Port.Info.HEADPHONE));
+            System.out.println("LINE_OUT : " + mixer.isLineSupported(Port.Info.LINE_OUT));
+            System.out.println("LINE_IN : " + mixer.isLineSupported(Port.Info.LINE_IN));
+            System.out.println("COMPACT_DISC : " + mixer.isLineSupported(Port.Info.COMPACT_DISC));
+            */
 
             // HEADPHONE SPEAKER
             if (mixer.isLineSupported(Port.Info.SPEAKER)) {
@@ -111,12 +122,18 @@ public class ExternInterface {
 
     public void setMidiDevice(MidiDevice device)
     {
+        if ( this.midiKeyboard != null ) midiKeyboard.close();
+
         this.MidiInput = device;
+        this.midiKeyboard = new MidiKeyboard(this.MidiInput);
     }
 
     public void setMidiDevice(int index)
     {
+        if ( this.midiKeyboard != null ) midiKeyboard.close();
+
         this.MidiInput = inputMidiDevice.get(index);
+        this.midiKeyboard = new MidiKeyboard(this.MidiInput);
     }
 
     public ArrayList<MidiDevice> getInputMidiDevice() {

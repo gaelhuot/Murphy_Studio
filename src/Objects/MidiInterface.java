@@ -12,7 +12,7 @@ public class MidiInterface {
     private CustomReceiver receiver;
     private MidiChannel receiverMidiChannel;
 
-    private Synthesizer synthesizer;
+    public Synthesizer synthesizer;
 
     public Sequencer sequencer;
 
