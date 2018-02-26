@@ -58,12 +58,10 @@ public class Tile extends StackPane {
 
         this.label.setFont(new Font(20));
         System.out.println(this.label.styleProperty());
-//        this.label.setTextFill(Color.web("#000000"));
 
         this.rectangle.setFill(Color.GRAY);
         this.rectangle.setStroke(Color.DARKGRAY);
         this.rectangle.setStrokeWidth(5);
-//        this.setAlignment(Pos.BOTTOM_CENTER);
 
         this.getChildren().addAll(this.rectangle, this.label);
     }
