@@ -12,11 +12,14 @@ public class TimelineElement extends Rectangle {
     public TimelineElement(double start){
         this.start = start;
         this.getStyleClass().add("timeline-element");
-        this.setHeight(128.0);
 
 
-        this.setFill(Color.STEELBLUE);
+        this.setStrokeWidth(5.0);
 
+        this.setHeight(111.0);
+
+        AnchorPane.setTopAnchor(this, 0.0);
+        AnchorPane.setBottomAnchor(this, 0.0);
         AnchorPane.setLeftAnchor(this, this.start);
         this.setWidth(42.0);
     }

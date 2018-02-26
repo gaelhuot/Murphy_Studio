@@ -115,6 +115,7 @@ public class PisteController extends Controller
                 this.end = e.getEnd();
             }
         }
+        this.end++;
     }
 
     public String toString(){
