@@ -105,8 +105,12 @@ public class ExternInterface {
                     line.open();
 
                 this.line = line;
-                FloatControl volCtrl = (FloatControl) line.getControl(FloatControl.Type.VOLUME);
-                this.volume = volCtrl;
+
+                if ( ! System.getProperty("os.name").equals("Linux") )
+                {
+                    FloatControl volCtrl = (FloatControl) line.getControl(FloatControl.Type.VOLUME);
+                    this.volume = volCtrl;
+                }
 
             } catch (LineUnavailableException e) {
                 e.printStackTrace();
