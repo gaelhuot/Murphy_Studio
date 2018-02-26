@@ -7,17 +7,19 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" styleClass="background" stylesheets="@../css/style.css" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" styleClass="background" stylesheets="@../css/style.css"
+         minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE"
+         xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.OptionsController">
   <tabs>
     <Tab styleClass="tab" text="Périphériques MIDI">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
                   <Label layoutX="14.0" layoutY="14.0" text="Périphérique d'entrée" />
-                  <ChoiceBox layoutX="14.0" layoutY="31.0" prefWidth="150.0" />
+                  <ChoiceBox fx:id="midiInput_list" layoutX="14.0" layoutY="31.0" prefWidth="150.0" />
                   <Label layoutX="14.0" layoutY="79.0" text="Périphérique de sortie" />
                   <ChoiceBox layoutX="14.0" layoutY="96.0" prefWidth="150.0" />
-                  <Button layoutX="520.0" layoutY="10.0" mnemonicParsing="false" text="Rafraichir" />
+                  <Button fx:id="refreshBtn" layoutX="520.0" layoutY="10.0" mnemonicParsing="false" text="Rafraichir" />
                </children>
             </AnchorPane>
          </content>
