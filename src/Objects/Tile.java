@@ -81,7 +81,10 @@ public class Tile extends StackPane {
         this.label.setText(name);
     }
 
-    public void setTic(int tic){ this.tic = tic; }
+    public void setTic(int tic){
+        this.tic = tic;
+        this.accord.setTick(tic);
+    }
 
     public void setVelocity(int velocity){ this.velocity = velocity; this.accord.setVelocity(velocity); }
 

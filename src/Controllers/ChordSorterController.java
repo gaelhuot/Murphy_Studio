@@ -18,6 +18,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 import javax.sound.midi.InvalidMidiDataException;
+import javax.sound.midi.Sequence;
+import javax.sound.midi.Sequencer;
 import java.net.URL;
 import java.util.*;
 
@@ -40,13 +42,15 @@ public class ChordSorterController extends Controller {
     private ArrayList<Tile> tiles;
 
     public boolean isRandomTile = false;
-    private boolean isEmptyTile = false;
+    public boolean isEmptyTile = false;
     private boolean pianoVisible;
 
     @FXML
     private Pane notePane1,notePane2,notePane3,notePane4,notePane5,notePane6,notePane7,notePane8,notePane9,notePane10,notePane11,notePane12,notePane13,notePane14,notePane15,notePane16,notePane17,notePane18,notePane19,notePane20,notePane21,notePane22,notePane23,notePane24,notePane25,notePane26,notePane27,notePane28,notePane29,notePane30,notePane31,notePane32,notePane33,notePane34,notePane35,notePane36;
     public Pane piano;
     public Pane[] notesPane;
+
+    private Sequencer sequencer;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -62,14 +66,10 @@ public class ChordSorterController extends Controller {
         initBtnsEvent();
 
         chordSorterPane.heightProperty().addListener((obs, oldVal, newVal) ->
-        {
-            checkPianoSize();
-        });
+                checkPianoSize());
 
         chordSorterPane.widthProperty().addListener((obs, oldVal, newVal) ->
-        {
-            checkPianoSize();
-        });
+                checkPianoSize());
 
         checkPianoSize();
     }
@@ -137,6 +137,9 @@ public class ChordSorterController extends Controller {
         rightClickContext.getItems().addAll(menuItemDelete, menuItemSetRandom, seperator, menuItemRythm1, menuItemRythm2, menuItemRythm3);
 
         menuItemDelete.setOnAction(MouseEvent -> deleteSelected());
+        menuItemRythm1.setOnAction(MouseEvent -> selected.accord.Rythm = 1);
+        menuItemRythm2.setOnAction(MouseEvent -> selected.accord.Rythm = 2);
+        menuItemRythm3.setOnAction(MouseEvent -> selected.accord.Rythm = 3);
 
         // On affiche le Context Menu
         newTile.setOnContextMenuRequested(contextMenuEvent -> rightClickContext.show(newTile, contextMenuEvent.getScreenX(), contextMenuEvent.getScreenY()));
@@ -301,27 +304,41 @@ public class ChordSorterController extends Controller {
     private void initTrackBtn()
     {
         togglePlayTrack.setOnMouseClicked(event -> {
-            // Si le sequencer tourne déjà
-            if ( model.player.sequencer.isRunning() )
-            {
-                togglePlayTrack.setText("Play");
-                model.player.sequencer.stop();
-            }
-            // Sinon on crée les accords
-            else
-            {
-                togglePlayTrack.setText("Pause");
-                Accord[] accords = new Accord[tiles.size()];
-
-                for ( int i = 0; i < tiles.size(); i++ )
-                    accords[i] = tiles.get(i).accord;
-                try {
-                    model.player.createTrackFromChords(accords);
-                } catch (InvalidMidiDataException e) {
-                    e.printStackTrace();
-                }
-            }
+           setSequence();
         });
+    }
+
+    private void setSequence()
+    {
+        // Si le sequencer tourne déjà
+        if ( this.sequencer.isRunning() )
+        {
+            togglePlayTrack.setText("Play");
+            this.sequencer.stop();
+        }
+        // Sinon on crée les accords
+        else
+        {
+            togglePlayTrack.setText("Pause");
+            Accord[] accords = new Accord[tiles.size()];
+
+            for ( int i = 0; i < tiles.size(); i++ )
+                accords[i] = tiles.get(i).accord;
+
+            try {
+                this.sequencer.setSequence(this.model.midiInterface.createTrackFromChords(accords));
+
+                this.sequencer.setTickPosition(0);
+
+                this.sequencer.setTempoInBPM(model.midiInterface.tempo);
+                this.sequencer.setLoopCount(1000);
+
+                this.sequencer.start();
+            } catch (InvalidMidiDataException e) {
+                e.printStackTrace();
+            }
+
+        }
     }
 
     public void changeSelectedTileChord(Accord accord)
@@ -343,7 +360,7 @@ public class ChordSorterController extends Controller {
     }
 
     public static void setTileTic(int tic){
-        selected.setTic(tic);
+        selected.setTic(tic/10);
     }
 
     public void nextTile()
@@ -364,6 +381,8 @@ public class ChordSorterController extends Controller {
     public void setModel(MainModel model) {
         this.model = model;
         crossAdd.setOnMouseClicked(event -> createTile());
+
+        this.sequencer = model.midiInterface.getSequencer();
 
         initTrackBtn();
     }
