@@ -396,6 +396,9 @@
     -fx-text-fill: #000;
 }
 
+.tab {
+  -fx-background-color: #FFFFFF;
+}
 /*
 Documentation :
 https://docs.oracle.com/javafx/2/api/javafx/scene/doc-files/cssref.html

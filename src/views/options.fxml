@@ -9,7 +9,7 @@
 
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" styleClass="background" stylesheets="@../css/style.css" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1">
   <tabs>
-    <Tab styleClass="button" text="Périphériques MIDI">
+    <Tab styleClass="tab" text="Périphériques MIDI">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
@@ -22,7 +22,7 @@
             </AnchorPane>
          </content>
     </Tab>
-    <Tab styleClass="button" text="Préférences">
+    <Tab styleClass="tab" text="Préférences">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
       </content>
