@@ -19,3 +19,4 @@ public class Note {
     public final int Si_bémol = 10;
     public final int Si = 11;
 }
+

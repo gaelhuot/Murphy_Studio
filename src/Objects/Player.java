@@ -78,7 +78,7 @@ public class Player {
         sequence.deleteTrack(track);
         track = sequence.createTrack();
         for ( int i = 0; i < partition.length; i++ )
-            for (Object note : partition[i].getNotes() ) addNoteToTrack((Integer) note, i * 8, 93, 8);
+            for (Object note : partition[i].getNotes() ) addNoteToTrack((Integer) note, i * 8, partition[i].getVelocity(), 8);
 
         synthesizer.getChannels()[0].controlChange(7, master_volume);
         sequencer.setSequence(sequence);

@@ -31,6 +31,8 @@ public class Accord implements Cloneable{
     private boolean isEmpty;
     private boolean isRandom;
 
+    private int velocity;
+
     // Empty
     public Accord( )
     {
@@ -40,6 +42,8 @@ public class Accord implements Cloneable{
 
         this.isEmpty = true;
         this.isRandom = false;
+
+        this.velocity = 50;
     }
 
     public Accord(int dominant)
@@ -47,6 +51,8 @@ public class Accord implements Cloneable{
         this.dominant = dominant;
         dominantName = characterHashMap.get(dominant%12);
         notes = new ArrayList<>(Collections.singletonList(dominant));
+
+        this.velocity = 50;
     }
 
     public Accord(Character dominant)
@@ -64,6 +70,8 @@ public class Accord implements Cloneable{
         this.dominant = key;
         this.dominantName = dominant;
         this.notes = new ArrayList<>(Collections.singletonList(key));
+
+        this.velocity = 50;
     }
 
     public Accord(int dominant, Boolean isMinor, Boolean isFifth, Boolean isSeventh) {
@@ -72,6 +80,7 @@ public class Accord implements Cloneable{
         this.isMinor = isMinor;
         this.isFifth = isFifth;
         this.isSeventh = isSeventh;
+        this.velocity = 50;
 
         if ( isMinor ) setMinor();
         else setMajor();
@@ -428,5 +437,14 @@ public class Accord implements Cloneable{
 
     public boolean isRandom() {
         return isRandom;
+    }
+
+    public void setVelocity(int velocity) {
+        this.velocity = velocity;
+    }
+
+    public int getVelocity()
+    {
+        return this.velocity;
     }
 }
