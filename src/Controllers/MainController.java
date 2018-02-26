@@ -89,15 +89,6 @@ public class MainController extends Controller
         menu_help_about.setOnAction(e -> setPopup("about.fxml", 360, 250));
 
 
-
-        /* On charge la vue par defaut (piste_layout) */
-        try {
-            Pane piste_layout = loadView("piste_layout.fxml");
-            mainContainer.getChildren().setAll(piste_layout);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
         this.popup = new Stage();
         this.popup.initModality(Modality.APPLICATION_MODAL);
         this.popup.initOwner(Main.getPrimaryStage());
@@ -150,6 +141,14 @@ public class MainController extends Controller
 
         try {
             loadView("ChordMaker.fxml", sideContainer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        /* On charge la vue par defaut (piste_layout) */
+        try {
+            Pane piste_layout = loadView("piste_layout.fxml");
+            mainContainer.getChildren().setAll(piste_layout);
         } catch (IOException e) {
             e.printStackTrace();
         }

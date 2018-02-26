@@ -94,4 +94,8 @@ public class PisteController extends Controller
     public void setTrack(Track track) {
 
     }
+
+    public String toString(){
+        return this.piste_name_input.getCharacters().toString();
+    }
 }

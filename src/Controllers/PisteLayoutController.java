@@ -59,10 +59,12 @@ public class PisteLayoutController extends Controller
             PisteLayoutVBox.getChildren().add(piste);
             pisteController.scrollpane.hvalueProperty().bindBidirectional(this.timeline_scrollbar.valueProperty());
             this.timeline_scrollbar.maxProperty().bind(pisteController.scrollpane.vmaxProperty());
+            this.model.chordSorterController.addPisteToList(pisteController);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     public void removePiste(PisteController piste)
@@ -75,6 +77,8 @@ public class PisteLayoutController extends Controller
                 pistes.remove(i);
             }
         }
+        this.model.chordSorterController.removePisteFromList(piste);
+
     }
 
 }

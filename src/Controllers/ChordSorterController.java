@@ -27,15 +27,17 @@ public class ChordSorterController extends Controller {
 
     public Button emptyButton;
     public Button randomButton;
-    public AnchorPane chordSorterPane;
+    public Button deleteBtn;
+    public Button togglePlayTrack;
+    public Button addToTimeline;
+    public ChoiceBox timelineSelector;
 
+    public AnchorPane chordSorterPane;
     private MainModel model;
 
     public ImageView crossAdd;
     public HBox tileContainer;
     public ListView<Object> tileList;
-    public Button deleteBtn;
-    public Button togglePlayTrack;
 
     private static Tile selected;
 
@@ -256,6 +258,13 @@ public class ChordSorterController extends Controller {
             isRandomTile = true;
             createTile();
         });
+
+        addToTimeline.setOnMouseClicked(event -> {
+            PisteController piste = (PisteController) timelineSelector.getSelectionModel().getSelectedItem();
+            if (piste != null){
+                addChordsToTimeline(piste);
+            }
+        });
     }
 
     public void deleteSelected()
@@ -380,7 +389,21 @@ public class ChordSorterController extends Controller {
 
         this.sequencer = model.midiInterface.getSequencer();
 
-        initTrackBtn();
+    }
+
+    public void addPisteToList(PisteController piste){
+        this.timelineSelector.getItems().add(piste);
+        if(timelineSelector.getItems().size() == 1){
+            timelineSelector.getSelectionModel().select(0);
+        }
+    }
+
+    public void removePisteFromList(PisteController piste){
+        this.timelineSelector.getItems().remove(piste);
+    }
+
+    public void addChordsToTimeline(PisteController piste){
+        System.out.println("TODO add to timeline"+ piste);
     }
 
 }

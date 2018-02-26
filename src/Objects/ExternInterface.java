@@ -47,7 +47,7 @@ public class ExternInterface {
                 this.inputMidiDevice.add(midiDevice);
 
                 // If no device set
-                if ( this.MidiInput == null ) setMidiDevice(midiDevice);
+//                if ( this.MidiInput == null ) setMidiDevice(midiDevice);
 
             } catch (MidiUnavailableException ignored) {}
         }
