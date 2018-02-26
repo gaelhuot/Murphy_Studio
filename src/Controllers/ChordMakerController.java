@@ -116,7 +116,7 @@ public class ChordMakerController extends Controller implements Initializable {
         playChordButton.setOnMouseClicked(event -> {
             Accord ch = ( printFromTile == 2 ) ? model.selectedTile.accord : model.selectedChord;
             for (int i = 0; i < ch.getNotes().size(); i++)
-                this.model.player.playNote(ch.getNotes().get(i));
+                this.model.midiInterface.playNote(ch.getNotes().get(i));
         });
 
         saveChordButton.setOnMouseClicked(event -> saveChord());

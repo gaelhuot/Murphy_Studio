@@ -2,7 +2,8 @@ package Controllers;
 
 import Models.ChordModel;
 import Models.MainModel;
-import Objects.Player;
+import Objects.ExternInterface;
+import Objects.MidiInterface;
 import application.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +19,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import javax.sound.midi.MidiUnavailableException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -68,11 +68,8 @@ public class MainController extends Controller
         /* On initialise le model "principal" */
         this.model = new MainModel();
 
-        try {
-            this.model.player = new Player();
-        } catch (MidiUnavailableException e) {
-            e.printStackTrace();
-        }
+        this.model.midiInterface = new MidiInterface();
+        this.model.mainExternInterface = new ExternInterface();
 
         /* On initialise les models secondaires */
         this.model.chordModel = new ChordModel();
@@ -111,31 +108,35 @@ public class MainController extends Controller
         this.popup.setResizable(false);
 
         sequencer_tempo.setText("120");
-        model.player.sequencer.setTempoInBPM(120);
 
         /* ---- < Main Event Listener >  ---- */
 
         sequencer_tempo.textProperty().addListener((observable, oldValue, newValue) -> {
             // Only numeric
-            boolean wasRunning = model.player.sequencer.isRunning();
+            //boolean wasRunning = model.player.sequencer.isRunning();
 
-            if ( wasRunning ) model.player.sequencer.stop();
+            //if ( wasRunning ) model.player.sequencer.stop();
 
             if ( newValue.isEmpty() || Objects.equals(newValue, "")) return;
             if ( !newValue.matches("\\d") )
             {
                 String value = newValue.replaceAll("[^\\d]", "");
                 sequencer_tempo.setText(value);
-                model.player.setTempo(Integer.parseInt(value));
+                model.midiInterface.tempo = (Integer.parseInt(value));
             }
 
-            if ( wasRunning ) model.player.sequencer.start();
+            //if ( wasRunning ) model.player.sequencer.start();*/
+
         });
 
         master_volume_slider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            model.player.setVolume(newValue.intValue());
+            if ( this.model.mainExternInterface.volume != null )
+            {
+                float val = newValue.floatValue() / 100.0f;
+                this.model.mainExternInterface.volume.setValue(val);
+            }
+            //model.player.setVolume(newValue.intValue());
         });
-
         this.master_volume_slider.setValue(75);
 
 
@@ -179,9 +180,9 @@ public class MainController extends Controller
     }
 
     public void exit() {
-        model.player.synthesizer.close();
-        model.player.receiver.close();
-        model.player.sequencer.close();
+        //model.player.synthesizer.close();
+        //model.player.receiver.close();
+        //model.player.sequencer.close();
         System.exit(0);
     }
 

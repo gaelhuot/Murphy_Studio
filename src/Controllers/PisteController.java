@@ -56,7 +56,7 @@ public class PisteController extends Controller
         });
 
         recordPisteBtn.setOnMouseClicked(event -> {
-            System.out.println("StartRecording");
+            /*System.out.println("StartRecording");
             System.out.println(model.player.sequencer.getSequence() );
 
             if ( model.player.sequencer.isRecording() )
@@ -68,7 +68,7 @@ public class PisteController extends Controller
             {
                 model.player.startRecording();
                 recordPisteBtn.setText("■");
-            }
+            }*/
         });
 
 //        Exemple de placement de tile

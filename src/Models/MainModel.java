@@ -4,20 +4,14 @@ import Controllers.ChordMakerController;
 import Controllers.ChordSorterController;
 import Controllers.PisteController;
 import Controllers.PisteLayoutController;
-import Objects.Accord;
-import Objects.Player;
-import Objects.Tile;
+import Objects.*;
 
 import javax.sound.midi.Track;
-import java.lang.invoke.SerializedLambda;
-import java.lang.reflect.Array;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MainModel {
     public ChordModel chordModel;
-    public Player player;
 
     public ChordSorterController chordSorterController;
     public ChordMakerController chordMakerController;
@@ -32,6 +26,8 @@ public class MainModel {
     public HashMap<PisteController, Track> pisteToTracks;
 
 
+    public ExternInterface mainExternInterface;
+    public MidiInterface midiInterface;
 
     public Accord selectedChord;
     public Tile selectedTile;
@@ -63,5 +59,4 @@ public class MainModel {
     {
         return this.selectedChord.getClone();
     }
-
 }

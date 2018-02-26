@@ -1,26 +1,26 @@
 package Controllers;
 
 import Models.MainModel;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 
 import javax.sound.midi.MidiDevice;
-import javax.sound.midi.MidiSystem;
-import javax.sound.midi.MidiUnavailableException;
+import javax.sound.sampled.*;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class OptionsController extends Controller {
 
-    private MainModel model;
-    public Button refreshBtn;
+    public ChoiceBox<String> audioOutput_list;
     public ChoiceBox<String> midiInput_list;
+    public ChoiceBox<String> audioInput_list;
+    public Button refreshBtn;
 
     private HashMap<String, MidiDevice> nameToDevice;
+    private HashMap<String, Mixer.Info> nameToMixer;
+
+    private MainModel model;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -28,44 +28,89 @@ public class OptionsController extends Controller {
         /* Ne pas mettre de code ici, on a besoin du model pour charger les données */
     }
 
-    private void init()
+    private void setMixer(int index)
     {
-        refreshBtn.setOnMouseClicked( event -> this.init() );
+        audioOutput_list.getSelectionModel().select(index);
+        this.model.mainExternInterface.setMixer(this.model.mainExternInterface.getOutputMixers().get(index));
+    }
 
-        this.model.player.MidiInput = null;
+    private void setMicrophone(int index)
+    {
+        audioInput_list.getSelectionModel().select(index);
+        this.model.mainExternInterface.setMicrophone(this.model.mainExternInterface.getInputMixers().get(index));
+    }
 
-        // On vide la liste
+    private void setMidiDevice(int index)
+    {
+        midiInput_list.getSelectionModel().select(index);
+        this.model.mainExternInterface.setMidiDevice(this.model.mainExternInterface.getInputMidiDevice().get(index));
+    }
+
+    private void refresh()
+    {
+        // On vide les liste
         midiInput_list.getItems().clear();
+        audioOutput_list.getItems().clear();
+        audioInput_list.getItems().clear();
 
-        // On récupère les midi devices
-        MidiDevice midiDevice;
-        MidiDevice.Info[] infos = MidiSystem.getMidiDeviceInfo();
+        boolean midiDeviceOk = false;
+        boolean outputDeviceOk = false;
+        boolean inputDeviceOk = false;
 
-        this.model.player.midiDevices = new ArrayList<>();
-        this.nameToDevice = new HashMap<>();
-
-        for (int i = 0; i < infos.length; i++) {
-            try {
-                midiDevice = MidiSystem.getMidiDevice(infos[i]);
-                this.model.player.midiDevices.add(midiDevice);
-
-                String name = midiDevice.getDeviceInfo().getName();
-
-                nameToDevice.put(name, midiDevice);
-
-                midiInput_list.getItems().add(name);
-            } catch (MidiUnavailableException ignored) {}
+        for (MidiDevice device: model.mainExternInterface.getInputMidiDevice())
+        {
+            midiInput_list.getItems().add(device.getDeviceInfo().getName());
+            if ( ! midiDeviceOk )
+            {
+                setMidiDevice(0);
+                midiDeviceOk = true;
+            }
         }
 
-        midiInput_list.valueProperty().addListener((ChangeListener) (observable, oldValue, newValue)
-                -> this.model.player.MidiInput = nameToDevice.get(newValue));
+        for ( Mixer mixer: model.mainExternInterface.getInputMixers() )
+        {
+            audioOutput_list.getItems().add(mixer.getMixerInfo().getName());
+            if ( ! outputDeviceOk )
+            {
+                setMixer(0);
+                outputDeviceOk = true;
+            }
+        }
 
-        
+        for ( Mixer mixer: model.mainExternInterface.getInputMixers() )
+        {
+            audioInput_list.getItems().add(mixer.getMixerInfo().getName());
+            if ( ! inputDeviceOk )
+            {
+                setMicrophone(0);
+                inputDeviceOk = true;
+            }
+        }
     }
 
     public void setModel(MainModel model)
     {
         this.model = model;
-        init();
+        refresh();
+        refreshBtn.setOnMouseClicked( event -> this.refresh() );
+
+        midiInput_list.valueProperty().addListener((observable, oldValue, newValue) -> {
+            int ind = midiInput_list.getSelectionModel().getSelectedIndex();
+            if ( ind != -1 )
+                setMidiDevice(ind);
+        });
+
+        audioOutput_list.valueProperty().addListener((observable, oldValue, newValue) -> {
+            int ind = audioOutput_list.getSelectionModel().getSelectedIndex();
+            if ( ind != -1 )
+                setMixer(ind);
+        });
+
+        audioInput_list.valueProperty().addListener((observable, oldValue, newValue) -> {
+            int ind = audioInput_list.getSelectionModel().getSelectedIndex();
+            if ( ind != -1 )
+                setMicrophone(ind);
+        });
+
     }
 }

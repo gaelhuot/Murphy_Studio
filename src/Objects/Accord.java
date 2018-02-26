@@ -32,6 +32,14 @@ public class Accord implements Cloneable{
     private boolean isRandom;
 
     private int velocity;
+    private int tick = 8;
+
+    public static int RYTHM_1 = 1; // ABCD
+    public static int RYTHM_2 = 2; // A + B + C + D
+    public static int RYTHM_3 = 3; // AB + CD
+
+    public int Rythm = 1;
+
 
     // Empty
     public Accord( )
@@ -446,5 +454,14 @@ public class Accord implements Cloneable{
     public int getVelocity()
     {
         return this.velocity;
+    }
+
+    public int getTick()
+    {
+        return this.tick;
+    }
+
+    public void setTick(int tick) {
+        this.tick = tick;
     }
 }
