@@ -270,6 +270,15 @@
   -fx-fill : -fx-dark-blue-5;
 }
 
+#tileList .list-cell Rectangle{
+  -fx-fill: -fx-secondary-accent-color-4;
+  -fx-stroke: -fx-secondary-accent-color-2;
+}
+
+#tileList .list-cell:selected Rectangle{
+  -fx-stroke: red;
+}
+
 .dark .list-cell .text
 {
   -fx-fill: -fx-secondary-accent-color-3;

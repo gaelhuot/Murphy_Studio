@@ -271,11 +271,7 @@ public class ChordSorterController extends Controller {
 
     private void setSelected(Tile newSelectedTile)
     {
-
-        if ( selected != null )
-            selected.rectangle.setStroke(Color.DARKGRAY);
-
-        newSelectedTile.rectangle.setStroke(Color.RED);
+//        newSelectedTile.rectangle.setStroke(Color.RED);
         selected = newSelectedTile;
 
         model.selectedTile = newSelectedTile;
