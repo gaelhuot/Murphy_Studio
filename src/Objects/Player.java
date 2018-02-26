@@ -23,6 +23,11 @@ public class Player {
     private Sequence sequence;
     private Track track;
 
+    public ArrayList<MidiDevice> midiDevices;
+    public ArrayList<Transmitter> midiTransmitter;
+
+    public MidiDevice MidiInput;
+
     public Player() throws MidiUnavailableException {
         initSequencer();
     }
