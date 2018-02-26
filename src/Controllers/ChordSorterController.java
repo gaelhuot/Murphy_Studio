@@ -403,7 +403,7 @@ public class ChordSorterController extends Controller {
     }
 
     public void addChordsToTimeline(PisteController piste){
-        System.out.println("TODO add to timeline"+ piste);
+        piste.addChords();
     }
 
 }

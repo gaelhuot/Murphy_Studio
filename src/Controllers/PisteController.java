@@ -1,9 +1,11 @@
 package Controllers;
 
 import Models.MainModel;
+import Objects.TimelineElement;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -16,6 +18,7 @@ import javax.sound.midi.Sequence;
 import javax.sound.midi.Sequencer;
 import javax.sound.midi.Track;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class PisteController extends Controller
@@ -43,9 +46,15 @@ public class PisteController extends Controller
     private Sequencer sequencer;
     private Sequence sequence;
 
+    private double end;
+
+    private ArrayList<TimelineElement> chords;
+
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
+        this.end = 0.0;
+        this.chords = new ArrayList<TimelineElement>();
         /*
             /!\ ATTENTION /!\
             Ici le controller n'est pas encore chargé.
@@ -76,14 +85,6 @@ public class PisteController extends Controller
             }
         });
 
-//        Exemple de placement de tile
-        Rectangle tile = new Rectangle();
-        tile.setHeight(128);
-        tile.setWidth(256);
-        tile.setFill(Color.AQUA);
-
-        this.timeline.getChildren().add(tile);
-        AnchorPane.setLeftAnchor(tile, 128.0);
     }
 
     public void setName(String name)
@@ -98,6 +99,22 @@ public class PisteController extends Controller
 
     public void setTrack(Track track) {
 
+    }
+
+    public void addChords(){
+        TimelineElement new_e = new TimelineElement(this.end);
+        this.chords.add(new_e);
+        this.timeline.getChildren().add(new_e);
+        updateEnd();
+    }
+
+    public void updateEnd(){
+        this.end = 0.0;
+        for (TimelineElement e: this.chords) {
+            if (e.getEnd() > this.end){
+                this.end = e.getEnd();
+            }
+        }
     }
 
     public String toString(){
