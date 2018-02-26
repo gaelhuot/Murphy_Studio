@@ -7,6 +7,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 import java.lang.reflect.Method;
 
@@ -19,7 +20,7 @@ public class Tile extends StackPane {
     public Accord accord;
     public Method linkedMethod;
 
-    public Label label;
+    public Text label;
     public Rectangle rectangle;
 
     public boolean isRandom;
@@ -46,15 +47,18 @@ public class Tile extends StackPane {
     }
 
     public Tile(Accord selectedChord) {
+        this.getStyleClass().add("tile");
         this.accord = selectedChord;
         this.name = selectedChord.getName();
         this.tic = 8;
         this.velocity = 50;
 
-        this.label = new Label(this.name);
+        this.label = new Text(this.name);
         this.rectangle = new Rectangle(80, 80);
 
         this.label.setFont(new Font(20));
+        System.out.println(this.label.styleProperty());
+//        this.label.setTextFill(Color.web("#000000"));
 
         this.rectangle.setFill(Color.GRAY);
         this.rectangle.setStroke(Color.DARKGRAY);

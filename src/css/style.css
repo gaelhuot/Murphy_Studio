@@ -255,6 +255,10 @@
   -fx-background-color: -fx-dark-blue-4;
 }
 
+#tileList .list-cell Text{
+  -fx-fill : -fx-dark-blue-5;
+}
+
 .dark .list-cell .text
 {
   -fx-fill: -fx-secondary-accent-color-3;
@@ -353,6 +357,10 @@
     -fx-background-color: white;
     -fx-border-color: #000;
 }
+
+
+
+
 
 .button:focused,
 .toggle-button:focused,

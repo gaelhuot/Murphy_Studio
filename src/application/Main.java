@@ -29,7 +29,8 @@ public class Main extends Application {
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("../icon.png")));
 
         MainController mainController = fxmlLoader.getController();
-        mainController.setLightTheme();
+//        mainController.setLightTheme();
+        mainController.setDarkTheme();
 
         Scene scene = new Scene(root);
         primaryStage.setTitle("Murphy Studio");

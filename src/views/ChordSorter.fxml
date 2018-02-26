@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane fx:id="chordSorterPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="164.0" minWidth="400.0" prefHeight="330.0" prefWidth="842.0" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ChordSorterController">
+<AnchorPane fx:id="chordSorterPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="164.0" minWidth="400.0" prefHeight="330.0" prefWidth="842.0" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ChordSorterController">
    <children>
       <HBox fx:id="tileContainer" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="156.0" prefWidth="Infinity" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="3.0">
          <children>
@@ -26,7 +26,7 @@
                   <Insets left="10.0" right="10.0" />
                </HBox.margin>
             </ImageView>
-            <ListView fx:id="tileList" cacheShape="false" centerShape="false" editable="true" focusTraversable="false" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" orientation="HORIZONTAL" prefHeight="156.0" prefWidth="498.0" scaleShape="false" styleClass="nostripes" HBox.hgrow="ALWAYS" />
+            <ListView id="tileList" fx:id="tileList" cacheShape="false" centerShape="false" editable="true" focusTraversable="false" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" orientation="HORIZONTAL" prefHeight="156.0" prefWidth="498.0" scaleShape="false" styleClass="nostripes" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
       <GridPane alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="32.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="162.0">
