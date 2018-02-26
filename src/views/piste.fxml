@@ -50,7 +50,7 @@
             <Insets />
          </BorderPane.margin>
          <content>
-            <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="128.0" prefWidth="1080.0" styleClass="piste-timeline" />
+            <AnchorPane fx:id="timeline" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="128.0" prefWidth="1080.0" styleClass="piste-timeline" />
          </content>
       </ScrollPane>
    </center>

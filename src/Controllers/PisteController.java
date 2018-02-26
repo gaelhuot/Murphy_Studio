@@ -7,7 +7,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 import javax.sound.midi.Track;
 import java.net.URL;
@@ -25,14 +28,13 @@ public class PisteController extends Controller
     @FXML
     public MenuButton piste_instrument_selection;
     @FXML
-    public HBox piste_timeline;
-    @FXML
     public ScrollPane scrollpane;
     @FXML
     public Button deletePistePtn;
     public Button recordPisteBtn;
 
     public Track track;
+    public AnchorPane timeline;
 
     private boolean isRecording;
 
@@ -68,6 +70,15 @@ public class PisteController extends Controller
                 recordPisteBtn.setText("■");
             }
         });
+
+//        Exemple de placement de tile
+        Rectangle tile = new Rectangle();
+        tile.setHeight(128);
+        tile.setWidth(256);
+        tile.setFill(Color.AQUA);
+
+        this.timeline.getChildren().add(tile);
+        AnchorPane.setLeftAnchor(tile, 128.0);
     }
 
     public void setName(String name)
