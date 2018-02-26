@@ -12,6 +12,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
+import javax.sound.midi.Sequence;
+import javax.sound.midi.Sequencer;
 import javax.sound.midi.Track;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -38,6 +40,9 @@ public class PisteController extends Controller
 
     private boolean isRecording;
 
+    private Sequencer sequencer;
+    private Sequence sequence;
+
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
@@ -55,20 +60,20 @@ public class PisteController extends Controller
             this.model.pisteLayoutController.removePiste(this);
         });
 
-        recordPisteBtn.setOnMouseClicked(event -> {
-            /*System.out.println("StartRecording");
-            System.out.println(model.player.sequencer.getSequence() );
 
-            if ( model.player.sequencer.isRecording() )
+        recordPisteBtn.setOnMouseClicked(event -> {
+            System.out.println("start recording");
+
+            if ( this.sequencer.isRecording() )
             {
-                model.player.stopRecording();
+                this.sequencer.stopRecording();
                 recordPisteBtn.setText("○");
             }
             else
             {
-                model.player.startRecording();
+                this.sequencer.startRecording();
                 recordPisteBtn.setText("■");
-            }*/
+            }
         });
 
 //        Exemple de placement de tile
