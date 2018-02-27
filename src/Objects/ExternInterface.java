@@ -22,7 +22,7 @@ public class ExternInterface {
     private ArrayList<MidiDevice> outputMidiDevice;
 
     public Sequencer sequencer;
-    public Synthesizer synthesizer;
+    private Synthesizer synthesizer;
 
     public ExternInterface() {
         this.outputMixers = new ArrayList<>();
@@ -71,10 +71,11 @@ public class ExternInterface {
     private void initMixers()
     {
         Mixer.Info[] mixers = AudioSystem.getMixerInfo();
+
+
         for (Mixer.Info mixerInfo : mixers) {
             // Getting the speaker
             Mixer mixer = AudioSystem.getMixer(mixerInfo);
-
             /*
             System.out.println("SPEAKER : " + mixer.isLineSupported(Port.Info.SPEAKER));
             System.out.println("MICROPHONE : " + mixer.isLineSupported(Port.Info.MICROPHONE));
@@ -82,8 +83,7 @@ public class ExternInterface {
             System.out.println("LINE_OUT : " + mixer.isLineSupported(Port.Info.LINE_OUT));
             System.out.println("LINE_IN : " + mixer.isLineSupported(Port.Info.LINE_IN));
             System.out.println("COMPACT_DISC : " + mixer.isLineSupported(Port.Info.COMPACT_DISC));
-            */
-
+*/
             // HEADPHONE SPEAKER
             if (mixer.isLineSupported(Port.Info.SPEAKER)) {
                 this.outputMixers.add(mixer);
@@ -133,6 +133,40 @@ public class ExternInterface {
         }
     }
 
+    public void initKeyboard()
+    {
+        if ( this.MidiInput == null || this.MidiOutput == null ) return;
+
+        // Get the transmitter class from your input device
+        Transmitter transmitter = null;
+        try {
+            // Open a connection to your input device
+            if ( ! this.MidiInput.isOpen() )
+                this.MidiInput.open();
+
+            if ( ! this.MidiOutput.isOpen() )
+                this.MidiOutput.open();
+
+            if ( ! this.synthesizer.isOpen() )
+                this.synthesizer.open();
+
+            // Open a connection to the default sequencer (as specified by MidiSystem)
+            if ( ! this.sequencer.isOpen() )
+                sequencer.open();
+
+            transmitter = this.MidiInput.getTransmitter();
+            // Get the receiver class from your sequencer
+            Receiver receiver = sequencer.getReceiver();
+
+            MidiChannel channel = synthesizer.getChannels()[0];
+            CustomReceiver customReceiver = new CustomReceiver(channel, receiver);
+
+            // Bind the transmitter to the receiver so the receiver gets input from the transmitter
+            transmitter.setReceiver(customReceiver);
+        } catch (MidiUnavailableException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void setMicrophone(Mixer mixer)
     {
@@ -143,6 +177,8 @@ public class ExternInterface {
     {
         if ( this.MidiInput != null ) MidiInput.close();
         this.MidiInput = device;
+
+        initKeyboard();
     }
 
     public void setMidiOutput(MidiDevice device)
@@ -161,37 +197,6 @@ public class ExternInterface {
         if ( this.MidiInput == null || this.MidiOutput == null ) return;
 
         try {
-            // Open a connection to your input device
-            if ( ! this.MidiInput.isOpen() )
-                this.MidiInput.open();
-
-            if ( ! this.MidiOutput.isOpen() )
-                this.MidiOutput.open();
-
-            if ( ! this.synthesizer.isOpen() )
-                this.synthesizer.open();
-
-            // Open a connection to the default sequencer (as specified by MidiSystem)
-            if ( ! this.sequencer.isOpen() )
-                sequencer.open();
-
-
-            // Get the transmitter class from your input device
-            Transmitter transmitter = this.MidiInput.getTransmitter();
-
-
-
-
-            // Get the receiver class from your sequencer
-            Receiver receiver = sequencer.getReceiver();
-
-
-            MidiChannel channel = synthesizer.getChannels()[0];
-            CustomReceiver customReceiver = new CustomReceiver(channel, receiver);
-
-            // Bind the transmitter to the receiver so the receiver gets input from the transmitter
-            transmitter.setReceiver(customReceiver);
-
             // Create a new sequence
             Sequence sequence = new Sequence(Sequence.PPQ, 24);
             // And of course a track to record the input on
@@ -203,7 +208,7 @@ public class ExternInterface {
             sequencer.recordEnable(currentTrack, -1);
             // And start recording
             sequencer.startRecording();
-        } catch (InvalidMidiDataException | MidiUnavailableException e) {
+        } catch (InvalidMidiDataException e) {
             e.printStackTrace();
         }
     }
@@ -211,8 +216,6 @@ public class ExternInterface {
     public Sequence stopRecording()
     {
         sequencer.stopRecording();
-
-        System.out.println("Stoop");
 
         this.sequencer.setTickPosition(0);
 
@@ -246,5 +249,29 @@ public class ExternInterface {
 
     public ArrayList<Mixer> getOutputMixers() {
         return outputMixers;
+    }
+
+    public void close()
+    {
+        if ( this.MidiInput != null && this.MidiInput.isOpen() )
+            this.MidiInput.close();
+
+        if ( this.MidiOutput != null && this.MidiOutput.isOpen() )
+            this.MidiOutput.close();
+
+        if ( this.synthesizer != null && this.synthesizer.isOpen() )
+            this.synthesizer.close();
+
+        if ( this.sequencer != null && this.sequencer.isOpen() )
+            this.sequencer.close();
+
+        if ( this.line != null && this.line.isOpen() )
+            this.line.close();
+
+        if ( this.mixer != null && this.mixer.isOpen() )
+            this.mixer.close();
+
+        if ( this.microphone != null && this.microphone.isOpen() )
+            this.microphone.close();
     }
 }

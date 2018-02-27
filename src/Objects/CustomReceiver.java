@@ -30,11 +30,9 @@ public class CustomReceiver implements Receiver {
         if ( b[2] != 0 )
         {
             channel.noteOn(note_id, b[2]);
-            System.out.println("note ON");
         }
         else
         {
-            System.out.println("note OFF");
             channel.noteOff(note_id);
         }
 

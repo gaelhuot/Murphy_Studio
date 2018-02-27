@@ -387,6 +387,8 @@ public class ChordSorterController extends Controller {
         this.model = model;
         crossAdd.setOnMouseClicked(event -> createTile());
 
+        initTrackBtn();
+
         this.sequencer = model.midiInterface.getSequencer();
 
     }

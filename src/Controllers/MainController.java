@@ -182,7 +182,9 @@ public class MainController extends Controller
         //model.player.synthesizer.close();
         //model.player.receiver.close();
         //model.player.sequencer.close();
+        model.mainExternInterface.close();
         System.exit(0);
+
     }
 
     private void loadFile(){
