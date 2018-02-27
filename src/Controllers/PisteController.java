@@ -71,16 +71,14 @@ public class PisteController extends Controller
 
 
         recordPisteBtn.setOnMouseClicked(event -> {
-            System.out.println("start recording");
-
-            if ( this.sequencer.isRecording() )
+            if ( this.model.mainExternInterface.sequencer.isRecording() )
             {
-                this.sequencer.stopRecording();
+                this.sequence = this.model.mainExternInterface.stopRecording();
                 recordPisteBtn.setText("○");
             }
             else
             {
-                this.sequencer.startRecording();
+                this.model.mainExternInterface.startRecording();
                 recordPisteBtn.setText("■");
             }
         });

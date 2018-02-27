@@ -1,17 +1,13 @@
 package Objects;
 
-import javax.sound.midi.MidiDevice;
-import javax.sound.midi.MidiSystem;
-import javax.sound.midi.MidiUnavailableException;
+import javax.sound.midi.*;
 import javax.sound.sampled.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class ExternInterface {
 
     private MidiDevice MidiInput = null;
-
-    private MidiKeyboard midiKeyboard = null;
+    private MidiDevice MidiOutput = null;
 
     // Volume interface
     private Mixer mixer = null;
@@ -23,15 +19,19 @@ public class ExternInterface {
     private ArrayList<Mixer> outputMixers;
     private ArrayList<Mixer> inputMixers;
     private ArrayList<MidiDevice> inputMidiDevice;
+    private ArrayList<MidiDevice> outputMidiDevice;
 
 
     public ExternInterface() {
         this.outputMixers = new ArrayList<>();
         this.inputMixers = new ArrayList<>();
         this.inputMidiDevice = new ArrayList<>();
+        this.outputMidiDevice = new ArrayList<>();
 
         initMidiDevice();
         initMixers();
+
+        initKeyboard();
     }
 
     private void initMidiDevice()
@@ -44,10 +44,18 @@ public class ExternInterface {
             try {
                 midiDevice = MidiSystem.getMidiDevice(infos[i]);
 
-                this.inputMidiDevice.add(midiDevice);
+                if ( midiDevice.getMaxTransmitters() != 0 && ! midiDevice.isOpen())
+                {
+                    this.inputMidiDevice.add(midiDevice);
+                    //if ( this.MidiInput == null ) setMidiDevice(midiDevice);
+                }
+                if ( midiDevice.getMaxReceivers() != 0 && ! midiDevice.isOpen())
+                {
+                    this.outputMidiDevice.add(midiDevice);
+                    //if ( this.MidiOutput == null ) setMidiDevice(midiDevice);
+                }
 
                 // If no device set
-//                if ( this.MidiInput == null ) setMidiDevice(midiDevice);
 
             } catch (MidiUnavailableException ignored) {}
         }
@@ -126,22 +134,136 @@ public class ExternInterface {
 
     public void setMidiDevice(MidiDevice device)
     {
-        if ( this.midiKeyboard != null ) midiKeyboard.close();
+        if ( this.MidiInput != null ) MidiInput.close();
 
         this.MidiInput = device;
-        this.midiKeyboard = new MidiKeyboard(this.MidiInput);
+        try {
+            this.MidiInput.open();
+
+            this.synthesizer = MidiSystem.getSynthesizer();
+            this.synthesizer.open();
+            this.midiChannel = this.synthesizer.getChannels()[0];
+
+            this.receiver = new CustomReceiver(this.midiChannel);
+
+            this.sequencer = MidiSystem.getSequencer();
+            this.sequencer.open();;
+
+            MidiSystem.getTransmitter().setReceiver(receiver);
+
+        } catch (MidiUnavailableException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void setMidiDevice(int index)
+    public void setMidiOutput(MidiDevice device)
     {
-        if ( this.midiKeyboard != null ) midiKeyboard.close();
+        if ( this.MidiOutput != null ) MidiOutput.close();
 
-        this.MidiInput = inputMidiDevice.get(index);
-        this.midiKeyboard = new MidiKeyboard(this.MidiInput);
+        this.MidiOutput = device;
+        try {
+            this.MidiOutput.open();
+            System.out.println(this.MidiOutput.getDeviceInfo());
+        } catch (MidiUnavailableException e) {
+            e.printStackTrace();
+        }
     }
+
+    /*
+     * RECORD METHOD
+     */
+
+    private Sequence sequence;
+    public Sequencer sequencer;
+    private Synthesizer synthesizer;
+    private MidiChannel midiChannel;
+    private CustomReceiver receiver;
+    private Transmitter transmitter;
+
+
+    public void initKeyboard()
+    {
+        try {
+            this.synthesizer = MidiSystem.getSynthesizer();
+            this.synthesizer.open();
+
+            this.sequencer = MidiSystem.getSequencer();
+
+            this.sequencer.open();
+
+            MidiSystem.getTransmitter().setReceiver(this.receiver);
+
+            this.midiChannel = this.synthesizer.getChannels()[0];
+
+            this.receiver = new CustomReceiver(this.midiChannel);
+        } catch (MidiUnavailableException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    public void startRecording()
+    {
+        if ( this.MidiInput == null || this.MidiOutput == null ) return;
+        try {
+            // Open a connection to your input device
+            this.MidiInput.open();
+            // Open a connection to the default sequencer (as specified by MidiSystem)
+            sequencer.open();
+            // Get the transmitter class from your input device
+            transmitter = this.MidiInput.getTransmitter();
+            // Get the receiver class from your sequencer
+            Receiver receiver = sequencer.getReceiver();
+            // Bind the transmitter to the receiver so the receiver gets input from the transmitter
+
+            sequencer.addMetaEventListener(meta -> System.out.println("Metaa"));
+
+            transmitter.setReceiver(receiver);
+
+            // Create a new sequence
+            this.sequence = new Sequence(Sequence.PPQ, 24);
+            // And of course a track to record the input on
+            Track currentTrack = sequence.createTrack();
+            // Do some sequencer settings
+            sequencer.setSequence(sequence);
+            sequencer.setTickPosition(0);
+            sequencer.recordEnable(currentTrack, -1);
+            // And start recording
+            sequencer.startRecording();
+        } catch (InvalidMidiDataException | MidiUnavailableException e) {
+            //e.printStackTrace();
+        }
+    }
+
+    public Sequence stopRecording()
+    {
+        sequencer.stopRecording();
+
+        System.out.println("Stoop");
+
+        this.sequencer.setTickPosition(0);
+
+        try {
+            this.sequencer.setSequence(sequence);
+        } catch (InvalidMidiDataException e) {
+            e.printStackTrace();
+        }
+        this.sequencer.setTempoInBPM(120);
+        this.sequencer.setLoopCount(1);
+
+        this.sequencer.start();
+
+        return sequencer.getSequence();
+    }
+
 
     public ArrayList<MidiDevice> getInputMidiDevice() {
         return inputMidiDevice;
+    }
+
+    public ArrayList<MidiDevice> getOutputMidiDevice() {
+        return outputMidiDevice;
     }
 
     public ArrayList<Mixer> getInputMixers() {

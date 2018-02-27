@@ -1,7 +1,6 @@
 package Objects;
 
 import Models.MainModel;
-import application.Main;
 
 import javax.sound.midi.*;
 

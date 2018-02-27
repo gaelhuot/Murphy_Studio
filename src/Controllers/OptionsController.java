@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 
 import javax.sound.midi.MidiDevice;
-import javax.sound.sampled.*;
+import javax.sound.sampled.Mixer;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
@@ -15,6 +15,7 @@ public class OptionsController extends Controller {
     public ChoiceBox<String> audioOutput_list;
     public ChoiceBox<String> midiInput_list;
     public ChoiceBox<String> audioInput_list;
+    public ChoiceBox<String> midiOutput_list;
     public Button refreshBtn;
 
     private HashMap<String, MidiDevice> nameToDevice;
@@ -46,6 +47,12 @@ public class OptionsController extends Controller {
         this.model.mainExternInterface.setMidiDevice(this.model.mainExternInterface.getInputMidiDevice().get(index));
     }
 
+    private void setMidiOutput(int index)
+    {
+        midiOutput_list.getSelectionModel().select(index);
+        this.model.mainExternInterface.setMidiOutput(this.model.mainExternInterface.getOutputMidiDevice().get(index));
+    }
+
     private void refresh()
     {
         // On vide les liste
@@ -54,6 +61,7 @@ public class OptionsController extends Controller {
         audioInput_list.getItems().clear();
 
         boolean midiDeviceOk = false;
+        boolean midiOutputOk = false;
         boolean outputDeviceOk = false;
         boolean inputDeviceOk = false;
 
@@ -64,6 +72,16 @@ public class OptionsController extends Controller {
             {
                 setMidiDevice(0);
                 midiDeviceOk = true;
+            }
+        }
+
+        for (MidiDevice device: model.mainExternInterface.getOutputMidiDevice())
+        {
+            midiOutput_list.getItems().add(device.getDeviceInfo().getName());
+            if ( ! midiOutputOk )
+            {
+                setMidiOutput(0);
+                midiOutputOk = true;
             }
         }
 
@@ -98,6 +116,12 @@ public class OptionsController extends Controller {
             int ind = midiInput_list.getSelectionModel().getSelectedIndex();
             if ( ind != -1 )
                 setMidiDevice(ind);
+        });
+
+        midiOutput_list.valueProperty().addListener((observable, oldValue, newValue) -> {
+            int ind = midiOutput_list.getSelectionModel().getSelectedIndex();
+            if ( ind != -1 )
+                setMidiOutput(ind);
         });
 
         audioOutput_list.valueProperty().addListener((observable, oldValue, newValue) -> {
