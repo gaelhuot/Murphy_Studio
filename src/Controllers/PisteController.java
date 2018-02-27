@@ -78,8 +78,11 @@ public class PisteController extends Controller
             }
             else
             {
-                this.model.mainExternInterface.startRecording();
-                recordPisteBtn.setText("■");
+                if ( this.model.mainExternInterface.MidiInput != null && this.model.mainExternInterface.MidiOutput != null )
+                {
+                    this.model.mainExternInterface.startRecording();
+                    recordPisteBtn.setText("■");
+                }
             }
         });
 

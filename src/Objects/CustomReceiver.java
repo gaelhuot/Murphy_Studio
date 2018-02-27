@@ -1,13 +1,13 @@
 package Objects;
 
 import javax.sound.midi.*;
+import java.util.Arrays;
 
 public class CustomReceiver implements Receiver {
-    private Receiver rcvr;
+    public Receiver rcvr;
     public MidiChannel channel;
 
     CustomReceiver(MidiChannel channel) {
-        System.out.println("New receiver !");
         this.channel = channel;
         try {
             this.rcvr = MidiSystem.getReceiver();
@@ -16,24 +16,29 @@ public class CustomReceiver implements Receiver {
         }
     }
 
+    public CustomReceiver(MidiChannel channel, Receiver receiver) {
+        this.channel = channel;
+        this.rcvr = receiver;
+    }
+
     @Override
     public void send(MidiMessage message, long timeStamp) {
+
         byte[] b = message.getMessage();
 
         int note_id = b[1];
         if ( b[2] != 0 )
+        {
             channel.noteOn(note_id, b[2]);
+            System.out.println("note ON");
+        }
         else
+        {
+            System.out.println("note OFF");
             channel.noteOff(note_id);
-    }
+        }
 
-    public MidiChannel getChannel() {
-        return channel;
-    }
-
-    public void changeVolume(int value)
-    {
-        channel.controlChange(7, value);
+        this.rcvr.send(message, timeStamp);
     }
 
     @Override

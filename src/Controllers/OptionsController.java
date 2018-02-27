@@ -69,10 +69,7 @@ public class OptionsController extends Controller {
         {
             midiInput_list.getItems().add(device.getDeviceInfo().getName());
             if ( ! midiDeviceOk )
-            {
-                setMidiDevice(0);
                 midiDeviceOk = true;
-            }
         }
 
         for (MidiDevice device: model.mainExternInterface.getOutputMidiDevice())
