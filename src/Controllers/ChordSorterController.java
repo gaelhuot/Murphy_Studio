@@ -325,13 +325,9 @@ public class ChordSorterController extends Controller {
         else
         {
             togglePlayTrack.setText("Pause");
-            Accord[] accords = new Accord[tiles.size()];
-
-            for ( int i = 0; i < tiles.size(); i++ )
-                accords[i] = tiles.get(i).accord;
 
             try {
-                this.sequencer.setSequence(this.model.midiInterface.createTrackFromChords(accords));
+                this.sequencer.setSequence(this.model.midiInterface.createTrackFromChords(getAccords()));
 
                 this.sequencer.setTickPosition(0);
 
@@ -404,7 +400,17 @@ public class ChordSorterController extends Controller {
         this.timelineSelector.getItems().remove(piste);
     }
 
+    private Accord[] getAccords()
+    {
+        Accord[] accords = new Accord[tiles.size()];
+
+        for ( int i = 0; i < tiles.size(); i++ )
+            accords[i] = tiles.get(i).accord;
+        return accords;
+    }
+
     public void addChordsToTimeline(PisteController piste){
+        piste.sequence = this.model.midiInterface.createTrackFromChords(getAccords());
         piste.addChords();
     }
 

@@ -153,9 +153,7 @@ public class PisteController extends Controller
 
             this.playBtn.setText("Pause");
 
-            this.sequence = model.midiInterface.cropSequence(this.sequence, 4, 4);
-
-
+            this.sequence = model.midiInterface.cropSequence(this.sequence, 0, 0);
 
             this.sequencer.setSequence(this.sequence);
             this.sequencer.setTempoInBPM(this.model.midiInterface.tempo);
@@ -169,6 +167,7 @@ public class PisteController extends Controller
 
     public void stop()
     {
+        if ( this.sequencer == null || this.sequence == null ) return;
         this.playBtn.setText("Play");
         this.isPlaying = false;
         this.sequencer.stop();

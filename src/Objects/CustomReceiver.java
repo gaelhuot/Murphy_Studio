@@ -25,15 +25,13 @@ public class CustomReceiver implements Receiver {
     public void send(MidiMessage message, long timeStamp) {
 
         byte[] b = message.getMessage();
-
-        int note_id = b[1];
-        if ( b[2] != 0 )
+        if ( b.length == 3 )
         {
-            channel.noteOn(note_id, b[2]);
-        }
-        else
-        {
-            channel.noteOff(note_id);
+            int note_id = b[1];
+            if ( b[2] != 0 )
+               channel.noteOn(note_id, b[2]);
+            else
+                channel.noteOff(note_id);
         }
 
         this.rcvr.send(message, timeStamp);

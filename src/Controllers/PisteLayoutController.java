@@ -44,22 +44,15 @@ public class PisteLayoutController extends Controller
         });
 
         playPisteBtn.setOnMouseClicked(event -> {
+            System.out.println(pistes.size());
             if ( ! this.isPlaying )
             {
-                for ( int i = 1; i < pistes.size(); i++ )
-                {
-                    if ( pistes.get(i).sequence != null  )
-                        pistes.get(i).play();
-                }
+                for (PisteController piste : pistes) piste.play();
                 this.isPlaying = true;
             }
             else
             {
-                for ( int i = 1; i < pistes.size(); i++ )
-                {
-                    if ( pistes.get(i).sequence != null  )
-                        pistes.get(i).stop();
-                }
+                for (PisteController piste : pistes) piste.stop();
                 this.isPlaying = false;
             }
         });
