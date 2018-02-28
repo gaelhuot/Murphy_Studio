@@ -3,6 +3,9 @@ package Objects;
 import Models.MainModel;
 
 import javax.sound.midi.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.Arrays;
 
 public class MidiInterface {
 
@@ -146,6 +149,60 @@ public class MidiInterface {
             e.printStackTrace();
         }
         return midiEvent;
+    }
+
+    /*
+     * @RETURN new Sequence cropped
+     *
+     * On prend la séquence, on la fait commencer par la première note et terminer par la dernière
+     * Pas de blanc à la fin et au début sauf si spécifié
+     */
+
+    public Sequence cropSequence(Sequence oldSequence, int start, int end)
+    {
+        Sequence sequence;
+        try {
+            sequence = new Sequence(Sequence.PPQ, oldSequence.getResolution());
+        } catch (InvalidMidiDataException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        Track track     = sequence.createTrack();
+        Track oldTrack  = oldSequence.getTracks()[0];
+
+        MidiEvent endOfTrackEvent = null;
+
+        long oldStartTick = oldTrack.get(0).getTick();
+
+        for ( int i = 0; i < oldTrack.size(); i++ )
+        {
+            MidiEvent event = oldTrack.get(i);
+            byte[] midiMessage = event.getMessage().getMessage();
+
+            event.setTick( start + ( event.getTick() - oldStartTick ));
+
+            // midiMessage[0] == -1 => endOfTrack
+            if ( midiMessage[0] != -1 )
+                track.add(event);
+            else
+                endOfTrackEvent = event;
+        }
+
+        if ( endOfTrackEvent != null )
+            endOfTrackEvent.setTick( end + ( endOfTrackEvent.getTick() - oldStartTick ));
+
+        track.add(endOfTrackEvent);
+
+
+        File f = new File("midi  file.mid");
+        try {
+            MidiSystem.write(sequence,1,f);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return sequence;
     }
 
 }

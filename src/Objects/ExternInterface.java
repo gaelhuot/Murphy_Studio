@@ -225,13 +225,6 @@ public class ExternInterface {
 
         Sequence sequence = this.sequencer.getSequence();
 
-        File f = new File("midifile.mid");
-        try {
-            MidiSystem.write(sequence,1,f);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
         try {
             this.sequencer.setSequence(sequence);
         } catch (InvalidMidiDataException e) {

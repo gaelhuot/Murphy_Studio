@@ -144,15 +144,22 @@ public class PisteController extends Controller
             this.sequencer = MidiSystem.getSequencer();
             this.sequencer.open();
 
-            this.sequencer.addMetaEventListener(meta -> {
+            /*this.sequencer.addMetaEventListener(meta -> {
                 if (meta.getType() == 0x2F) {
                     System.out.println("stop");
                     stop();
                 }
-            });
+            });*/
+
+            this.playBtn.setText("Pause");
+
+            this.sequence = model.midiInterface.cropSequence(this.sequence, 4, 4);
+
+
 
             this.sequencer.setSequence(this.sequence);
             this.sequencer.setTempoInBPM(this.model.midiInterface.tempo);
+            this.sequencer.setLoopCount(1000);
             this.sequencer.start();
             this.isPlaying = true;
         } catch (MidiUnavailableException | InvalidMidiDataException e) {
@@ -162,6 +169,7 @@ public class PisteController extends Controller
 
     public void stop()
     {
+        this.playBtn.setText("Play");
         this.isPlaying = false;
         this.sequencer.stop();
         this.sequencer.close();
