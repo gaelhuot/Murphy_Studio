@@ -2,6 +2,8 @@ package Objects;
 
 import javax.sound.midi.*;
 import javax.sound.sampled.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ExternInterface {
@@ -23,6 +25,7 @@ public class ExternInterface {
 
     public Sequencer sequencer;
     private Synthesizer synthesizer;
+    private Track currentTrack;
 
     public ExternInterface() {
         this.outputMixers = new ArrayList<>();
@@ -200,7 +203,7 @@ public class ExternInterface {
             // Create a new sequence
             Sequence sequence = new Sequence(Sequence.PPQ, 24);
             // And of course a track to record the input on
-            Track currentTrack = sequence.createTrack();
+            this.currentTrack = sequence.createTrack();
 
             // Do some sequencer settings
             sequencer.setSequence(sequence);
@@ -215,22 +218,25 @@ public class ExternInterface {
 
     public Sequence stopRecording()
     {
+        sequencer.recordDisable(currentTrack);
         sequencer.stopRecording();
 
         this.sequencer.setTickPosition(0);
 
         Sequence sequence = this.sequencer.getSequence();
 
+        File f = new File("midifile.mid");
+        try {
+            MidiSystem.write(sequence,1,f);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         try {
             this.sequencer.setSequence(sequence);
         } catch (InvalidMidiDataException e) {
             e.printStackTrace();
         }
-        this.sequencer.setTempoInBPM(120);
-        this.sequencer.setLoopCount(1);
-
-        this.sequencer.start();
-
         return sequencer.getSequence();
     }
 

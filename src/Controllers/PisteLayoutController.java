@@ -2,6 +2,7 @@ package Controllers;
 
 import Models.MainModel;
 import Objects.Accord;
+import application.Main;
 import javafx.beans.property.DoublePropertyBase;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,6 +13,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 import javax.sound.midi.InvalidMidiDataException;
+import javax.sound.midi.Sequencer;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -19,6 +21,8 @@ import java.util.ResourceBundle;
 
 public class PisteLayoutController extends Controller
 {
+    private MainModel model;
+
     public ScrollBar timeline_scrollbar;
     private ArrayList<PisteController> pistes = new ArrayList<PisteController>();
 
@@ -26,6 +30,8 @@ public class PisteLayoutController extends Controller
     public Button addPisteBtn;
     public Button playPisteBtn;
     public VBox PisteLayoutVBox;
+
+    private boolean isPlaying = false;
 
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -35,6 +41,27 @@ public class PisteLayoutController extends Controller
         addPiste();
         addPisteBtn.setOnMouseClicked(event -> {
             addPiste();
+        });
+
+        playPisteBtn.setOnMouseClicked(event -> {
+            if ( ! this.isPlaying )
+            {
+                for ( int i = 1; i < pistes.size(); i++ )
+                {
+                    if ( pistes.get(i).sequence != null  )
+                        pistes.get(i).play();
+                }
+                this.isPlaying = true;
+            }
+            else
+            {
+                for ( int i = 1; i < pistes.size(); i++ )
+                {
+                    if ( pistes.get(i).sequence != null  )
+                        pistes.get(i).stop();
+                }
+                this.isPlaying = false;
+            }
         });
     }
 
@@ -78,7 +105,6 @@ public class PisteLayoutController extends Controller
             }
         }
         this.model.chordSorterController.removePisteFromList(piste);
-
     }
 
 }

@@ -2,6 +2,8 @@ package Controllers;
 
 import Models.MainModel;
 import Objects.TimelineElement;
+import javafx.application.Platform;
+import javafx.beans.binding.BooleanBinding;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,12 +16,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-import javax.sound.midi.Sequence;
-import javax.sound.midi.Sequencer;
-import javax.sound.midi.Track;
+import javax.sound.midi.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class PisteController extends Controller
 {
@@ -40,15 +43,17 @@ public class PisteController extends Controller
 
     public Track track;
     public AnchorPane timeline;
+    public Button playBtn;
 
     private boolean isRecording;
 
-    private Sequencer sequencer;
-    private Sequence sequence;
+    public Sequencer sequencer;
+    public Sequence sequence;
 
     private double end;
 
     private ArrayList<TimelineElement> chords;
+    private boolean isPlaying = false;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -61,12 +66,24 @@ public class PisteController extends Controller
             La méthode initialize est appelée lorsque l'on fait FXMLLoader.load(); (CF application.Controller - @loadView() )
          */
         /* Tout ce qui agit sur le fxml, tu le code ici */
+
     }
 
     private void initAll()
     {
         this.deletePistePtn.setOnMouseClicked(event -> {
             this.model.pisteLayoutController.removePiste(this);
+        });
+
+        this.playBtn.setOnMouseClicked(event -> {
+            if ( this.sequence != null )
+            {
+                if ( ! this.isPlaying )
+                    this.play();
+                else
+                    this.stop();
+
+            }
         });
 
 
@@ -85,7 +102,6 @@ public class PisteController extends Controller
                 }
             }
         });
-
     }
 
     public void setName(String name)
@@ -121,5 +137,33 @@ public class PisteController extends Controller
 
     public String toString(){
         return this.piste_name_input.getCharacters().toString();
+    }
+
+    public void play() {
+        try {
+            this.sequencer = MidiSystem.getSequencer();
+            this.sequencer.open();
+
+            this.sequencer.addMetaEventListener(meta -> {
+                if (meta.getType() == 0x2F) {
+                    System.out.println("stop");
+                    stop();
+                }
+            });
+
+            this.sequencer.setSequence(this.sequence);
+            this.sequencer.setTempoInBPM(this.model.midiInterface.tempo);
+            this.sequencer.start();
+            this.isPlaying = true;
+        } catch (MidiUnavailableException | InvalidMidiDataException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void stop()
+    {
+        this.isPlaying = false;
+        this.sequencer.stop();
+        this.sequencer.close();
     }
 }
