@@ -172,7 +172,7 @@ public class PisteController extends Controller
 
             this.sequencer.setSequence(this.sequence);
             this.sequencer.setTempoInBPM(this.model.midiInterface.tempo);
-            this.sequencer.setLoopCount(1000);
+            this.sequencer.setLoopCount(0);
             this.sequencer.start();
             this.isPlaying = true;
         } catch (MidiUnavailableException | InvalidMidiDataException e) {
