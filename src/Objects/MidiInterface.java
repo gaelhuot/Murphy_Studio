@@ -205,4 +205,12 @@ public class MidiInterface {
         return sequence;
     }
 
+    public long getChordGridSize(Accord[] accords)
+    {
+        long size = 0;
+        for ( Accord a : accords )
+            size += a.getTick();
+        return size;
+    }
+
 }

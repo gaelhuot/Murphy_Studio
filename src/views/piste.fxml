@@ -35,7 +35,7 @@
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Button fx:id="playBtn" mnemonicParsing="false" prefHeight="26.0" prefWidth="126.0" text="Go" />
+                  <Button fx:id="playBtn" mnemonicParsing="false" prefHeight="26.0" prefWidth="126.0" text="Play" />
                   <MenuButton fx:id="piste_instrument_selection" mnemonicParsing="false" prefHeight="26.0" prefWidth="126.0" text="Instrument" />
                </children>
             </HBox>
