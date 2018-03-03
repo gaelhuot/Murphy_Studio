@@ -29,7 +29,7 @@ public class DragResizer {
      */
     private static final int RESIZE_MARGIN = 12;
     private static final int MIN_H = 20;
-    private static final int MAX_H = 140;
+    private static final int MAX_H = 147;
     private static final int MIN_W = 40;
 
     private static Rectangle region;
