@@ -129,7 +129,7 @@ public class PisteController extends Controller
         MenuItem menuItemDelete = new MenuItem("Delete");
         rightClickContext.getItems().add(menuItemDelete);
         menuItemDelete.setOnAction(MouseEvent -> this.removeChords(new_e));
-        new_e.setOnContextMenuRequested(contextMenuEvent -> rightClickContext.show(new_e, contextMenuEvent.getScreenX(), contextMenuEvent.getScreenY()));
+        new_e.setOnContextMenuRequested(contextMenuEvent -> rightClickContext.show(this.timeline, contextMenuEvent.getScreenX(), contextMenuEvent.getScreenY()));
 
         updateEnd();
     }
