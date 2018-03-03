@@ -12,6 +12,8 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+import java.lang.management.ManagementFactory;
+
 import static javafx.application.Platform.exit;
 
 public class Main extends Application {
@@ -43,13 +45,15 @@ public class Main extends Application {
         primaryStage.show();
 
 
-        primaryStage.setOnCloseRequest(windowEvent -> {
+        primaryStage.setOnCloseRequest(windowEvent ->    {
             mainController.exit();
             System.exit(0);
         });
 
         scene.setOnKeyPressed(ke -> mainController.setKeyPressed(ke.getCode()) );
     }
+
+
 
     public static Stage getPrimaryStage(){
         return Main.primaryStage;

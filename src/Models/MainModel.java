@@ -32,6 +32,8 @@ public class MainModel {
     public Accord selectedChord;
     public Tile selectedTile;
 
+    public int sink = -1;
+
     public MainModel()
     {
         selectedChord = null;

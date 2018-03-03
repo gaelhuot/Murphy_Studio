@@ -2,8 +2,8 @@ package Objects;
 
 import javax.sound.midi.*;
 import javax.sound.sampled.*;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.lang.management.ManagementFactory;
 import java.util.ArrayList;
 
 public class ExternInterface {
@@ -272,5 +272,54 @@ public class ExternInterface {
 
         if ( this.microphone != null && this.microphone.isOpen() )
             this.microphone.close();
+    }
+
+
+    public Integer getAlsaSinkNumberFromPid()
+    {
+        String PID = getProcessId("<PID>");
+
+        String[] command = { "./ressources/alsaGetSink"};
+        Process process = null;
+
+        ArrayList<Integer> sinks = new ArrayList<Integer>();
+
+        try {
+            process = Runtime.getRuntime().exec(command);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(
+                    process.getInputStream()));
+            String s;
+            while ((s = reader.readLine()) != null){
+                if ( s.contains(PID) ) sinks.add(Integer.parseInt(s.split(":")[1]));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        // The correct sink is the one after the last sink we got
+        // +1 because the right sink is created after the call of this function
+        return sinks.get(sinks.size() -1 ) + 1;
+    }
+
+    private static String getProcessId(final String fallback) {
+        // Note: may fail in some JVM implementations
+        // therefore fallback has to be provided
+
+        // something like '<pid>@<hostname>', at least in SUN / Oracle JVMs
+        final String jvmName = ManagementFactory.getRuntimeMXBean().getName();
+        final int index = jvmName.indexOf('@');
+
+        if (index < 1) {
+            // part before '@' empty (index = 0) / '@' not found (index = -1)
+            return fallback;
+        }
+
+        try {
+            return Long.toString(Long.parseLong(jvmName.substring(0, index)));
+        } catch (NumberFormatException e) {
+            // ignore
+        }
+        return fallback;
     }
 }

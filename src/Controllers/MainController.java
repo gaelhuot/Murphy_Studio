@@ -71,6 +71,9 @@ public class MainController extends Controller
         this.model.midiInterface = new MidiInterface();
         this.model.mainExternInterface = new ExternInterface();
 
+        if ( System.getProperty("os.name").equals("Linux") )
+            this.model.sink = this.model.mainExternInterface.getAlsaSinkNumberFromPid();
+
         /* On initialise les models secondaires */
         this.model.chordModel = new ChordModel();
 
@@ -125,6 +128,18 @@ public class MainController extends Controller
             {
                 float val = newValue.floatValue() / 100.0f;
                 this.model.mainExternInterface.volume.setValue(val);
+            }
+            else if ( System.getProperty("os.name").equals("Linux") )
+            {
+                double val = newValue.doubleValue() / 10;
+                if ( this.model.sink != -1 )
+                {
+                    try {
+                        Runtime.getRuntime().exec("pactl set-sink-input-volume " + this.model.sink + " " + val);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
             //model.player.setVolume(newValue.intValue());
         });
