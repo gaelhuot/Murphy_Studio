@@ -299,6 +299,9 @@ public class ExternInterface {
 
         // The correct sink is the one after the last sink we got
         // +1 because the right sink is created after the call of this function
+        if ( sinks.size() == 0 )
+            return -1;
+        
         return sinks.get(sinks.size() -1 ) + 1;
     }
 
