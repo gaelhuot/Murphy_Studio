@@ -123,6 +123,20 @@ public class PisteController extends Controller
         TimelineElement new_e = new TimelineElement(this.end, length * 4);
         this.chords.add(new_e);
         this.timeline.getChildren().add(new_e);
+
+        ContextMenu rightClickContext = new ContextMenu();
+        rightClickContext.getStyleClass().add("background");
+        MenuItem menuItemDelete = new MenuItem("Delete");
+        rightClickContext.getItems().add(menuItemDelete);
+        menuItemDelete.setOnAction(MouseEvent -> this.removeChords(new_e));
+        new_e.setOnContextMenuRequested(contextMenuEvent -> rightClickContext.show(new_e, contextMenuEvent.getScreenX(), contextMenuEvent.getScreenY()));
+
+        updateEnd();
+    }
+
+    public void removeChords(TimelineElement chords){
+        this.chords.remove(chords);
+        this.timeline.getChildren().remove(chords);
         updateEnd();
     }
 
