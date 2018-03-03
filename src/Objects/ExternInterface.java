@@ -275,7 +275,7 @@ public class ExternInterface {
     }
 
 
-    public Integer getAlsaSinkNumberFromPid()
+    public ArrayList<Integer> getAlsaSinkNumberFromPid()
     {
         String PID = getProcessId("<PID>");
 
@@ -297,12 +297,10 @@ public class ExternInterface {
         }
 
 
-        // The correct sink is the one after the last sink we got
-        // +1 because the right sink is created after the call of this function
-        if ( sinks.size() == 0 )
-            return -1;
-        
-        return sinks.get(sinks.size() -1 ) + 1;
+        // +1 because there is a sink which is created after the call of this function
+
+        sinks.add(sinks.get( sinks.size() - 1 ) + 1);
+        return sinks;
     }
 
     private static String getProcessId(final String fallback) {

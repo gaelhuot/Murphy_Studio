@@ -109,7 +109,7 @@ public class MidiInterface {
                     note,
                     93
             );
-            long timeStamp = -1;
+            long timeStamp = 0;
             receiver.send(sm, timeStamp);
         } catch (InvalidMidiDataException e) {
             e.printStackTrace();

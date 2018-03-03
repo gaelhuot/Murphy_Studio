@@ -132,13 +132,11 @@ public class MainController extends Controller
             else if ( System.getProperty("os.name").equals("Linux") )
             {
                 double val = newValue.doubleValue() / 10;
-                if ( this.model.sink != -1 )
-                {
-                    try {
-                        Runtime.getRuntime().exec("pactl set-sink-input-volume " + this.model.sink + " " + val);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                try {
+                    for ( Integer s : this.model.sink )
+                        Runtime.getRuntime().exec("pactl set-sink-input-volume " + s + " " + val);
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
             //model.player.setVolume(newValue.intValue());

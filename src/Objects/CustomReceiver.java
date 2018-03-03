@@ -31,7 +31,7 @@ public class CustomReceiver implements Receiver {
             if ( b[2] != 0 )
                channel.noteOn(note_id, b[2]);
             else
-                channel.noteOff(note_id);
+               channel.noteOff(note_id);
         }
 
         this.rcvr.send(message, timeStamp);
