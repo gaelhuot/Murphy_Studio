@@ -118,8 +118,9 @@ public class PisteController extends Controller
 
     }
 
-    public void addChords(){
-        TimelineElement new_e = new TimelineElement(this.end);
+    public void addChords(double length){
+        if (length <= 0){return;}
+        TimelineElement new_e = new TimelineElement(this.end, length * 4);
         this.chords.add(new_e);
         this.timeline.getChildren().add(new_e);
         updateEnd();

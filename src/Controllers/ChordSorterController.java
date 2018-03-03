@@ -410,8 +410,8 @@ public class ChordSorterController extends Controller {
     }
 
     public void addChordsToTimeline(PisteController piste){
-        piste.sequence = this.model.midiInterface.createTrackFromChords(getAccords());
-        piste.addChords();
+        piste.sequence = this.model.midiInterface.createTrackFromChords(this.getAccords());
+        piste.addChords(this.model.midiInterface.getChordGridSize(this.getAccords()));
     }
 
 }
