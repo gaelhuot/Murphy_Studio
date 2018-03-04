@@ -15,7 +15,7 @@ public class AboutController extends Controller {
     {
         link_github.setOnAction(e -> {
             try {
-                new ProcessBuilder("x-www-browser", "https://github.com/Yarhi/MIDI_Java_MAO").start();
+                new ProcessBuilder("x-www-browser", "https://github.com/Yarhi/Murphy_Studio").start();
             } catch (IOException e1) {
                 e1.printStackTrace();
             }

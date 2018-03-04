@@ -1,4 +1,4 @@
-# Java Midi MAO
+# Murphy Studio
 
 Projet TUT de L3 Informatique
 
