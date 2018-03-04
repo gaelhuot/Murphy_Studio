@@ -29,13 +29,13 @@ public class Tile extends StackPane {
         this.accord = null;
         this.name = "";
         this.tic = 0;
-        this.velocity = 50;
+        this.velocity = 60;
     }
 
     public Tile(String name, Pane tile) {
         this.name = name;
         this.tic = 8;
-        this.velocity = 50;
+        this.velocity = 60;
     }
 
     public Tile(boolean random) {
@@ -43,7 +43,7 @@ public class Tile extends StackPane {
         this.accord = null;
         this.name = "";
         this.tic = 0;
-        this.velocity = 50;
+        this.velocity = 60;
     }
 
     public Tile(Accord selectedChord) {
@@ -51,7 +51,7 @@ public class Tile extends StackPane {
         this.accord = selectedChord;
         this.name = selectedChord.getName();
         this.tic = 8;
-        this.velocity = 50;
+        this.velocity = 60;
 
         this.label = new Text(this.name);
         this.rectangle = new Rectangle(80, 80);
