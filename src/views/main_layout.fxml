@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane id="main" fx:id="main_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="900.0" prefHeight="850.0" prefWidth="1360.0" styleClass="dark" stylesheets="@../css/style.css" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainController">
+<BorderPane id="main" fx:id="main_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="900.0" prefHeight="850.0" prefWidth="1360.0" styleClass="dark" stylesheets="@../css/style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="Controllers.MainController">
    <bottom>
       <HBox fx:id="state_bar" alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="24.0" prefWidth="600.0" styleClass="state-bar" BorderPane.alignment="CENTER">
          <children>
@@ -35,7 +35,7 @@
             <SplitPane fx:id="splitPaneHorizontal" dividerPositions="0.5" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="-Infinity" orientation="VERTICAL" prefHeight="160.0" prefWidth="400.0">
               <items>
                 <AnchorPane fx:id="mainContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="160.0" styleClass="background" />
-                <AnchorPane fx:id="secondContainer" maxHeight="330.0" maxWidth="1.7976931348623157E308" minHeight="0.0" prefHeight="194.0" prefWidth="160.0" styleClass="background" SplitPane.resizableWithParent="false" />
+                <AnchorPane fx:id="secondContainer" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="0.0" prefHeight="358.0" prefWidth="160.0" styleClass="background" SplitPane.resizableWithParent="false" />
               </items>
             </SplitPane>
             <AnchorPane fx:id="sideContainer" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" styleClass="background" />
