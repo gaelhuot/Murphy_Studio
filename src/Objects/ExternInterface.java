@@ -279,7 +279,7 @@ public class ExternInterface {
     {
         String PID = getProcessId("<PID>");
 
-        String[] command = { "./ressources/alsaGetSink"};
+        String[] command = { "./src/alsaGetSink"};
         Process process = null;
 
         ArrayList<Integer> sinks = new ArrayList<Integer>();
