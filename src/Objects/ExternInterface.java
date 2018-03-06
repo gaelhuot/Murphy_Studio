@@ -298,8 +298,9 @@ public class ExternInterface {
 
 
         // +1 because there is a sink which is created after the call of this function
-
-        sinks.add(sinks.get( sinks.size() - 1 ) + 1);
+        if (sinks.size() != 0){
+            sinks.add(sinks.get( sinks.size() - 1 ) + 1);
+        }
         return sinks;
     }
 
