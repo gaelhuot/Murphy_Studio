@@ -107,7 +107,7 @@ public class MidiInterface {
                     ShortMessage.NOTE_ON,
                     0,
                     note,
-                    93
+                    50
             );
             long timeStamp = -1;
             receiver.send(sm, timeStamp);
