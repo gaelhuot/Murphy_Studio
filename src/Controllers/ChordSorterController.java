@@ -391,13 +391,16 @@ public class ChordSorterController extends Controller {
 
     public void addPisteToList(PisteController piste){
         this.timelineSelector.getItems().add(piste);
-        if(timelineSelector.getItems().size() == 1){
-            timelineSelector.getSelectionModel().select(0);
+        if(this.timelineSelector.getItems().size() == 1){
+            this.timelineSelector.getSelectionModel().select(0);
         }
     }
 
     public void removePisteFromList(PisteController piste){
         this.timelineSelector.getItems().remove(piste);
+        if (this.timelineSelector.getItems().size() != 0 && this.timelineSelector.getSelectionModel().isEmpty()){
+            this.timelineSelector.getSelectionModel().select(0);
+        }
     }
 
     private Accord[] getAccords()
