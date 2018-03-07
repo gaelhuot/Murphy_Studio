@@ -52,11 +52,14 @@ public class MainModel {
         this.channelUsed = new ArrayList<Boolean>();
 
         this.intrumentsMIDI = new HashMap<String, Integer>();
-        this.intrumentsMIDI.put("1",1);
-        this.intrumentsMIDI.put("2",2);
-        this.intrumentsMIDI.put("3",3);
-        this.intrumentsMIDI.put("4",4);
-        this.intrumentsMIDI.put("5",5);
+        this.intrumentsMIDI.put("Piano",0);
+        this.intrumentsMIDI.put("Guitar",25);
+        this.intrumentsMIDI.put("Bass",33);
+        this.intrumentsMIDI.put("Choir",52);
+        this.intrumentsMIDI.put("Trumpet",56);
+        this.intrumentsMIDI.put("Sax",64);
+        this.intrumentsMIDI.put("Flute",73);
+        this.intrumentsMIDI.put("Drum",114);
 
         for ( int i = 0; i < 16; i++ )
             channelUsed.add(false);

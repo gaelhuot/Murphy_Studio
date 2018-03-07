@@ -32,7 +32,7 @@
             <Slider fx:id="piste_volume_slider" />
             <HBox>
                <children>
-                  <Button fx:id="playBtn" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Play">
+                  <Button fx:id="playBtn" mnemonicParsing="false" prefHeight="26.0" prefWidth="112.0" text="Play">
                      <HBox.margin>
                         <Insets right="5.0" />
                      </HBox.margin></Button>
