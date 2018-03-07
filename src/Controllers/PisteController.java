@@ -2,29 +2,16 @@ package Controllers;
 
 import Models.MainModel;
 import Objects.TimelineElement;
-import javafx.application.Platform;
-import javafx.beans.binding.BooleanBinding;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 
 import javax.sound.midi.*;
-import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 public class PisteController extends Controller
 {
@@ -51,6 +38,9 @@ public class PisteController extends Controller
 
     public Sequencer sequencer;
     public Sequence sequence;
+
+    private MidiChannel midiChannel;
+    public int midiChannelIndex;
 
     private double end;
 
@@ -108,6 +98,13 @@ public class PisteController extends Controller
                 }
             }
         });
+
+        try {
+            this.midiChannelIndex = this.model.getMidiChannel();
+            this.midiChannel = MidiSystem.getSynthesizer().getChannels()[this.midiChannelIndex];
+        } catch (MidiUnavailableException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setName(String name)
@@ -118,10 +115,6 @@ public class PisteController extends Controller
     public void setModel(MainModel model) {
         this.model = model;
         initAll();
-    }
-
-    public void setTrack(Track track) {
-
     }
 
     public void addChords(double length){
@@ -165,16 +158,13 @@ public class PisteController extends Controller
             this.sequencer = MidiSystem.getSequencer();
             this.sequencer.open();
 
-            /*this.sequencer.addMetaEventListener(meta -> {
-                if (meta.getType() == 0x2F) {
-                    System.out.println("stop");
-                    stop();
-                }
-            });*/
+            int instrument = this.model.intrumentsMIDI.get(this.piste_instrument_selection.getSelectionModel().getSelectedItem());
 
             this.playBtn.setText("Pause");
 
-            this.sequence = model.midiInterface.cropSequence(this.sequence, 0, 0);
+            this.sequence = model.midiInterface.cropSequence(this.sequence, 0, 0, instrument);
+
+            this.sequence = this.model.midiInterface.setInstrument(this.sequence, instrument);
 
             this.sequencer.setSequence(this.sequence);
             this.sequencer.setTempoInBPM(this.model.midiInterface.tempo);

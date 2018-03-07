@@ -6,6 +6,9 @@ import Controllers.PisteController;
 import Controllers.PisteLayoutController;
 import Objects.*;
 
+import javax.sound.midi.MidiChannel;
+import javax.sound.midi.MidiSystem;
+import javax.sound.midi.MidiUnavailableException;
 import javax.sound.midi.Track;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,6 +39,8 @@ public class MainModel {
     public ArrayList<Integer> sink = new ArrayList<>();
     public HashMap<String, Integer> intrumentsMIDI;
 
+    public ArrayList<Boolean> channelUsed;
+
     public MainModel()
     {
         selectedChord = null;
@@ -43,7 +48,8 @@ public class MainModel {
         this.applicationTracks = new ArrayList<>();
         this.applicationPistes = new ArrayList<>();
 
-        this.pisteToTracks = new HashMap<>();
+        this.pisteToTracks = new HashMap<PisteController, Track>(); //TODO : clean
+        this.channelUsed = new ArrayList<Boolean>();
 
         this.intrumentsMIDI = new HashMap<String, Integer>();
         this.intrumentsMIDI.put("1",1);
@@ -51,6 +57,11 @@ public class MainModel {
         this.intrumentsMIDI.put("3",3);
         this.intrumentsMIDI.put("4",4);
         this.intrumentsMIDI.put("5",5);
+
+        for ( int i = 0; i < 16; i++ )
+            channelUsed.add(false);
+
+        channelUsed.set(0, true);
     }
 
     public void setPisteToTracks(Track track, PisteController piste)
@@ -62,8 +73,24 @@ public class MainModel {
         }
 
         pisteToTracks.put(piste, track);
+    }
 
-        piste.setTrack(track);
+    public int getMidiChannel()
+    {
+        for ( int i = 0; i < channelUsed.size(); i++ )
+        {
+            if ( ! channelUsed.get(i) )
+            {
+                channelUsed.set(i, true);
+                return i;
+            }
+        }
+        return 0;
+    }
+
+    public void removeChannel(int i)
+    {
+        channelUsed.set(i, false);
     }
 
     public Accord getSelectedChord()
