@@ -9,6 +9,7 @@ import Objects.*;
 import javax.sound.midi.Track;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class MainModel {
     public ChordModel chordModel;
@@ -33,6 +34,7 @@ public class MainModel {
     public Tile selectedTile;
 
     public ArrayList<Integer> sink = new ArrayList<>();
+    public HashMap<String, Integer> intrumentsMIDI;
 
     public MainModel()
     {
@@ -42,6 +44,13 @@ public class MainModel {
         this.applicationPistes = new ArrayList<>();
 
         this.pisteToTracks = new HashMap<>();
+
+        this.intrumentsMIDI = new HashMap<String, Integer>();
+        this.intrumentsMIDI.put("1",1);
+        this.intrumentsMIDI.put("2",2);
+        this.intrumentsMIDI.put("3",3);
+        this.intrumentsMIDI.put("4",4);
+        this.intrumentsMIDI.put("5",5);
     }
 
     public void setPisteToTracks(Track track, PisteController piste)

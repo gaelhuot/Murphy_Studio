@@ -17,8 +17,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 import javax.sound.midi.*;
+import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -34,7 +36,7 @@ public class PisteController extends Controller
     @FXML
     public ImageView piste_instrument_icon;
     @FXML
-    public MenuButton piste_instrument_selection;
+    public ChoiceBox<String> piste_instrument_selection;
     @FXML
     public ScrollPane scrollpane;
     @FXML
@@ -85,7 +87,11 @@ public class PisteController extends Controller
 
             }
         });
+        for (Map.Entry<String, Integer> instrument: this.model.intrumentsMIDI.entrySet()) {
+            this.piste_instrument_selection.getItems().add(instrument.getKey());
+        }
 
+        this.piste_instrument_selection.getSelectionModel().select(0);
 
         recordPisteBtn.setOnMouseClicked(event -> {
             if ( this.model.mainExternInterface.sequencer.isRecording() )
