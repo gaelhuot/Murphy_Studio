@@ -1,8 +1,19 @@
 # Murphy Studio
 
+![Murphy Studio Logo](src/icon.png)
+
 Projet TUT de L3 Informatique
 
-## Installation des dépendances :
+##Get started
+>git clone https://github.com/Yarhi/Murphy_Studio.git  
+>cd Murphy_Studio/  
+>cd src/  
+>javac \*/*.java
+
+#Run
+>java -cp . application.main
+
+## Installation des dépendances
 Ubuntu :
 >sudo apt install openjdk-8-jdk openjdk-8-jre openjfx
 
