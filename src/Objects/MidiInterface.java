@@ -193,13 +193,6 @@ public class MidiInterface {
         track.add(endOfTrackEvent);
 
 
-        File f = new File("midi  file.mid");
-        try {
-            MidiSystem.write(sequence, 1, f);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
         return sequence;
     }
 
