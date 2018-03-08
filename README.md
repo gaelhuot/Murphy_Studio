@@ -14,7 +14,7 @@ javac */*.java
 
 ## How to run
 ```bash
-java -cp . application.main
+java -cp . application.Main
 ```
 
 ## Dependencies
