@@ -202,7 +202,7 @@ public class MidiInterface {
 
         Track startTrack = start.getTracks()[0];
 
-        MidiEvent endOfTrackEvent = null;
+f        MidiEvent endOfTrackEvent = null;
 
         try {
             ShortMessage shortMessage = new ShortMessage(ShortMessage.PROGRAM_CHANGE, 1, instrument, 0);
@@ -226,7 +226,6 @@ public class MidiInterface {
                 endOfTrackEvent = event;
         }
 
-        // 32 - 64 - 96
         if ( end != null )
         {
 
@@ -250,7 +249,6 @@ public class MidiInterface {
         else
             endTick = tick;
 
-        // Ta mère la grosse pute
         if (endOfTrackEvent != null)
             endOfTrackEvent.setTick(endTick);
 
