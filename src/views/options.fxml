@@ -9,24 +9,19 @@
 
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@../css/style.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.OptionsController">
   <tabs>
-    <Tab styleClass="tab" text="Périphériques MIDI">
-         <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <Label layoutX="14.0" layoutY="14.0" text="Périphérique d'entrée MIDI" />
-                  <ChoiceBox fx:id="midiInput_list" layoutX="15.0" layoutY="35.0" prefHeight="31.0" prefWidth="326.0" />
-                  <Label layoutX="15.0" layoutY="81.0" text="Périphérique de sortie MIDI" />
-                  <ChoiceBox fx:id="midiOutput_list" disable="true" layoutX="16.0" layoutY="102.0" prefHeight="31.0" prefWidth="326.0" />
-                  <Label layoutX="15.0" layoutY="149.0" text="Périphérique de sortie audio" />
-                  <ChoiceBox fx:id="audioOutput_list" layoutX="16.0" layoutY="170.0" prefHeight="31.0" prefWidth="326.0" />
-                  <Label layoutX="15.0" layoutY="215.0" text="Périphérique d'entrée audio" />
-                  <ChoiceBox fx:id="audioInput_list" layoutX="16.0" layoutY="236.0" prefHeight="31.0" prefWidth="326.0" />
-                   <Button fx:id="refreshBtn" layoutX="486.0" layoutY="9.0" mnemonicParsing="false" text="Rafraichir" />
-
-               </children>
-            </AnchorPane>
-         </content>
-    </Tab>
+      <Tab styleClass="tab" text="Périphériques MIDI">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <Label layoutX="14.0" layoutY="14.0" text="Périphérique d'entrée MIDI"/>
+              <ChoiceBox fx:id="midiInput_list" layoutX="15.0" layoutY="35.0" prefHeight="31.0" prefWidth="326.0"/>
+              <Label layoutX="15.0" layoutY="81.0" text="Périphérique de sortie MIDI"/>
+              <ChoiceBox fx:id="midiOutput_list" disable="true" layoutX="16.0" layoutY="102.0" prefHeight="31.0" prefWidth="326.0"/>
+              <Label layoutX="15.0" layoutY="149.0" text="Périphérique de sortie audio"/>
+              <ChoiceBox fx:id="audioOutput_list" layoutX="16.0" layoutY="170.0" prefHeight="31.0" prefWidth="326.0"/>
+              <Label layoutX="15.0" layoutY="215.0" text="Périphérique d'entrée audio"/>
+              <ChoiceBox fx:id="audioInput_list" layoutX="16.0" layoutY="236.0" prefHeight="31.0" prefWidth="326.0"/>
+              <Button fx:id="refreshBtn" layoutX="486.0" layoutY="9.0" mnemonicParsing="false" text="Rafraichir"/>
+          </AnchorPane>
+      </Tab>
     <Tab styleClass="tab" text="Préférences">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />

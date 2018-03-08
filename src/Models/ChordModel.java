@@ -2,7 +2,6 @@ package Models;
 
 import java.util.ArrayList;
 import Objects.Accord;
-import Objects.Note;
 
 
 public class ChordModel {
