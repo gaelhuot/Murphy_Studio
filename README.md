@@ -4,7 +4,7 @@
 
 Projet TUT de L3 Informatique
 
-##How to install
+## How to install
 * Check dependencies before installing
 ```bash
 git clone https://github.com/Yarhi/Murphy_Studio.git  
@@ -13,7 +13,7 @@ cd src/
 javac */*.java
 ```
 
-##How to run
+## How to run
 ```bash
 java -cp . application.main
 ```
