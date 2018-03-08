@@ -12,6 +12,7 @@ import javax.sound.midi.MidiUnavailableException;
 import javax.sound.midi.Track;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class MainModel {
@@ -37,7 +38,7 @@ public class MainModel {
     public Tile selectedTile;
 
     public ArrayList<Integer> sink = new ArrayList<>();
-    public HashMap<String, Integer> intrumentsMIDI;
+    public LinkedHashMap<String, Integer> intrumentsMIDI;
 
     public MainModel()
     {
@@ -47,7 +48,7 @@ public class MainModel {
         this.applicationPistes = new ArrayList<>();
 
 
-        this.intrumentsMIDI = new HashMap<String, Integer>();
+        this.intrumentsMIDI = new LinkedHashMap<String, Integer>();
         this.intrumentsMIDI.put("Piano",0);
         this.intrumentsMIDI.put("Guitar",25);
         this.intrumentsMIDI.put("Bass",33);
