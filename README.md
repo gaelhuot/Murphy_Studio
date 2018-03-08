@@ -3,8 +3,6 @@
   <img src="src/icon.png" align="center"/>
 </p>
 
-Projet Tutoré de Licence 3 Informatique
-
 ## How to install
 * Check dependencies before installing
 ```bash
