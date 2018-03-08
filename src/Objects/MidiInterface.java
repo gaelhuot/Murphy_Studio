@@ -202,7 +202,7 @@ public class MidiInterface {
 
         Track startTrack = start.getTracks()[0];
 
-f        MidiEvent endOfTrackEvent = null;
+        MidiEvent endOfTrackEvent = null;
 
         try {
             ShortMessage shortMessage = new ShortMessage(ShortMessage.PROGRAM_CHANGE, 1, instrument, 0);
