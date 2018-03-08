@@ -1,8 +1,8 @@
 # Murphy Studio
 
-![Murphy Studio Logo](src/icon.png)
+<img src="src/icon.png" align="center"/>
 
-Projet TUT de L3 Informatique
+Projet Tutoré de Licence 3 Informatique
 
 ## How to install
 * Check dependencies before installing
