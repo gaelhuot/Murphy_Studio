@@ -39,8 +39,6 @@ public class MainModel {
     public ArrayList<Integer> sink = new ArrayList<>();
     public HashMap<String, Integer> intrumentsMIDI;
 
-    public ArrayList<Boolean> channelUsed;
-
     public MainModel()
     {
         selectedChord = null;
@@ -48,8 +46,6 @@ public class MainModel {
         this.applicationTracks = new ArrayList<>();
         this.applicationPistes = new ArrayList<>();
 
-        this.pisteToTracks = new HashMap<PisteController, Track>(); //TODO : clean
-        this.channelUsed = new ArrayList<Boolean>();
 
         this.intrumentsMIDI = new HashMap<String, Integer>();
         this.intrumentsMIDI.put("Piano",0);
@@ -60,40 +56,6 @@ public class MainModel {
         this.intrumentsMIDI.put("Sax",64);
         this.intrumentsMIDI.put("Flute",73);
         this.intrumentsMIDI.put("Drum",114);
-
-        for ( int i = 0; i < 16; i++ )
-            channelUsed.add(false);
-
-        channelUsed.set(0, true);
-    }
-
-    public void setPisteToTracks(Track track, PisteController piste)
-    {
-        if ( this.pisteToTracks.get(piste) != null )
-        {
-            System.out.println("Piste déjà associé à une track");
-            return;
-        }
-
-        pisteToTracks.put(piste, track);
-    }
-
-    public int getMidiChannel()
-    {
-        for ( int i = 0; i < channelUsed.size(); i++ )
-        {
-            if ( ! channelUsed.get(i) )
-            {
-                channelUsed.set(i, true);
-                return i;
-            }
-        }
-        return 0;
-    }
-
-    public void removeChannel(int i)
-    {
-        channelUsed.set(i, false);
     }
 
     public Accord getSelectedChord()

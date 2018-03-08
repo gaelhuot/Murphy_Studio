@@ -39,13 +39,11 @@ public class PisteController extends Controller
     public Sequencer sequencer;
     public Sequence sequence;
 
-    private MidiChannel midiChannel;
-    public int midiChannelIndex;
-
     private double end;
 
     private ArrayList<TimelineElement> chords;
     private boolean isPlaying = false;
+    private Integer instrument;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -99,12 +97,6 @@ public class PisteController extends Controller
             }
         });
 
-        try {
-            this.midiChannelIndex = this.model.getMidiChannel();
-            this.midiChannel = MidiSystem.getSynthesizer().getChannels()[this.midiChannelIndex];
-        } catch (MidiUnavailableException e) {
-            e.printStackTrace();
-        }
     }
 
     public void setName(String name)
@@ -158,11 +150,11 @@ public class PisteController extends Controller
             this.sequencer = MidiSystem.getSequencer();
             this.sequencer.open();
 
-            int instrument = this.model.intrumentsMIDI.get(this.piste_instrument_selection.getSelectionModel().getSelectedItem());
+            this.instrument = this.model.intrumentsMIDI.get(this.piste_instrument_selection.getSelectionModel().getSelectedItem());
 
             this.playBtn.setText("Pause");
 
-            this.sequence = model.midiInterface.cropSequence(this.sequence, 0, 0, instrument);
+            this.sequence = model.midiInterface.cropSequence(this.sequence, 0, 0);
 
             this.sequence = this.model.midiInterface.setInstrument(this.sequence, instrument);
 
@@ -183,5 +175,20 @@ public class PisteController extends Controller
         this.isPlaying = false;
         this.sequencer.stop();
         this.sequencer.close();
+    }
+
+    public void addSequence(Sequence trackFromChords) {
+        this.instrument = this.model.intrumentsMIDI.get(this.piste_instrument_selection.getSelectionModel().getSelectedItem());
+
+        if ( this.sequence == null )
+            this.sequence = this.model.midiInterface.mergeSequence(trackFromChords, null, instrument);
+        else
+        {
+            this.sequence = this.model.midiInterface.mergeSequence(
+                    this.sequence,
+                    trackFromChords,
+                    instrument
+            );
+        }
     }
 }

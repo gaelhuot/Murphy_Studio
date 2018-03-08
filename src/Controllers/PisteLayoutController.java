@@ -97,7 +97,6 @@ public class PisteLayoutController extends Controller
                 pistes.remove(i);
             }
         }
-        this.model.removeChannel( piste.midiChannelIndex );
         this.model.chordSorterController.removePisteFromList(piste);
     }
 
