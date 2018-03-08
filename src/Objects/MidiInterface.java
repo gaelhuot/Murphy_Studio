@@ -149,7 +149,7 @@ public class MidiInterface {
      * Pas de blanc à la fin et au début sauf si spécifié
      */
 
-    public Sequence cropSequence(Sequence oldSequence, int start, int end, int instrument) {
+    public Sequence cropSequence(Sequence oldSequence, int start, int end) {
         Sequence sequence;
         try {
             sequence = new Sequence(Sequence.PPQ, oldSequence.getResolution());
@@ -164,15 +164,6 @@ public class MidiInterface {
         MidiEvent endOfTrackEvent = null;
 
         long oldStartTick = oldTrack.get(0).getTick();
-
-        ShortMessage shortMessage = null;
-        try {
-            shortMessage = new ShortMessage(ShortMessage.PROGRAM_CHANGE, 1, instrument, 0);
-            track.add(new MidiEvent(shortMessage, 0));
-        } catch (InvalidMidiDataException e) {
-            e.printStackTrace();
-        }
-
 
         for (int i = 0; i < oldTrack.size(); i++) {
             MidiEvent event = oldTrack.get(i);
@@ -196,6 +187,78 @@ public class MidiInterface {
         return sequence;
     }
 
+    public Sequence mergeSequence(Sequence start, Sequence end, int instrument)
+    {
+        Sequence sequence;
+
+        try {
+            sequence = new Sequence(Sequence.PPQ, start.getResolution());
+        } catch (InvalidMidiDataException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        Track track = sequence.createTrack();
+
+        Track startTrack = start.getTracks()[0];
+
+        MidiEvent endOfTrackEvent = null;
+
+        try {
+            ShortMessage shortMessage = new ShortMessage(ShortMessage.PROGRAM_CHANGE, 1, instrument, 0);
+            track.add(new MidiEvent(shortMessage, 0));
+        } catch (InvalidMidiDataException e) {
+            e.printStackTrace();
+        }
+
+        long tick = 0;
+        long endTick = 0;
+
+        for (int i = 0; i < startTrack.size(); i++) {
+            MidiEvent event = startTrack.get(i);
+            byte[] midiMessage = event.getMessage().getMessage();
+
+            tick = event.getTick();
+            // midiMessage[0] == -1 => endOfTrack
+            if (midiMessage[0] != -1)
+                track.add(event);
+            else
+                endOfTrackEvent = event;
+        }
+
+        // 32 - 64 - 96
+        if ( end != null )
+        {
+
+            Track endTrack = end.getTracks()[0];
+            for ( int i = 0; i < endTrack.size(); i++  )
+            {
+                MidiEvent event = endTrack.get(i);
+                byte[] midiMessage = event.getMessage().getMessage();
+
+                event.setTick( tick + ( event.getTick() ) );
+
+                if (midiMessage[0] != -1)
+                    track.add(event);
+                else
+                {
+                    endOfTrackEvent = event;
+                    endTick = event.getTick();
+                }
+            }
+        }
+        else
+            endTick = tick;
+
+        // Ta mère la grosse pute
+        if (endOfTrackEvent != null)
+            endOfTrackEvent.setTick(endTick);
+
+        track.add(endOfTrackEvent);
+
+        return sequence;
+    }
+
     public long getChordGridSize(Accord[] accords) {
         long size = 0;
         for (Accord a : accords)
@@ -207,11 +270,6 @@ public class MidiInterface {
         Sequence newSequence = null;
         Track track = sequence.getTracks()[0];
         try {
-
-
-
-            int instr = instrument;
-            System.out.println(instrument);
             newSequence = new Sequence(Sequence.PPQ, sequence.getResolution());
 
             Track newTrack = newSequence.createTrack();
@@ -250,4 +308,6 @@ public class MidiInterface {
         }
         return newSequence;
     }
+
+
 }
