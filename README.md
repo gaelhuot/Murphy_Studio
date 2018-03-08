@@ -4,27 +4,22 @@
 
 Projet TUT de L3 Informatique
 
-##Get started
->git clone https://github.com/Yarhi/Murphy_Studio.git  
->cd Murphy_Studio/  
->cd src/  
->javac \*/*.java
+##How to install
+* Check dependencies before installing
+```bash
+git clone https://github.com/Yarhi/Murphy_Studio.git  
+cd Murphy_Studio/  
+cd src/  
+javac */*.java
+```
 
-#Run
->java -cp . application.main
+##How to run
+```bash
+java -cp . application.main
+```
 
-## Installation des dépendances
+## Dependencies
 Ubuntu :
->sudo apt install openjdk-8-jdk openjdk-8-jre openjfx
-
-## JAVA FX
-Librairie JavaFX (si besoin) dans le dossier ./libs/
-
-## Intelij IDEA
-> https://www.jetbrains.com/idea/download
-
-Pour obtenir la licence :
-  - Créer un compte avec son adresse universitaire : https://account.jetbrains.com/login
-  - Dans https://account.jetbrains.com/licenses, lier son compte universitaire avec son compte Jetbrains (@edu.univ-fcomte.fr)
-
-> Autre alternative : Eclipse : https://eclipse.org/
+```bash
+sudo apt install openjdk-8-jdk openjdk-8-jre openjfx
+```
