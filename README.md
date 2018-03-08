@@ -1,6 +1,7 @@
 # Murphy Studio
-
-<img src="src/icon.png" align="center"/>
+<p align="center"> 
+  <img src="src/icon.png" align="center"/>
+</p>
 
 Projet Tutoré de Licence 3 Informatique
 
