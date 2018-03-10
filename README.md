@@ -4,7 +4,7 @@
 </p>
 
 ## How to install
-* Runs with Java 8 only
+* Use Java 8 only
 * Check dependencies before installing
 ```bash
 git clone https://github.com/Yarhi/Murphy_Studio.git  
