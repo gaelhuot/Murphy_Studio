@@ -4,6 +4,7 @@
 </p>
 
 ## How to install
+* Runs with Java 8 only
 * Check dependencies before installing
 ```bash
 git clone https://github.com/Yarhi/Murphy_Studio.git  
@@ -22,3 +23,6 @@ Ubuntu :
 ```bash
 sudo apt install openjdk-8-jdk openjdk-8-jre openjfx
 ```
+
+Windows :  
+[Download Java 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html?printOnly=1)
