@@ -6,14 +6,19 @@ import java.util.*;
 
 public class Accord implements Cloneable{
 
-    private HashMap<Integer, Character> characterHashMap = new HashMap<Integer, Character>(){{
-        put(0, 'C');
-        put(2, 'D');
-        put(4, 'E');
-        put(5, 'F');
-        put(7, 'G');
-        put(9, 'A');
-        put(11, 'B');
+    private HashMap<Integer, String> characterHashMap = new HashMap<Integer, String>(){{
+        put(0, "C");
+        put(1, "C#");
+        put(2, "D");
+        put(3, "D#");
+        put(4, "E");
+        put(5, "F");
+        put(6, "F#");
+        put(7, "G");
+        put(8, "G#");
+        put(9, "A");
+        put(10, "A#");
+        put(11, "B");
     }};
 
     private int dominant;
@@ -25,7 +30,7 @@ public class Accord implements Cloneable{
 
     private ArrayList<Integer> notes;
 
-    private Character dominantName;
+    private String dominantName;
     private String name;
 
     private boolean isEmpty;
@@ -45,7 +50,7 @@ public class Accord implements Cloneable{
     public Accord( )
     {
         this.dominant = 60;
-        this.dominantName = '#';
+        this.dominantName = "#";
         notes = new ArrayList<>();
 
         this.isEmpty = true;
@@ -63,11 +68,11 @@ public class Accord implements Cloneable{
         this.velocity = 50;
     }
 
-    public Accord(Character dominant)
+    public Accord(String dominant)
     {
         Integer key = null;
-        for (Map.Entry<Integer, Character> entry : characterHashMap.entrySet() )
-            if ( entry.getValue() == dominant ) key = entry.getKey();
+        for (Map.Entry<Integer, String> entry : characterHashMap.entrySet() )
+            if (Objects.equals(entry.getValue(), dominant)) key = entry.getKey();
 
         if ( key == null )
         {
@@ -85,6 +90,9 @@ public class Accord implements Cloneable{
     public Accord(int dominant, Boolean isMinor, Boolean isFifth, Boolean isSeventh) {
         this.dominant = dominant;
         dominantName = characterHashMap.get(dominant%12);
+
+        System.out.println(dominantName);
+
         this.isMinor = isMinor;
         this.isFifth = isFifth;
         this.isSeventh = isSeventh;
@@ -365,7 +373,7 @@ public class Accord implements Cloneable{
         }
     }
 
-    public Character getDominantName() {
+    public String getDominantName() {
         return dominantName;
     }
 
@@ -376,24 +384,24 @@ public class Accord implements Cloneable{
     public Method[] getMethodList() {
         try {
             return new Method[]
-            {
-                Accord.class.getMethod("setMajor"),
-                Accord.class.getMethod("setMinor"),
-                Accord.class.getMethod("setDominantSeven"),
-                Accord.class.getMethod("setMinorSeventh"),
-                Accord.class.getMethod("setMajorSeventh"),
-                Accord.class.getMethod("setDominantSeventhFlattenedFifth"),
-                Accord.class.getMethod("setDominantSeventhSharpedFifth"),
-                Accord.class.getMethod("setSixth"),
-                Accord.class.getMethod("setMinorSixth"),
-                Accord.class.getMethod("setMinorNinth"),
-                Accord.class.getMethod("setMajorNinth"),
-                Accord.class.getMethod("setDiminished"),
-                Accord.class.getMethod("setDiminishedSeventh"),
-                Accord.class.getMethod("setAugmented"),
-                Accord.class.getMethod("setSuspendedFourth"),
-                Accord.class.getMethod("setSuspendedSecond")
-            };
+                    {
+                            Accord.class.getMethod("setMajor"),
+                            Accord.class.getMethod("setMinor"),
+                            Accord.class.getMethod("setDominantSeven"),
+                            Accord.class.getMethod("setMinorSeventh"),
+                            Accord.class.getMethod("setMajorSeventh"),
+                            Accord.class.getMethod("setDominantSeventhFlattenedFifth"),
+                            Accord.class.getMethod("setDominantSeventhSharpedFifth"),
+                            Accord.class.getMethod("setSixth"),
+                            Accord.class.getMethod("setMinorSixth"),
+                            Accord.class.getMethod("setMinorNinth"),
+                            Accord.class.getMethod("setMajorNinth"),
+                            Accord.class.getMethod("setDiminished"),
+                            Accord.class.getMethod("setDiminishedSeventh"),
+                            Accord.class.getMethod("setAugmented"),
+                            Accord.class.getMethod("setSuspendedFourth"),
+                            Accord.class.getMethod("setSuspendedSecond")
+                    };
         }
         catch (NoSuchMethodException e)
         {

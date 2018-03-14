@@ -23,7 +23,7 @@ public class ChordMakerController extends Controller implements Initializable {
 
     public Label chordNameLabel;
 
-    public RadioButton doRadio, reRadio, miRadio, faRadio, solRadio, laRadio, siRadio ;
+    public RadioButton doRadio,doDRadio, reRadio,reDRadio, miRadio, faRadio, faDRadio, solRadio, solDRadio, laRadio, laDRadio, siRadio ;
     public BorderPane chordMakerPane;
     private ToggleGroup noteChordGroup = new ToggleGroup();
 
@@ -43,11 +43,16 @@ public class ChordMakerController extends Controller implements Initializable {
         listToFunc = new LinkedHashMap<>();
 
         doRadio.setToggleGroup(noteChordGroup);
+        doDRadio.setToggleGroup(noteChordGroup);
         reRadio.setToggleGroup(noteChordGroup);
+        reDRadio.setToggleGroup(noteChordGroup);
         miRadio.setToggleGroup(noteChordGroup);
         faRadio.setToggleGroup(noteChordGroup);
+        faDRadio.setToggleGroup(noteChordGroup);
         solRadio.setToggleGroup(noteChordGroup);
+        solDRadio.setToggleGroup(noteChordGroup);
         laRadio.setToggleGroup(noteChordGroup);
+        laDRadio.setToggleGroup(noteChordGroup);
         siRadio.setToggleGroup(noteChordGroup);
 
         doRadio.fire();
@@ -96,13 +101,19 @@ public class ChordMakerController extends Controller implements Initializable {
 
             Method lastFunction = model.selectedChord.getMethodCalled();
 
-            if (newValue == doRadio )   model.selectedChord = new Accord(60, isMinor, isFifth, isSeventh);
-            if (newValue == reRadio )   model.selectedChord = new Accord(62, isMinor, isFifth, isSeventh);
-            if (newValue == miRadio )   model.selectedChord = new Accord(64, isMinor, isFifth, isSeventh);
-            if (newValue == faRadio )   model.selectedChord = new Accord(65, isMinor, isFifth, isSeventh);
-            if (newValue == solRadio)   model.selectedChord = new Accord(67, isMinor, isFifth, isSeventh);
-            if (newValue == laRadio )   model.selectedChord = new Accord(69, isMinor, isFifth, isSeventh);
-            if (newValue == siRadio )   model.selectedChord = new Accord(71, isMinor, isFifth, isSeventh);
+            if (newValue == doRadio  )   model.selectedChord = new Accord(60, isMinor, isFifth, isSeventh);
+            if (newValue == doDRadio )   model.selectedChord = new Accord(61, isMinor, isFifth, isSeventh);
+            if (newValue == reRadio  )   model.selectedChord = new Accord(62, isMinor, isFifth, isSeventh);
+            if (newValue == reDRadio )   model.selectedChord = new Accord(63, isMinor, isFifth, isSeventh);
+            if (newValue == miRadio  )   model.selectedChord = new Accord(64, isMinor, isFifth, isSeventh);
+            if (newValue == faRadio  )   model.selectedChord = new Accord(65, isMinor, isFifth, isSeventh);
+            if (newValue == faDRadio )   model.selectedChord = new Accord(66, isMinor, isFifth, isSeventh);
+            if (newValue == solRadio )   model.selectedChord = new Accord(67, isMinor, isFifth, isSeventh);
+            if (newValue == solDRadio)   model.selectedChord = new Accord(68, isMinor, isFifth, isSeventh);
+            if (newValue == laRadio  )   model.selectedChord = new Accord(69, isMinor, isFifth, isSeventh);
+            if (newValue == laDRadio )   model.selectedChord = new Accord(70, isMinor, isFifth, isSeventh);
+            if (newValue == siRadio  )   model.selectedChord = new Accord(71, isMinor, isFifth, isSeventh);
+
 
             try {
                 Accord.class.getMethod(lastFunction.getName()).invoke(model.selectedChord);
@@ -153,13 +164,18 @@ public class ChordMakerController extends Controller implements Initializable {
     private void fireRadio(Accord ch)
     {
         switch (ch.getDominantName()) {
-            case 'A' : laRadio.fire(); break;
-            case 'B' : siRadio.fire(); break;
-            case 'C' : doRadio.fire(); break;
-            case 'D' : reRadio.fire(); break;
-            case 'E' : miRadio.fire(); break;
-            case 'F' : faRadio.fire(); break;
-            case 'G' : solRadio.fire(); break;
+            case "A" : laRadio.fire(); break;
+            case "A#" : laDRadio.fire(); break;
+            case "B" : siRadio.fire(); break;
+            case "C" : doRadio.fire(); break;
+            case "C#" : doDRadio.fire(); break;
+            case "D" : reRadio.fire(); break;
+            case "D#" : reDRadio.fire(); break;
+            case "E" : miRadio.fire(); break;
+            case "F" : faRadio.fire(); break;
+            case "F#" : faDRadio.fire(); break;
+            case "G" : solRadio.fire(); break;
+            case "G#" : solDRadio.fire(); break;
         }
     }
 
