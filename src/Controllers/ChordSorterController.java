@@ -13,12 +13,9 @@ import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 import javax.sound.midi.InvalidMidiDataException;
-import javax.sound.midi.Sequence;
 import javax.sound.midi.Sequencer;
 import java.net.URL;
 import java.util.*;
@@ -30,7 +27,7 @@ public class ChordSorterController extends Controller {
     public Button deleteBtn;
     public Button togglePlayTrack;
     public Button addToTimeline;
-    public ChoiceBox timelineSelector;
+    public ChoiceBox<PisteController> timelineSelector;
 
     public AnchorPane chordSorterPane;
     private MainModel model;
@@ -260,7 +257,7 @@ public class ChordSorterController extends Controller {
         });
 
         addToTimeline.setOnMouseClicked(event -> {
-            PisteController piste = (PisteController) timelineSelector.getSelectionModel().getSelectedItem();
+            PisteController piste = timelineSelector.getSelectionModel().getSelectedItem();
             if (piste != null){
                 addChordsToTimeline(piste);
             }
@@ -389,7 +386,7 @@ public class ChordSorterController extends Controller {
 
     }
 
-    public void addPisteToList(PisteController piste){
+    void addPisteToList(PisteController piste){
         this.timelineSelector.getItems().add(piste);
         if(this.timelineSelector.getItems().size() == 1){
             this.timelineSelector.getSelectionModel().select(0);
