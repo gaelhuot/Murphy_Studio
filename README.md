@@ -6,6 +6,8 @@
 ## How to install
 * Use Java 8 only
 * Check dependencies before installing
+
+Linux :
 ```bash
 git clone https://github.com/Yarhi/Murphy_Studio.git  
 cd Murphy_Studio/  
@@ -13,7 +15,7 @@ cd src/
 javac */*.java
 ```
 
-* Windows :
+Windows :
 ```bash
 git clone https://github.com/Yarhi/Murphy_Studio.git  
 cd Murphy_Studio\src
