@@ -13,6 +13,12 @@ cd src/
 javac */*.java
 ```
 
+* Windows :
+```bash
+git clone https://github.com/Yarhi/Murphy_Studio.git  
+cd Murphy_Studio\src
+javac -encoding UTF8 application\*.java Controllers\*.java Models\*.java Objects\*.java
+```
 ## How to run
 ```bash
 java -cp . application.Main
