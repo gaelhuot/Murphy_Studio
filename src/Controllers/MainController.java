@@ -2,6 +2,7 @@ package Controllers;
 
 import Models.ChordModel;
 import Models.MainModel;
+import Models.MidiModel;
 import Objects.ExternInterface;
 import Objects.MidiInterface;
 import application.Main;
@@ -67,6 +68,7 @@ public class MainController extends Controller
 
         /* On initialise le model "principal" */
         this.model = new MainModel();
+        MidiModel midiModel = new MidiModel();
 
         this.model.midiInterface = new MidiInterface();
         this.model.mainExternInterface = new ExternInterface();

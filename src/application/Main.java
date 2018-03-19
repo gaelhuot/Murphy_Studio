@@ -2,7 +2,6 @@ package application;
 
 import Controllers.MainController;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
@@ -10,11 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
-
-import java.lang.management.ManagementFactory;
-
-import static javafx.application.Platform.exit;
 
 public class Main extends Application {
 
