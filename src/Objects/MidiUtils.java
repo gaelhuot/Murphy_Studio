@@ -1,4 +1,4 @@
-package Models;
+package Objects;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -11,11 +11,11 @@ import java.util.Scanner;
 import com.google.gson.*;
 import jdk.nashorn.internal.parser.JSONParser;
 
-public class MidiModel {
+public class MidiUtils {
     // Contains all the midi instruments
     private ArrayList<String> instruments;
 
-    public MidiModel()
+    public MidiUtils()
     {
         instruments = new ArrayList<String>();
         initInstruments();
@@ -39,8 +39,6 @@ public class MidiModel {
 
             for ( int i = 0; i < jsonArray.size(); i++ )
                 this.instruments.add(jsonArray.get(i).toString());
-
-            System.out.println(this.instruments);
 
         } catch (IOException e) {
             e.printStackTrace();
