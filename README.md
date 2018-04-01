@@ -34,3 +34,7 @@ sudo apt install openjdk-8-jdk openjdk-8-jre openjfx
 
 Windows :  
 [Download Java 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html?printOnly=1)
+
+
+## Participation
+Wanna participate? Don't hesitate to ask us questions !
