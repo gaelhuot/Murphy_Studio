@@ -134,7 +134,7 @@ public class MainController extends Controller
                 }
             }
         });
-        this.master_volume_slider.setValue(75);
+        this.master_volume_slider.setValue(50);
 
 
         /* ---- </ Main Event Listener > ---- */
