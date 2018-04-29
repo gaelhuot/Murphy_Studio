@@ -3,7 +3,7 @@
   <img src="src/main/resources/icon.png" align="center"/>
 </p>
 
-##How to build
+## How to build
 * Maven
 ```bash
 git clone https://github.com/Yarhi/Murphy_Studio.git  
