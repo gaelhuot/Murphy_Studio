@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<BorderPane maxHeight="1.7976931348623157E308" prefHeight="180.0" prefWidth="360.0" styleClass="background" stylesheets="@/css/style.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="murphystudio.controllers.AboutController">
+   <top>
+      <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="360.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Murphy Studio" />
+         </children>
+         <BorderPane.margin>
+            <Insets top="5.0" />
+         </BorderPane.margin>
+      </VBox>
+   </top>
+   <center>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="140.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <ImageView fitHeight="128.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@/icon.png" />
+               </image>
+            </ImageView>
+            <VBox alignment="CENTER" minWidth="-Infinity" GridPane.columnIndex="1">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Antoine Bachetti" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gael Huot" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Thibaud Jeannin" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pierre-Alain Masson" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Université de Franche Comté" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="GNU General Public License 3.0" />
+                  <Hyperlink fx:id="link_github" text="GitHub" />
+               </children>
+            </VBox>
+         </children>
+      </GridPane>
+   </center>
+</BorderPane>
