@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane maxHeight="+Infinity" maxWidth="+Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="185.0" prefWidth="400.0" styleClass="background" stylesheets="@/css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="murphystudio.controllers.PisteLayoutController">
+   <top>
+      <ToolBar fx:id="piste_layout_button_bar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: transparent;" BorderPane.alignment="CENTER">
+        <items>
+            <Button fx:id="playPisteBtn" mnemonicParsing="false" text="Play" />
+            <Button fx:id="addPisteBtn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" styleClass="button-add" text="+" />
+        </items>
+      </ToolBar>
+   </top>
+   <center>
+      <AnchorPane maxHeight="+Infinity" maxWidth="+Infinity" prefHeight="100.0" prefWidth="100.0" styleClass="background" BorderPane.alignment="TOP_LEFT">
+         <children>
+            <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <content>
+                  <VBox id="track_layout_vbox" fx:id="PisteLayoutVBox" maxHeight="+Infinity" maxWidth="+Infinity" minWidth="-Infinity" prefHeight="212.0" prefWidth="300.0" styleClass="background" />
+               </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
+   </center>
+   <bottom>
+      <ScrollBar fx:id="timeline_scrollbar" blockIncrement="0.1" max="10.0" unitIncrement="0.1" visibleAmount="0.3" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>
