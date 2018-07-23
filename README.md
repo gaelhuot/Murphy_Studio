@@ -7,6 +7,7 @@
 * Maven
 ```bash
 git clone https://github.com/Yarhi/Murphy_Studio.git  
+cd Murphy_Studio  
 mvn package  
 java -jar target/jfx/app/murphy-studio-app-1.0-SNAPSHOT-jfx.jar
 ```
